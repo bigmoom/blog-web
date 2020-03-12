@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="google-site-verification" content="_i0mgfxBy6QPgJZLx5NbYfLAp5i5xqHoSKIcpYOPHM0" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="_i0mgfxBy6QPgJZLx5NbYfLAp5i5xqHoSKIcpYOPHM0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.caiwanghui.top","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="因为准备忙毕设的事情，就开始学习推荐系统的相关知识，但是一开始就看到item-based CF和SVD的时候，发现很多线性代数的知识都忘了，就准备开这篇来重新学习一下 线性代数   我主要以YouTube上 为程序员设计的线性代数课程为资源展开学习（这个貌似是慕课网的资源） 后来发现B站也有。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性代数相关知识">
+<meta property="og:url" content="http://www.caiwanghui.top/2020/03/12/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="菜鸡肥肥的私人博客">
+<meta property="og:description" content="因为准备忙毕设的事情，就开始学习推荐系统的相关知识，但是一开始就看到item-based CF和SVD的时候，发现很多线性代数的知识都忘了，就准备开这篇来重新学习一下 线性代数   我主要以YouTube上 为程序员设计的线性代数课程为资源展开学习（这个貌似是慕课网的资源） 后来发现B站也有。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200311205312.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200311205811.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200311211910.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200311221759.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200311223948.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200311224902.png">
+<meta property="article:published_time" content="2020-03-11T20:09:32.000Z">
+<meta property="article:modified_time" content="2020-03-12T02:57:08.286Z">
+<meta property="article:author" content="Wanghui Cai">
+<meta property="article:tag" content="线性代数">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200311205312.png">
+
+<link rel="canonical" href="http://www.caiwanghui.top/2020/03/12/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>线性代数相关知识 | 菜鸡肥肥的私人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">菜鸡肥肥的私人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2020/03/12/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Wanghui Cai">
+      <meta itemprop="description" content="一些零零散散的学习总结">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜鸡肥肥的私人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          线性代数相关知识
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-11 20:09:32" itemprop="dateCreated datePublished" datetime="2020-03-11T20:09:32Z">2020-03-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-12 02:57:08" itemprop="dateModified" datetime="2020-03-12T02:57:08Z">2020-03-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">基础知识</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>因为准备忙毕设的事情，就开始学习推荐系统的相关知识，但是一开始就看到<code>item-based CF</code>和<code>SVD</code>的时候，发现很多线性代数的知识都忘了，就准备开这篇来重新学习一下 <strong>线性代数</strong></p>
+</blockquote>
+<blockquote>
+<p>我主要以<code>YouTube</code>上 <strong>为程序员设计的线性代数课程</strong>为资源展开学习（这个貌似是慕课网的资源）</p>
+<p>后来发现B站也有。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="概论">概论</h1>
+<blockquote>
+<p>真实世界是<strong>多维度</strong>的，因此传统的<strong>单变量</strong>不足以描述真实世界</p>
+<p>而<strong>线性代数</strong>是研究<strong>一组数</strong>，即 <strong>向量</strong> ，这也就是我们为什么要学习<strong>线性代数</strong>。</p>
+</blockquote>
+<h1 id="向量">向量</h1>
+<blockquote>
+<p>一组数的基本表示方法 --<strong>向量</strong>（<code>Vector</code>）</p>
+<p><code>Vector</code>是线性代数研究的基本元素</p>
+<p>有什么用？ 最基本上的出发点：<strong>表方向</strong></p>
+<p><strong>例</strong>：我走了5000米，单独这个数据<strong>5000米</strong>并没有在现实生活中表述清楚，这个时候就要引入<strong>向量</strong>这个概念来表示我往哪个方向走了5000米。</p>
+</blockquote>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200311205312.png" /></p>
+<blockquote>
+<p>为了研究方便，我们定义向量都从 <strong>原点</strong> 起始。</p>
+<p>但是如果只是表示方向，最多三个维度就够了 --&gt; 引入更加抽象的：<strong>n维向量</strong></p>
+<p>不同角度刻画一个事物，例如下图<strong>（120,3,2,2,666）</strong>五个维度来刻画一个屋子。</p>
+</blockquote>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200311205811.png" /></p>
+<blockquote>
+<p><strong>一个方向，就是一个点；空间中的一个点，可以看做从原点指向这个点的一个方向。</strong></p>
+</blockquote>
+<h2 id="行向量和列向量">行向量和列向量</h2>
+<p>行向量<span class="math inline">\(\begin{pmatrix} 3 &amp; 4\\ \end{pmatrix}\)</span> 列向量<span class="math inline">\(\begin{pmatrix} 3\\ 4\\ \end{pmatrix}\)</span></p>
+<blockquote>
+<p>通常教材，论文，提到向量，都是指<strong>列向量</strong></p>
+</blockquote>
+<h2 id="向量加法">向量加法</h2>
+<p><span class="math display">\[
+\begin{pmatrix}
+5\\
+2\\
+\end{pmatrix}
++
+\begin{pmatrix}
+2\\
+5\\
+\end{pmatrix}
+= ?
+\]</span></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200311211910.png" width="30%" height="30%"></p>
+<blockquote>
+<p>相当于从<strong>（0,0）</strong>走到<strong>（5,2）</strong>，在走<strong>（2,5）</strong>方向，走到<strong>（7,7）</strong></p>
+<p>所以向量相加就是直接<strong>分别相加</strong></p>
+</blockquote>
+<h2 id="向量数量乘法">向量数量乘法</h2>
+<p><span class="math display">\[
+2 *
+\begin{pmatrix}
+5\\
+2\\
+\end{pmatrix}=
+\begin{pmatrix}
+5*2\\
+2*2\\
+\end{pmatrix}
+\]</span></p>
+<blockquote>
+<p>乘法本义便是加法的累加</p>
+</blockquote>
+<h2 id="向量运算的基本性质">向量运算的基本性质</h2>
+<blockquote>
+<p>满足<strong>分配率，结合律</strong></p>
+</blockquote>
+<h2 id="零向量">零向量</h2>
+<p>对于任意一个向量<span class="math inline">\(\vec{u}\)</span>,都存在一个向量<span class="math inline">\(O\)</span>，满足：<span class="math inline">\(\vec{u}+O=\vec{u}\)</span></p>
+<blockquote>
+<p>我们称这个向量，为<strong>零向量</strong>（零向量<span class="math inline">\(O\)</span><strong>没有箭头</strong>）</p>
+</blockquote>
+<h2 id="向量的长度">向量的长度</h2>
+<p><span class="math display">\[
+\vec{u}=\begin{pmatrix}
+3 &amp; 4\\
+\end{pmatrix},\parallel\vec{u}\parallel=\sqrt{3^2+4^2}=5
+\]</span></p>
+<blockquote>
+<p>（双竖线其实是表示<strong>二范数</strong>，<strong>欧拉距离</strong>）</p>
+</blockquote>
+<h2 id="单位向量">单位向量</h2>
+<p><span class="math display">\[
+\vec{u}=(u_1,u_2,...,u_n)^T \\
+\hat{u}=\frac{1}{\parallel\vec{u}\parallel}\cdot\vec{u}=(\frac{u_1}{\parallel\vec{u}\parallel},\frac{u_2}{\parallel\vec{u}\parallel},...,\frac{u_n}{\parallel\vec{u}\parallel}) \\
+\parallel\vec{u}\parallel=1 \ \ \ \ 只表示方向
+\]</span></p>
+<blockquote>
+<p>根据<span class="math inline">\(\vec{u}\)</span>求出<span class="math inline">\(\hat{u}\)</span>的过程：<strong>归一化，规范化（normalize）</strong></p>
+<p>只有 <strong>0,1</strong> 组成的单位向量：<strong>标准单位向量 Standard Unit Vector</strong></p>
+</blockquote>
+<h2 id="向量的点乘">向量的点乘</h2>
+<blockquote>
+<p><strong><span class="math inline">\(\vec{u}\cdot\vec{v}=?\)</span></strong></p>
+</blockquote>
+<p><span class="math display">\[
+\vec{u}\cdot\vec{v}=\begin{pmatrix}
+u_1\\
+u_2\\
+...\\
+u_n\\
+\end{pmatrix}\cdot\begin{pmatrix}
+v_1\\
+v_2\\
+...\\
+v_n\\
+\end{pmatrix}=\sum_{i=0}^n\begin{pmatrix}
+u_1\cdot v_1\\
+u_2\cdot v_2\\
+...\\
+u_n\cdot v_1\\
+\end{pmatrix}
+\]</span></p>
+<blockquote>
+<p>两个向量<strong>点乘/内积</strong>，结果为一个<strong>标量</strong>，即为一个数</p>
+</blockquote>
+<p><span class="math display">\[
+\vec{u}\cdot\vec{v}=\parallel\vec{u}\parallel\cdot\parallel\vec{v}\parallel\cos(\Theta)
+\]</span></p>
+<blockquote>
+<p>以二维空间为例证明<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200311221759.png" style="zoom:67%;" /></p>
+<p>通过余弦定理 （这个证明很简单，算就完了）</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{align}\parallel \vec{u}-\vec{v} \parallel^2&amp;=\parallel\vec{u}\parallel^2+\parallel\vec{v}\parallel^2-2\cdot\parallel\vec{u}\parallel\cdot\parallel\vec{v}\parallel\cos(\Theta)\\\parallel\vec{u}\parallel\cdot\parallel\vec{v}\parallel\cos(\Theta)&amp;=\frac{1}{2}(\parallel\vec{u}\parallel^2+\parallel\vec{v}\parallel^2-\parallel \vec{u}-\vec{v} \parallel^2)\\
+&amp;= \frac{1}{2}(x_1^2+y_1^2+x_2^2+y_2^2-(x_1^2-x_2^2)-(y_1^2-y_2^2))\\
+&amp;=\frac{1}{2}(x_1^2+y_1^2+x_2^2+y_2^2-x_1^2-x_2^2-y_1^2-y_2^2+2x_1x_2+2y_1y_2)\\
+&amp;=x_1x_2+y_1y_2
+\end{align}
+\]</span></p>
+<blockquote>
+<p><strong>两个向量的点乘就是两个向量投影到同一方向后的长度的积</strong></p>
+</blockquote>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200311223948.png" style="zoom:67%;" /></p>
+<h2 id="向量的点乘的应用">向量的点乘的应用</h2>
+<p><span class="math display">\[
+\vec{u}\cdot\vec{v}=\parallel\vec{u}\parallel\cdot\parallel\vec{v}\parallel\cos(\Theta)\\
+cos(\Theta)=\frac{\vec{u}\cdot\vec{v}}{\parallel\vec{u}\parallel\cdot\parallel\vec{v}\parallel}
+\]</span></p>
+<blockquote>
+<p>如果 <span class="math inline">\(\Theta=90\circ\)</span>,<span class="math inline">\(\vec{u}\cdot\vec{v}=0\)</span></p>
+<p>如果<span class="math inline">\(\vec{u}\cdot\vec{v}=0\)</span>，两个向量<strong>垂直</strong>；</p>
+<p>如果<span class="math inline">\(\vec{u}\cdot\vec{v}&gt;0\)</span>,两个向量夹角为<strong>锐角</strong>；</p>
+<p>如果<span class="math inline">\(\vec{u}\cdot\vec{v}&lt;0\)</span>,两个向量夹角为<strong>钝角</strong>。</p>
+</blockquote>
+<blockquote>
+<p>判断两个向量的相似程度（<strong>推荐系统</strong>）</p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200311224902.png" style="zoom:60%;" /></p>
+</blockquote>
+<h1 id="矩阵">矩阵</h1>
+<h2 id="什么是矩阵">什么是矩阵</h2>
+<blockquote>
+<p>向量是对数的拓展，一个向量表示一组数</p>
+<p>矩阵是对向量的拓展，一个矩阵表示一组向量</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{pmatrix}1&amp;2&amp;3&amp;4\\5&amp;6&amp;7&amp;8\\9&amp;10&amp;11&amp;12\\13&amp;14&amp;15&amp;16\end{pmatrix}       行数=列数-&gt; 方阵
+\]</span></p>
+<blockquote>
+<p><span class="math inline">\(a_{ij}\)</span>表第<code>i</code>行第<code>j</code>列</p>
+</blockquote>
+<h2 id="矩阵基本运算">矩阵基本运算</h2>
+<p><span class="math display">\[
+A=\begin{pmatrix}a_{11}&amp;a_{12}&amp;...&amp;a_{1c}\\a_{21}&amp;a_{22}&amp;...&amp;a_{2c}\\...&amp;...&amp;...&amp;...\\a_{r1}&amp;a_{r2}&amp;...&amp;a_{rc}\end{pmatrix} \ \ B=\begin{pmatrix}b_{11}&amp;b_{12}&amp;...&amp;b_{1c}\\b_{21}&amp;b_{22}&amp;...&amp;b_{2c}\\...&amp;...&amp;...&amp;...\\b_{r1}&amp;b_{r2}&amp;...&amp;b_{rc}\end{pmatrix}\\
+ \\
+A+B=\begin{pmatrix}a_{11}+b_{11}&amp;a_{12}+b_{12}&amp;...&amp;a_{1c}+b_{1c}\\a_{21}+b_{21}&amp;a_{22}+b_{22}&amp;...&amp;a_{2c}+b_{2c}\\...&amp;...&amp;...&amp;...\\a_{r1}+b_{r1}&amp;a_{r2}+b_{r2}&amp;...&amp;a_{rc}+b_{rc}\end{pmatrix}
+\]</span></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" rel="tag"># 线性代数</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/09/Markdown-%E7%9B%B8%E5%85%B3%E8%AF%AD%E6%B3%95/" rel="prev" title="Markdown常用操作">
+      <i class="fa fa-chevron-left"></i> Markdown常用操作
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概论"><span class="nav-number">1.</span> <span class="nav-text">概论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#向量"><span class="nav-number">2.</span> <span class="nav-text">向量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#行向量和列向量"><span class="nav-number">2.1.</span> <span class="nav-text">行向量和列向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量加法"><span class="nav-number">2.2.</span> <span class="nav-text">向量加法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量数量乘法"><span class="nav-number">2.3.</span> <span class="nav-text">向量数量乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量运算的基本性质"><span class="nav-number">2.4.</span> <span class="nav-text">向量运算的基本性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零向量"><span class="nav-number">2.5.</span> <span class="nav-text">零向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量的长度"><span class="nav-number">2.6.</span> <span class="nav-text">向量的长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单位向量"><span class="nav-number">2.7.</span> <span class="nav-text">单位向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量的点乘"><span class="nav-number">2.8.</span> <span class="nav-text">向量的点乘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量的点乘的应用"><span class="nav-number">2.9.</span> <span class="nav-text">向量的点乘的应用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵"><span class="nav-number">3.</span> <span class="nav-text">矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是矩阵"><span class="nav-number">3.1.</span> <span class="nav-text">什么是矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵基本运算"><span class="nav-number">3.2.</span> <span class="nav-text">矩阵基本运算</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Wanghui Cai"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Wanghui Cai</p>
+  <div class="site-description" itemprop="description">一些零零散散的学习总结</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/bigmoom" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bigmoom" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:15850180970@163.com" title="E-Mail → mailto:15850180970@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">苏ICP备20010524 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wanghui Cai</span>
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  
+
+</body>
+</html>

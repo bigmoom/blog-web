@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"www.caiwanghui.top","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="因为准备忙毕设的事情，就开始学习推荐系统的相关知识，但是一开始就看到item-based CF和SVD的时候，发现很多线性代数的知识都忘了，就准备开这篇来重新学习一下 线性代数   我主要以YouTube上 为程序员设计的线性代数课程为资源展开学习（这个貌似是慕课网的资源） 后来发现B站也有。">
+  <meta name="description" content="因为准备忙毕设的事情，就开始学习推荐系统的相关知识，但是一开始就看到item-based CF和SVD的时候，发现很多线性代数的知识都忘了，就准备开这篇来重新学习一下 线性代数   我主要以YouTube上 为程序员设计的线性代数课程 为资源展开学习（这个貌似是慕课网的资源） 后来发现B站也有。B站链接">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线性代数相关知识">
 <meta property="og:url" content="http://www.caiwanghui.top/2020/03/12/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/index.html">
 <meta property="og:site_name" content="菜鸡肥肥的私人博客">
-<meta property="og:description" content="因为准备忙毕设的事情，就开始学习推荐系统的相关知识，但是一开始就看到item-based CF和SVD的时候，发现很多线性代数的知识都忘了，就准备开这篇来重新学习一下 线性代数   我主要以YouTube上 为程序员设计的线性代数课程为资源展开学习（这个貌似是慕课网的资源） 后来发现B站也有。">
+<meta property="og:description" content="因为准备忙毕设的事情，就开始学习推荐系统的相关知识，但是一开始就看到item-based CF和SVD的时候，发现很多线性代数的知识都忘了，就准备开这篇来重新学习一下 线性代数   我主要以YouTube上 为程序员设计的线性代数课程 为资源展开学习（这个貌似是慕课网的资源） 后来发现B站也有。B站链接">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200311205312.png">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200311205811.png">
@@ -35,8 +35,21 @@
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200311221759.png">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200311223948.png">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200311224902.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312151122.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312153308.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312153541.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312170024.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312195348.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312202913.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312203352.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312202606.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312213920.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312220714.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312222100.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312222504.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312225804.png">
 <meta property="article:published_time" content="2020-03-11T20:09:32.000Z">
-<meta property="article:modified_time" content="2020-03-12T05:27:29.593Z">
+<meta property="article:modified_time" content="2020-03-12T15:05:15.692Z">
 <meta property="article:author" content="Wanghui Cai">
 <meta property="article:tag" content="线性代数">
 <meta name="twitter:card" content="summary">
@@ -203,7 +216,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-12 05:27:29" itemprop="dateModified" datetime="2020-03-12T05:27:29Z">2020-03-12</time>
+                <time title="修改时间：2020-03-12 15:05:15" itemprop="dateModified" datetime="2020-03-12T15:05:15Z">2020-03-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -230,8 +243,8 @@
 <p>因为准备忙毕设的事情，就开始学习推荐系统的相关知识，但是一开始就看到<code>item-based CF</code>和<code>SVD</code>的时候，发现很多线性代数的知识都忘了，就准备开这篇来重新学习一下 <strong>线性代数</strong></p>
 </blockquote>
 <blockquote>
-<p>我主要以<code>YouTube</code>上 <strong>为程序员设计的线性代数课程</strong>为资源展开学习（这个貌似是慕课网的资源）</p>
-<p>后来发现B站也有。</p>
+<p>我主要以<code>YouTube</code>上 <a href="https://www.youtube.com/playlist?list=PL0Kneloi6O0zyVKekh4faY6vun_jkDVko" target="_blank" rel="noopener">为程序员设计的线性代数课程</a> 为资源展开学习（这个貌似是慕课网的资源）</p>
+<p>后来发现B站也有。<a href="https://www.bilibili.com/video/av94991431" target="_blank" rel="noopener">B站链接</a></p>
 </blockquote>
 <a id="more"></a>
 <h1 id="概论">概论</h1>
@@ -327,22 +340,7 @@
 <p><strong><span class="math inline">\(\vec{u}\cdot\vec{v}=?\)</span></strong></p>
 </blockquote>
 <p><span class="math display">\[
-\vec{u}\cdot\vec{v}=\begin{pmatrix}
-u_1\\
-u_2\\
-...\\
-u_n\\
-\end{pmatrix}\cdot\begin{pmatrix}
-v_1\\
-v_2\\
-...\\
-v_n\\
-\end{pmatrix}=\sum_{i=0}^n\begin{pmatrix}
-u_1\cdot v_1\\
-u_2\cdot v_2\\
-...\\
-u_n\cdot v_1\\
-\end{pmatrix}
+\vec{u}\cdot\vec{v}=\begin{pmatrix}u_1\\u_2\\...\\u_n\\\end{pmatrix}\cdot\begin{pmatrix}v_1\\v_2\\...\\v_n\\\end{pmatrix}=\sum_{i=0}^n\begin{pmatrix}u_1\cdot v_1\\u_2\cdot v_2\\...\\u_n\cdot v_1\\\end{pmatrix}
 \]</span></p>
 <blockquote>
 <p>两个向量<strong>点乘/内积</strong>，结果为一个<strong>标量</strong>，即为一个数</p>
@@ -352,7 +350,7 @@ u_n\cdot v_1\\
 \]</span></p>
 <blockquote>
 <p>以二维空间为例证明<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200311221759.png" style="zoom:67%;" /></p>
-<p>通过余弦定理 （这个证明很简单，算就完了）</p>
+<p>通过余弦定理来证明（余弦定理的证明很简单，算就完了，这里就不写了）</p>
 </blockquote>
 <p><span class="math display">\[
 \begin{align}\parallel \vec{u}-\vec{v} \parallel^2&amp;=\parallel\vec{u}\parallel^2+\parallel\vec{v}\parallel^2-2\cdot\parallel\vec{u}\parallel\cdot\parallel\vec{v}\parallel\cos(\Theta)\\\parallel\vec{u}\parallel\cdot\parallel\vec{v}\parallel\cos(\Theta)&amp;=\frac{1}{2}(\parallel\vec{u}\parallel^2+\parallel\vec{v}\parallel^2-\parallel \vec{u}-\vec{v} \parallel^2)\\
@@ -398,6 +396,297 @@ A=\begin{pmatrix}a_{11}&amp;a_{12}&amp;...&amp;a_{1c}\\a_{21}&amp;a_{22}&amp;...
  \\
 A+B=\begin{pmatrix}a_{11}+b_{11}&amp;a_{12}+b_{12}&amp;...&amp;a_{1c}+b_{1c}\\a_{21}+b_{21}&amp;a_{22}+b_{22}&amp;...&amp;a_{2c}+b_{2c}\\...&amp;...&amp;...&amp;...\\a_{r1}+b_{r1}&amp;a_{r2}+b_{r2}&amp;...&amp;a_{rc}+b_{rc}\end{pmatrix}
 \]</span></p>
+<h2 id="矩阵看做系统">矩阵看做系统</h2>
+<blockquote>
+<p>就拿经济系统举例</p>
+<p>我们设对 <strong>IT</strong>，<strong>电子</strong>，<strong>矿产</strong>，<strong>房产</strong>的投入为 <span class="math inline">\(x_{it}\ \ x_e\ \ x_m\ \ x_h\)</span></p>
+</blockquote>
+<p><span class="math display">\[
+\begin{align}x_{it} &amp; =100+0.2x_e+0.1x_m+0.5x_h\\x_e &amp;= 50+0.5x_{it}+0.2x_m+0.1x_h\\x_m &amp;=20+0.4x_e +0.3x_h\\x_h &amp;=666+0.2x_{it}\end{align}-&gt;\begin{cases}x_{it}-0.2x_e+0.1x_m+0.5x_h &amp;=100\\-0.5x_{it}-x_e+0.2x_m+0.1x_h&amp;=50\\-0.4x_e-x_m+0.3x_h&amp;=20\\-0.2x_{it}+x_h&amp;=666\end{cases}
+\]</span></p>
+<blockquote>
+<p>对于 <strong>IT行业</strong>，我们至少需要投入原始的100亿，但是100亿是不够的，我们在其他的领域，需要 <strong>It 行业</strong>的支撑，换句话说，其他行业的发展，<strong>IT行业</strong>投入的比重一定要达到一定比例，例如<strong>电子行业</strong>需要将<strong>20%</strong>的投入投入于<strong>IT行业</strong>来支撑本行业的发展，依次类推，得到IT行业的总投入金额。</p>
+<p>就这样，我们最后通过每个行业的一个制约式，也就形成了这个小的经济系统。</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{pmatrix}1 &amp; -0.2 &amp; 0.1 &amp; 0.5\\-0.5 &amp; -1 &amp; 0.2 &amp; 0.1\\0 &amp; -0.4 &amp; -1 &amp; 0.3\\-0.2 &amp; 0 &amp; 0 &amp; 1 \end{pmatrix}\begin{pmatrix}x_{it}\\x_e\\x_m\\x_h\\\end{pmatrix}\ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \begin{pmatrix}100\\50\\20\\666\\\end{pmatrix}
+\]</span></p>
+<blockquote>
+<p>把左侧矩阵记为A，变量列向量<span class="math inline">\(\vec{x}\)</span>，结果列向量<span class="math inline">\(\vec{b}\)</span>，即可得：</p>
+</blockquote>
+<p><span class="math display">\[
+A\cdot\vec{x}=\vec{b}
+\]</span></p>
+<blockquote>
+<p>这也就是矩阵与向量的乘法，即矩阵的每个行向量乘以列向量，结果是一个列向量。</p>
+<p>如下所示，其中<span class="math inline">\(\vec{r_m}\)</span>是矩阵每一行的行向量,<span class="math inline">\(\vec{u}\)</span>为列向量</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{pmatrix}--\vec{r_1}--\\--\vec{r_2}--\\...\\--\vec{r_m}--\\\end{pmatrix}\cdot\vec{u}=\begin{pmatrix}\vec{r_1}\cdot\vec{u}\\\vec{r_2}\cdot\vec{u}\\...\\\vec{r_m}\cdot\vec{u}\\\end{pmatrix}
+\]</span></p>
+<blockquote>
+<p>矩阵实际上是将一个向量转换为另一个向量，也就可以把矩阵理解成<strong>向量的函数</strong></p>
+<p>这里以矩阵在图形变换中的应用为例:</p>
+<p>我有一个坐标<span class="math inline">\(\begin{pmatrix}x\\y\end{pmatrix}\)</span>，想要把横坐标扩大1.5倍，纵坐标扩大2倍，即得到<span class="math inline">\(\begin{pmatrix}1.5x\\2y\end{pmatrix}\)</span></p>
+</blockquote>
+<p><span class="math display">\[
+\begin{pmatrix}a &amp; b\\c &amp; d\\\end{pmatrix}\cdot\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}ax+by\\cx+dy\\\end{pmatrix}\
+\]</span></p>
+<blockquote>
+<p>很容易得到变化矩阵为<span class="math inline">\(T=\begin{pmatrix}1.5&amp;0\\0&amp;2\end{pmatrix}\)</span></p>
+</blockquote>
+<h2 id="矩阵和矩阵的乘法">矩阵和矩阵的乘法</h2>
+<blockquote>
+<p>继续以上面的图形变换应用为例</p>
+<p>我平面上有个图形，我想把每个点的坐标都做这样的变化</p>
+</blockquote>
+<p><span class="math display">\[
+图形坐标矩阵P=\begin{pmatrix}0&amp;4&amp;5\\0&amp;0&amp;3\end{pmatrix}\\T\cdot P=\begin{pmatrix}1.5&amp;0\\0&amp;2\end{pmatrix}\cdot \begin{pmatrix}0&amp;4&amp;5\\0&amp;0&amp;3\end{pmatrix}=\begin{pmatrix}0&amp;6&amp;7.5\\0&amp;0&amp;6\end{pmatrix}
+\]</span></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312151122.png" style="zoom:50%;" /></p>
+<blockquote>
+<p>通式</p>
+</blockquote>
+<p><span class="math display">\[
+A\cdot B=A\cdot \begin{pmatrix}| &amp; | &amp; &amp;| \\\vec{c_1} &amp;\vec{c_2}&amp;...&amp;\vec{c_n}\\| &amp; | &amp; &amp;| \\\end{pmatrix} =\begin{pmatrix}- &amp; \vec{r_1} &amp;-\\- &amp; \vec{r_2} &amp;-\\...\\- &amp; \vec{r_m} &amp;-\\\end{pmatrix}\cdot \begin{pmatrix}| &amp; | &amp; &amp;| \\\vec{c_1} &amp;\vec{c_2}&amp;...&amp;\vec{c_n}\\| &amp; | &amp; &amp;| \\\end{pmatrix}\\=\begin{pmatrix}\vec{r_1}\cdot \vec{c_1} &amp; \vec{r_1}\cdot \vec{c_2}&amp;...&amp;\vec{r_1}\cdot \vec{c_n}\\\vec{r_2}\cdot \vec{c_1} &amp; \vec{r_2}\cdot \vec{c_2}&amp;...&amp;\vec{r_2}\cdot \vec{c_n}\\...\\\vec{r_m}\cdot \vec{c_1} &amp; \vec{r_m}\cdot \vec{c_2}&amp;...&amp;\vec{r_m}\cdot \vec{c_n}\\\end{pmatrix}
+\]</span></p>
+<blockquote>
+<p>矩阵乘法 <strong>不遵守交换律</strong>，<strong>遵守分配率</strong></p>
+</blockquote>
+<h2 id="矩阵的转置">矩阵的转置</h2>
+<p><span class="math display">\[
+P=\begin{pmatrix}0 &amp; 0\\4&amp;0\\5&amp;3\end{pmatrix}\ \ P^T=\begin{pmatrix}0 &amp;4&amp; 5\\0&amp;0&amp;3\end{pmatrix}\\ \  \\ 即A(a_{ij}),A^T(a_{ji})
+\]</span></p>
+<blockquote>
+<p>转置的性质</p>
+</blockquote>
+<p>​ <span class="math inline">\((A+B)^T=A^T+B^T\)</span></p>
+<p>​ <span class="math inline">\((A\cdot B)^T=B^T\cdot A^T\)</span></p>
+<h2 id="更多的变换矩阵">更多的变换矩阵</h2>
+<blockquote>
+<p>旋转变换<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312153308.png" style="zoom:50%;" /> <span class="math inline">\(T\cdot \begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}x&#39;\\y&#39;\end{pmatrix}\)</span></p>
+</blockquote>
+<blockquote>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312153541.png" style="zoom:50%;" /> <span class="math inline">\(\cos(\alpha)\cdot d=x\\ \sin(\alpha)\cdot d=y\\d为(x,y)的模\)</span> 同理 <span class="math inline">\(\cos(\alpha-\theta)\cdot d=x&#39;\\ \sin(\alpha-\theta)\cdot d=y&#39;\)</span></p>
+</blockquote>
+<blockquote>
+<p>得到x'和x，y'和y的关系</p>
+</blockquote>
+<p><span class="math display">\[
+x&#39;=\frac{cos(\alpha)cos(\theta)+sin(\alpha)sin(\theta)}{cos(\alpha)}x\\x&#39;=cos(\theta)x+sin(\theta)\frac{sin(\alpha)}{cos(\alpha)}x=cos(\theta)x+sin(\theta)y\\同理：y&#39;=cos(\theta)y-sin(\theta)\frac{cos(\alpha)}{sin(\alpha)}x=cos(\theta)x-sin(\theta)x\\所以\ \ T=\begin{pmatrix}cos(\theta) &amp; sin(\theta)\\-sin(\theta) &amp; cos(\theta)\end{pmatrix}
+\]</span></p>
+<blockquote>
+<p>可以通过单位向量容易理解一些</p>
+<p>单位向量<span class="math inline">\(\vec{e_1}=(0,1)^T,\vec{e_2}=(1,0)^T\)</span>，对<span class="math inline">\(\vec{e_1}\)</span>的操作可以看做是对纵坐标的操作，对<span class="math inline">\(\vec{e_2}\)</span>的操作就看做对横坐标的操作，那么我旋转<span class="math inline">\(\theta\)</span>，很容易得到<span class="math inline">\(\vec{e&#39;_1}=(sin(\theta),cos(\theta)),\vec{e&#39;_2}=( cos(\theta),-sin(\theta))\)</span>,也就得到了我们变换矩阵</p>
+</blockquote>
+<h2 id="单位矩阵">单位矩阵</h2>
+<p><span class="math display">\[
+I_n=\begin{pmatrix}1 &amp; 0 &amp; ... &amp; 0\\0 &amp; 1 &amp; ... &amp; 0\\... &amp; ... &amp; ...&amp; ...\\0 &amp; 0 &amp; ... &amp; 1\\\end{pmatrix}\\\ \ \\I_n=(i_{kj})\begin{cases}1 \ \ if \ \ k=j\\0 \ \ if\ \ k\neq j\end{cases}
+\]</span></p>
+<h2 id="矩阵的逆">矩阵的逆</h2>
+<p><span class="math display">\[
+矩阵中AB=BA=I,则称B是A的逆矩阵，记做：B=A^{-1}
+\]</span></p>
+<blockquote>
+<p>A称为可逆矩阵，或者叫 <strong>非奇异</strong> 矩阵（non-singular）</p>
+<p>因为可逆矩阵居多，所以不可逆矩阵又叫<strong>奇异矩阵</strong>（singular）</p>
+</blockquote>
+<p><span class="math display">\[
+如果 BA=I，则称B是A的左逆矩阵\\如果 AC=I，则称C是A的右逆矩阵\\如果一个矩阵A寄存在左逆矩阵B又存在右逆矩阵C，则B=C
+\]</span></p>
+<blockquote>
+<p>因为AB=BA=I，所以<strong>可逆矩阵一定是方阵，非方阵一定不可逆</strong></p>
+</blockquote>
+<blockquote>
+<p>对于矩阵A，如果存在逆矩阵B，则B<strong>唯一</strong></p>
+</blockquote>
+<p><span class="math display">\[
+假设矩阵A存在两个不同的逆矩阵B,C\\AB=AC=I\\B(AB)=B(AC)\\(BA)B=(BA)C\\B=C
+\]</span></p>
+<blockquote>
+<p><span class="math inline">\((A^T)^{-1}=(A^{-1})^T\)</span>,直接用定义证明</p>
+</blockquote>
+<h2 id="用矩阵表示空间">用矩阵表示空间</h2>
+<blockquote>
+<p>矩阵乘以一个向量可以看做在矩阵这个空间中该向量的位置</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{pmatrix}4&amp;2\\1&amp;3\\\end{pmatrix}\cdot\begin{pmatrix}2\\2\\\end{pmatrix}\\以\vec{u}=\begin{pmatrix}4\\1\\\end{pmatrix},\vec{v}=\begin{pmatrix}2\\3\\\end{pmatrix}\\即以\vec{u}和\vec{v}构成的空间中，(2,2)^T所在的位置
+\]</span></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312170024.png" style="zoom:50%;" /></p>
+<blockquote>
+<p>如上图所示，在<span class="math inline">\(\vec{u},\vec{v}\)</span>构成的空间中，<span class="math inline">\((2,2)^T\)</span>即为u方向两个单位，v方向两个单位，最后相加得到的向量，最后在转为x-y坐标轴中，即得到<span class="math inline">\((12,8)^T\)</span>的结果</p>
+</blockquote>
+<h1 id="线性系统">线性系统</h1>
+<blockquote>
+<p>什么是线性？</p>
+<p>未知数只能是一次方项</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{cases}x+2y+4z &amp;=7\\3x+7y+2z &amp;=-11\\2x+3y+3z&amp;=1\end{cases}
+\]</span></p>
+<h2 id="高斯消元法">高斯消元法</h2>
+<blockquote>
+<p>将上面三元一次方程组转化为矩阵</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{pmatrix}1&amp;2&amp;4&amp;7\\3&amp;7&amp;2&amp;-11\\2&amp;3&amp;3&amp;1\\\end{pmatrix}
+\]</span></p>
+<blockquote>
+<p>该矩阵为增广矩阵：系数矩阵（前3列）+结果列</p>
+<p>我们对其进行消元</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{pmatrix}1&amp;2&amp;4&amp;7\\3&amp;7&amp;2&amp;-11\\2&amp;3&amp;3&amp;1\\\end{pmatrix}\ \ \begin{pmatrix}1&amp;2&amp;4&amp;7\\0&amp;1&amp;-10&amp;-32\\2&amp;3&amp;3&amp;1\\\end{pmatrix}\ \ \begin{pmatrix}1&amp;2&amp;4&amp;7\\0&amp;1&amp;-10&amp;-32\\0&amp;-1&amp;-5&amp;-13\\\end{pmatrix}\ \ \begin{pmatrix}1&amp;2&amp;4&amp;7\\0&amp;1&amp;-10&amp;-32\\0&amp;0&amp;1&amp;3\\\end{pmatrix}
+\]</span></p>
+<blockquote>
+<p>高斯消元法（主元就是每一行第一个非0的元素）</p>
+<ul>
+<li>第一行主元化为1</li>
+<li>然后第二行上一行主元位置化为0，再该行主元化为1</li>
+<li>依次类推进行消元</li>
+</ul>
+</blockquote>
+<h2 id="高斯约旦消元法">高斯约旦消元法</h2>
+<blockquote>
+<p>前向过程（从上到下）</p>
+<ol type="1">
+<li>选择最上的主元，化为1</li>
+<li>主元下面的所有行减去主元所在行的某个倍数，使得主元下面所有元素都为0</li>
+</ol>
+<p>后向过程（从下到上）</p>
+<ol type="1">
+<li>选择最下的主元</li>
+<li>主元上面的所有行减去主元所在行的某个背书，使得主元上面所有元素都为0</li>
+</ol>
+</blockquote>
+<p><span class="math display">\[
+\begin{pmatrix}
+1&amp;0&amp;0&amp;2\\
+0&amp;1&amp;0&amp;-3\\
+0&amp;0&amp;1&amp;-4\\
+\end{pmatrix}
+\]</span></p>
+<h2 id="行最简形式">行最简形式</h2>
+<blockquote>
+<p><strong>reduced row echelon form(RREF)</strong></p>
+<p>即<strong>阶梯型矩阵</strong></p>
+<p>非零行的第一个元素（主元）为<strong>1</strong></p>
+<p>主元所在列的其他元素均为<strong>0</strong></p>
+</blockquote>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312195348.png" style="zoom:50%;" /></p>
+<h2 id="齐次线性方程组">齐次线性方程组</h2>
+<blockquote>
+<p>无常数项</p>
+<p>至少有一个全零解</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{cases}
+-x+2Y+3z &amp;=0\\
+x-4y-13z&amp;=0\\
+-3x+5y+4z&amp;=0\\
+\end{cases}
+\]</span></p>
+<blockquote>
+<p>与上面解法相同，但可以把最后一列直接删掉，化为3*3的矩阵求解。</p>
+</blockquote>
+<h2 id="求解矩阵的逆">求解矩阵的逆</h2>
+<p><span class="math display">\[
+A=\begin{pmatrix}
+1&amp;2\\3&amp;4\\
+\end{pmatrix},求解A的逆矩阵\\
+设A^{-1}=\begin{pmatrix}
+x_{11}&amp;x_{12}\\x_{21}&amp;x_{22}\\
+\end{pmatrix},即
+\begin{pmatrix}1&amp;2\\3&amp;4\\\end{pmatrix}
+\cdot 
+\begin{pmatrix}x_{11}&amp;x_{12}\\x_{21}&amp;x_{22}\\\end{pmatrix}
+=
+\begin{pmatrix}1&amp;0\\0&amp;1\\ \end{pmatrix}\\
+\begin{pmatrix}1&amp;2\\3&amp;4\\\end{pmatrix}
+\cdot 
+\begin{pmatrix}x_{11}\\x_{21}\\\end{pmatrix}
+=
+\begin{pmatrix}1\\0\end{pmatrix}\ \ 
+\begin{pmatrix}1&amp;2\\3&amp;4\\\end{pmatrix}
+\cdot 
+\begin{pmatrix}x_{12}\\x_{22}\\\end{pmatrix}
+=
+\begin{pmatrix}0\\1\end{pmatrix}\\
+两边分别使用高斯约旦消元法
+\]</span></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312202913.png" style="zoom:67%;" /></p>
+<blockquote>
+<p>消元之后我们可以发现左边右侧的*其实也就等于<span class="math inline">\((x_{11},x_{21})^T\)</span>,右边右侧等于<span class="math inline">\((x_{12},x_{22})^T\)</span></p>
+</blockquote>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312203352.png" style="zoom:67%;" /></p>
+<blockquote>
+<p>可以发现两边系数矩阵完全一样，我们可以构建2*4的增广矩阵，左边为系数矩阵，右边为单位矩阵</p>
+</blockquote>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312202606.png" style="zoom:67%;" /></p>
+<blockquote>
+<p>这也就得到了<span class="math inline">\(A^{-1}\)</span>的值</p>
+</blockquote>
+<h2 id="初等矩阵">初等矩阵</h2>
+<blockquote>
+<p>对单位矩阵进行一次初等变换得到的结果矩阵</p>
+<p><strong>通常记做E</strong></p>
+</blockquote>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312213920.png" style="zoom:50%;" /></p>
+<blockquote>
+<p>回忆使用高斯约旦消元法把矩阵化为最简形式的过程：</p>
+<p>寻找一系列初等矩阵E，使得：</p>
+</blockquote>
+<p><span class="math display">\[
+E_p\cdot ... \cdot E_3 \cdot E_2 \cdot E_1 \cdot A=rref(A)
+\]</span></p>
+<h2 id="初等矩阵和可逆性">初等矩阵和可逆性</h2>
+<blockquote>
+<p>因为初等变换是可逆的，所以初等矩阵必然是可逆的。</p>
+<p>例如<span class="math inline">\(\begin{pmatrix}k&amp;0&amp;0\\0&amp;1&amp;0\\0&amp;0&amp;1\end{pmatrix}\)</span>是将一个矩阵的第一行乘以K倍，那么他的可逆操作就是把第一行再乘以1/k，所以他的逆矩阵就是<span class="math inline">\(\begin{pmatrix}\frac{1}{k}&amp;0&amp;0\\0&amp;1&amp;0\\0&amp;0&amp;1\end{pmatrix}\)</span></p>
+<p>同理可知其他初等矩阵的逆矩阵。</p>
+</blockquote>
+<h2 id="为什么矩阵的逆那么重要">为什么矩阵的逆那么重要？</h2>
+<blockquote>
+<p>对于线性系统： <span class="math inline">\(Ax=b\ \ x=A^{-1}\cdot b\)</span></p>
+<p>如果在A不变，b会变化的条件下，可以大大加快计算速度</p>
+<p>以下四个命题是等价的</p>
+</blockquote>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312220714.png" style="zoom:67%;" /></p>
+<h2 id="矩阵的lu分解">矩阵的LU分解</h2>
+<blockquote>
+<p>将矩阵A分解为 <span class="math inline">\(A=L\cdot U\)</span></p>
+<p>其中L: lower Triangle Matrix 下三角矩阵，U：Upper Triangle Matrix 上三角矩阵</p>
+<p>以方阵为例<span class="math inline">\(\begin{pmatrix}*&amp;0&amp;0&amp;0\\*&amp;*&amp;0&amp;0\\*&amp;*&amp;*&amp;0\\*&amp;*&amp;*&amp;*\end{pmatrix}\)</span> 为L，<span class="math inline">\(\begin{pmatrix}*&amp;*&amp;*&amp;*\\0&amp;*&amp;*&amp;*\\0&amp;0&amp;*&amp;*\\0&amp;0&amp;0&amp;*\end{pmatrix}\)</span> 为U</p>
+<p>其中单位下三角矩阵<span class="math inline">\(\begin{pmatrix}1&amp;0&amp;0&amp;0\\*&amp;1&amp;0&amp;0\\*&amp;*&amp;1&amp;0\\*&amp;*&amp;*&amp;1\end{pmatrix}\)</span></p>
+<p>高斯消元法的过程，就是通过初等变换，把一个矩阵变成了上三角矩阵。因此必然有一系列对应的逆向的初等变换，这些连续逆向的矩阵乘以单位矩阵的结果便是一个下三角矩阵L。</p>
+</blockquote>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312222100.png" style="zoom:67%;" /></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312222504.png" style="zoom:67%;" /> <span class="math display">\[
+A=\begin{pmatrix}1&amp;2&amp;3\\4&amp;5&amp;6\\3&amp;-3&amp;5\end{pmatrix},L=\begin{pmatrix}1&amp;0&amp;0\\4&amp;1&amp;0\\3&amp;3&amp;1\end{pmatrix},U=\begin{pmatrix}1&amp;2&amp;3\\0&amp;-3&amp;-6\\0&amp;0&amp;14\end{pmatrix}
+\]</span></p>
+<blockquote>
+<p>矩阵能够进行LU分解的条件：高斯消元法中没有进行两行的互换。</p>
+</blockquote>
+<blockquote>
+<p>时间复杂度的比较</p>
+<p>在解Ax=b的过程中，LU分解：<span class="math inline">\(O(0.5n^3)\)</span></p>
+<p>这个可以这么理解: LU分解就是先对A进行高斯消元，而高斯消元就是把主对角线下方的所有元素消成0，而主对角线下方大概有<span class="math inline">\(0.5n^2\)</span>个元素，而每个元素消0都大概需要减去上一行某个倍数，而上一行大概是有n个元素，所以总的时间复杂度就为<span class="math inline">\(O(0.5n^3)\)</span>，而对于L中，我们根本不需要算，直接逆向初等变化填入L中。</p>
+</blockquote>
+<blockquote>
+<p>之后我们就可以把<span class="math inline">\(Ax=b\)</span>转化为<span class="math inline">\(L\cdot U\cdot x=b\)</span>，我们设<span class="math inline">\(Ux=y\ \ 即L\cdot y=b\)</span></p>
+<p><span class="math inline">\(O(n^2)\)</span>求出y，我们可以这么理解，对于L，第一行我们可以直接得到<span class="math inline">\(y_1\)</span>,那么得到<span class="math inline">\(y_1\)</span>，在第二行也就可以直接得到<span class="math inline">\(y_2\)</span>，依次类推看，每一行的未知y只需与前面求出来的y乘一下就好了，所以总共<span class="math inline">\(O(0.5n^2)\)</span>求出y</p>
+<p>那么我得到y之后<span class="math inline">\(U\cdot x=y\)</span>，因为上三角矩阵和下三角矩阵求法相同，所以与求y的时间复杂度相同</p>
+<p>最终 LU分解：<span class="math inline">\(O(0.5n^3)+2*O（0.5n^2）\)</span></p>
+</blockquote>
+<blockquote>
+<p>对比求解矩阵的逆 大概<span class="math inline">\(O(2*n^3)\)</span></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200312225804.png" style="zoom:67%;" /></p>
+<p>我们使用高斯约旦消元法，要把左侧的系数矩阵化为单位矩阵，相当于每个元素都要加减某一行的某个倍数，那么总共有<span class="math inline">\(n^2\)</span>个元素，而每次乘以一个倍数，因为是增广矩阵，所以每次乘法都乘了2n个元素，所以总共时间复杂度约为<span class="math inline">\(O(2*n^3)\)</span></p>
+</blockquote>
+<blockquote>
+<p>可见LU分解效率较正常求解较高。</p>
+</blockquote>
 
     </div>
 
@@ -479,7 +768,7 @@ A+B=\begin{pmatrix}a_{11}+b_{11}&amp;a_{12}+b_{12}&amp;...&amp;a_{1c}+b_{1c}\\a_
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概论"><span class="nav-number">1.</span> <span class="nav-text">概论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#向量"><span class="nav-number">2.</span> <span class="nav-text">向量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#行向量和列向量"><span class="nav-number">2.1.</span> <span class="nav-text">行向量和列向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量加法"><span class="nav-number">2.2.</span> <span class="nav-text">向量加法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量数量乘法"><span class="nav-number">2.3.</span> <span class="nav-text">向量数量乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量运算的基本性质"><span class="nav-number">2.4.</span> <span class="nav-text">向量运算的基本性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零向量"><span class="nav-number">2.5.</span> <span class="nav-text">零向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量的长度"><span class="nav-number">2.6.</span> <span class="nav-text">向量的长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单位向量"><span class="nav-number">2.7.</span> <span class="nav-text">单位向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量的点乘"><span class="nav-number">2.8.</span> <span class="nav-text">向量的点乘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量的点乘的应用"><span class="nav-number">2.9.</span> <span class="nav-text">向量的点乘的应用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵"><span class="nav-number">3.</span> <span class="nav-text">矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是矩阵"><span class="nav-number">3.1.</span> <span class="nav-text">什么是矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵基本运算"><span class="nav-number">3.2.</span> <span class="nav-text">矩阵基本运算</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概论"><span class="nav-number">1.</span> <span class="nav-text">概论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#向量"><span class="nav-number">2.</span> <span class="nav-text">向量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#行向量和列向量"><span class="nav-number">2.1.</span> <span class="nav-text">行向量和列向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量加法"><span class="nav-number">2.2.</span> <span class="nav-text">向量加法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量数量乘法"><span class="nav-number">2.3.</span> <span class="nav-text">向量数量乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量运算的基本性质"><span class="nav-number">2.4.</span> <span class="nav-text">向量运算的基本性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零向量"><span class="nav-number">2.5.</span> <span class="nav-text">零向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量的长度"><span class="nav-number">2.6.</span> <span class="nav-text">向量的长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单位向量"><span class="nav-number">2.7.</span> <span class="nav-text">单位向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量的点乘"><span class="nav-number">2.8.</span> <span class="nav-text">向量的点乘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量的点乘的应用"><span class="nav-number">2.9.</span> <span class="nav-text">向量的点乘的应用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵"><span class="nav-number">3.</span> <span class="nav-text">矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是矩阵"><span class="nav-number">3.1.</span> <span class="nav-text">什么是矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵基本运算"><span class="nav-number">3.2.</span> <span class="nav-text">矩阵基本运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵看做系统"><span class="nav-number">3.3.</span> <span class="nav-text">矩阵看做系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵和矩阵的乘法"><span class="nav-number">3.4.</span> <span class="nav-text">矩阵和矩阵的乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的转置"><span class="nav-number">3.5.</span> <span class="nav-text">矩阵的转置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多的变换矩阵"><span class="nav-number">3.6.</span> <span class="nav-text">更多的变换矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单位矩阵"><span class="nav-number">3.7.</span> <span class="nav-text">单位矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的逆"><span class="nav-number">3.8.</span> <span class="nav-text">矩阵的逆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用矩阵表示空间"><span class="nav-number">3.9.</span> <span class="nav-text">用矩阵表示空间</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线性系统"><span class="nav-number">4.</span> <span class="nav-text">线性系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#高斯消元法"><span class="nav-number">4.1.</span> <span class="nav-text">高斯消元法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高斯约旦消元法"><span class="nav-number">4.2.</span> <span class="nav-text">高斯约旦消元法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行最简形式"><span class="nav-number">4.3.</span> <span class="nav-text">行最简形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#齐次线性方程组"><span class="nav-number">4.4.</span> <span class="nav-text">齐次线性方程组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求解矩阵的逆"><span class="nav-number">4.5.</span> <span class="nav-text">求解矩阵的逆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初等矩阵"><span class="nav-number">4.6.</span> <span class="nav-text">初等矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初等矩阵和可逆性"><span class="nav-number">4.7.</span> <span class="nav-text">初等矩阵和可逆性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么矩阵的逆那么重要"><span class="nav-number">4.8.</span> <span class="nav-text">为什么矩阵的逆那么重要？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的lu分解"><span class="nav-number">4.9.</span> <span class="nav-text">矩阵的LU分解</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

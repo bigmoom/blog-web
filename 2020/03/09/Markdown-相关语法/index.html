@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"www.caiwanghui.top","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="标题 Markdown 支持两种形式  用#作为标记符 （Typora中快捷键为ctrl+对应数字） 12345# 一级标题## 二级### 三级...###### 六级标题 显示结果如下：（typora貌似不支持跨级标签，还有#之后要有一个空格）  用&#x3D;和-标记 即在 标题下面 加上任意个&#x3D;表 一级标题，-表 二级标题（个人不喜欢​ :wink:） 12345一级标题&amp;#x3D">
+  <meta name="description" content="标题 Markdown 支持两种形式   用#作为标记符 （Typora中快捷键为ctrl+对应数字） 12345# 一级标题## 二级### 三级...###### 六级标题 显示结果如下：（typora貌似不支持跨级标签，还有#之后要有一个空格）    用&#x3D;和-标记 即在 标题下面 加上任意个&#x3D;表 一级标题，-表 二级标题（个人不喜欢​ 😉） 12345一级标题&#x3D;&#x3D;&amp;#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Markdown常用操作">
 <meta property="og:url" content="http://www.caiwanghui.top/2020/03/09/Markdown-%E7%9B%B8%E5%85%B3%E8%AF%AD%E6%B3%95/index.html">
 <meta property="og:site_name" content="菜鸡肥肥的私人博客">
-<meta property="og:description" content="标题 Markdown 支持两种形式  用#作为标记符 （Typora中快捷键为ctrl+对应数字） 12345# 一级标题## 二级### 三级...###### 六级标题 显示结果如下：（typora貌似不支持跨级标签，还有#之后要有一个空格）  用&#x3D;和-标记 即在 标题下面 加上任意个&#x3D;表 一级标题，-表 二级标题（个人不喜欢​ :wink:） 12345一级标题&amp;#x3D">
+<meta property="og:description" content="标题 Markdown 支持两种形式   用#作为标记符 （Typora中快捷键为ctrl+对应数字） 12345# 一级标题## 二级### 三级...###### 六级标题 显示结果如下：（typora貌似不支持跨级标签，还有#之后要有一个空格）    用&#x3D;和-标记 即在 标题下面 加上任意个&#x3D;表 一级标题，-表 二级标题（个人不喜欢​ 😉） 12345一级标题&#x3D;&#x3D;&amp;#">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200309145634.png">
-<meta property="og:image" content="http://www.caiwanghui.top/2020/03/09/Markdown-%E7%9B%B8%E5%85%B3%E8%AF%AD%E6%B3%95/%E2%80%AAC:/Users/caiwanghui/Desktop/huantou.jpeg">
+<meta property="og:image" content="http://www.caiwanghui.top/2020/03/09/Markdown-%E7%9B%B8%E5%85%B3%E8%AF%AD%E6%B3%95/%E2%80%AAC:%5CUsers%5Ccaiwanghui%5CDesktop%5Chuantou.jpeg">
 <meta property="og:image" content="http://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/202003/09/001759-84139.jpeg">
 <meta property="og:image" content="http://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/202003/09/001759-84139.jpeg">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/202003/09/003417-997322.png">
@@ -232,31 +232,38 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="标题">标题</h2>
+        <h2 id="标题"><a class="markdownIt-Anchor" href="#标题"></a> 标题</h2>
 <p>Markdown <strong>支持两种形式</strong></p>
-<ol type="1">
-<li><p><strong>用<code>#</code>作为标记符</strong> （<strong>Typora</strong>中快捷键为<code>ctrl+对应数字</code>）</p>
+<ol>
+<li>
+<p><strong>用<code>#</code>作为标记符</strong> （<strong>Typora</strong>中快捷键为<code>ctrl+对应数字</code>）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级</span><br><span class="line">### 三级</span><br><span class="line">...</span><br><span class="line">###### 六级标题</span><br></pre></td></tr></table></figure>
 <p>显示结果如下：（<code>typora</code>貌似不支持<strong>跨级标签</strong>，还有<code>#</code>之后要有一个<strong>空格</strong>）</p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200309145634.png" /></p></li>
-<li><p><strong>用<code>=</code>和<code>-</code>标记</strong></p>
-<p>即在 <strong>标题下面</strong> 加上任意个<code>=</code>表 <strong>一级标题</strong>，<code>-</code>表 <strong>二级标题</strong>（个人不喜欢​ :wink:）</p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200309145634.png" alt="" /></p>
+</li>
+<li>
+<p><strong>用<code>=</code>和<code>-</code>标记</strong></p>
+<p>即在 <strong>标题下面</strong> 加上任意个<code>=</code>表 <strong>一级标题</strong>，<code>-</code>表 <strong>二级标题</strong>（个人不喜欢​ 😉）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">一级标题</span><br><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">二级标题</span><br><span class="line">--------</span><br></pre></td></tr></table></figure>
-<p>效果如上</p></li>
+<p>效果如上</p>
+</li>
 </ol>
 <a id="more"></a>
-<h2 id="列表">列表</h2>
+<h2 id="列表"><a class="markdownIt-Anchor" href="#列表"></a> 列表</h2>
 <p>Markdown中列表分<strong>有序类别</strong>和<strong>无序列表</strong></p>
-<ol type="1">
-<li><p><strong>有序列表通过数字加<code>.</code>加<code>space</code>来表示:</strong></p>
+<ol>
+<li>
+<p><strong>有序列表通过数字加<code>.</code>加<code>space</code>来表示:</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 序列1</span><br><span class="line">2. 序列2</span><br><span class="line">3. 序列3</span><br></pre></td></tr></table></figure>
 <p>效果如下：</p>
-<ol type="1">
+<ol>
 <li>序列1</li>
 <li>序列2</li>
 <li>序列3</li>
-</ol></li>
-<li><p><strong>无序列表通过<code>-</code>,<code>+</code>和<code>*</code>来表示（序列符号也会因为阶级不同）</strong></p>
+</ol>
+</li>
+<li>
+<p><strong>无序列表通过<code>-</code>,<code>+</code>和<code>*</code>来表示（序列符号也会因为阶级不同）</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- A</span><br><span class="line">- B</span><br><span class="line">- C</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p>效果如下：</p>
 <ul>
@@ -266,10 +273,12 @@
 <ul>
 <li>D</li>
 <li>E</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 </ol>
-<h2 id="引用">引用</h2>
+<h2 id="引用"><a class="markdownIt-Anchor" href="#引用"></a> 引用</h2>
 <p>引用通过<code>&gt;</code>来表示，支持<strong>多级引用，标题，列表，代码块，分割线等等</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; 这是一段引用</span><br><span class="line"> &gt; 二级引用</span><br><span class="line">  &gt; 三级引用</span><br><span class="line">&gt; ### 这是一个标题</span><br><span class="line">&gt; 1. A</span><br><span class="line">&gt; 2. B</span><br><span class="line">&gt; &#96;&#96;&#96; public class Markdown&#123;&#125;&#96;&#96;&#96;(插入代码块后面讲到)</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -282,10 +291,10 @@
 </blockquote>
 </blockquote>
 <blockquote>
-<h3 id="这是一个标题">这是一个标题</h3>
+<h3 id="这是一个标题"><a class="markdownIt-Anchor" href="#这是一个标题"></a> 这是一个标题</h3>
 </blockquote>
 <blockquote>
-<ol type="1">
+<ol>
 <li>A</li>
 <li>B</li>
 </ol>
@@ -293,56 +302,62 @@
 <blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Markdown</span></span>&#123;</span><br><span class="line"> .....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h2 id="强调">强调</h2>
-<ol type="1">
-<li><p><code>**</code>或<code>__</code>代表<strong>加粗</strong>，一个<code>*</code>或者<code>_</code>代表 <strong>斜体</strong>，<code>~~</code>代表 <strong>删除</strong></p>
+<h2 id="强调"><a class="markdownIt-Anchor" href="#强调"></a> 强调</h2>
+<ol>
+<li>
+<p><code>**</code>或<code>__</code>代表<strong>加粗</strong>，一个<code>*</code>或者<code>_</code>代表 <strong>斜体</strong>，<code>~~</code>代表 <strong>删除</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">快捷键：</span><br><span class="line">crtl+b 加粗</span><br><span class="line">crtl+i 倾斜</span><br><span class="line">alt+shift+5 删除</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">**加粗文本**  </span><br><span class="line">__加粗文本__</span><br><span class="line">*斜体文本*</span><br><span class="line">_斜体文本_</span><br><span class="line">~~删除文本~~</span><br></pre></td></tr></table></figure>
 <p>效果如下：</p>
 <p><strong>加粗文本</strong><br />
-<strong>加粗文本</strong> <em>斜体文本</em> <em>斜体文本</em> <del>删除文本</del></p></li>
+<strong>加粗文本</strong><br />
+<em>斜体文本</em><br />
+<em>斜体文本</em><br />
+<s>删除文本</s></p>
+</li>
 </ol>
-<h2 id="图片与链接">图片与链接</h2>
+<h2 id="图片与链接"><a class="markdownIt-Anchor" href="#图片与链接"></a> 图片与链接</h2>
 <p>图片与链接语法很相似</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">图片： ![]()  &#x2F;&#x2F;![图片文本，即鼠标放置图片上显示文字](图片地址)</span><br><span class="line">链接： []() &#x2F;&#x2F;[链接文本](链接地址)</span><br></pre></td></tr></table></figure>
 <p>链接又分为<code>行内式</code>，<code>参考式</code>，和<code>自动链接式</code>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">行内式： [肥肥的github](https:&#x2F;&#x2F;github.com&#x2F;bigmoom)</span><br><span class="line">参考式： [肥肥的github][url],url相当于一个参数，文中任一位置为其赋值就行</span><br><span class="line">[url]:https:&#x2F;&#x2F;github.com&#x2F;bigmoom</span><br><span class="line">自动链接：自动链接就是没有链接文本，直接显示url，用法是使用&#39;&lt;&gt;&#39;括起来</span><br><span class="line">&lt;https:&#x2F;&#x2F;github.com&#x2F;bigmoom&gt;</span><br></pre></td></tr></table></figure>
-<p>行内式： <a href="https://github.com/bigmoom" target="_blank" rel="noopener">肥肥的github</a> 参考式： <a href="https://github.com/bigmoom" target="_blank" rel="noopener">肥肥的github</a>,url相当于一个参数，文中任一位置为其赋值就行</p>
-<p>自动链接：自动链接就是没有链接文本，直接显示url，用法是使用'&lt;&gt;'括起来 <a href="https://github.com/bigmoom" target="_blank" rel="noopener" class="uri">https://github.com/bigmoom</a></p>
+<p>行内式： <a href="https://github.com/bigmoom" target="_blank" rel="noopener">肥肥的github</a><br />
+参考式： <a href="https://github.com/bigmoom" target="_blank" rel="noopener">肥肥的github</a>,url相当于一个参数，文中任一位置为其赋值就行</p>
+<p>自动链接：自动链接就是没有链接文本，直接显示url，用法是使用’&lt;&gt;'括起来<br />
+<a href="https://github.com/bigmoom" target="_blank" rel="noopener">https://github.com/bigmoom</a></p>
 <p>图片又分插入<code>本地图片</code>，<code>网络图片</code>，<code>图片base64数据</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">基础语法： ![](图片地址)</span><br></pre></td></tr></table></figure>
-<ol type="1">
-<li><p>本地图片</p>
+<ol>
+<li>
+<p>本地图片</p>
 <p>本地图片即上文<code>图片地址</code>使用图片的<strong>本地地址</strong>，支持 <strong>绝对路径</strong> 和 <strong>相对路径</strong></p>
-<figure>
-<img src="‪C:\Users\caiwanghui\Desktop\huantou.jpeg" alt="换头臭鼬" /><figcaption>换头臭鼬</figcaption>
-</figure></li>
+<p><img src="%E2%80%AAC:%5CUsers%5Ccaiwanghui%5CDesktop%5Chuantou.jpeg" alt="换头臭鼬" /></p>
+</li>
 </ol>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">非常不建议这种方式，因为路径一改就无法使用，非常不灵活(不出意外，你们看到这个页面时候应该已经么了)</span><br></pre></td></tr></table></figure></p>
-<ol start="2" type="1">
-<li><p>网络图片（<strong>常用</strong>）</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">非常不建议这种方式，因为路径一改就无法使用，非常不灵活(不出意外，你们看到这个页面时候应该已经么了)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>
+<p>网络图片（<strong>常用</strong>）</p>
 <p>只需要在<code>图片地址</code>中填入图片的网络链接即可。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![huantou](http:&#x2F;&#x2F;typora-cwh.oss-cn-hangzhou.aliyuncs.com&#x2F;typora&#x2F;202003&#x2F;09&#x2F;001759-84139.jpeg)</span><br></pre></td></tr></table></figure>
-<figure>
-<img src="http://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/202003/09/001759-84139.jpeg" alt="huantou" /><figcaption>huantou</figcaption>
-</figure></li>
+<p><img src="http://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/202003/09/001759-84139.jpeg" alt="huantou" /></p>
+</li>
 </ol>
 <p>如果想要设置图片大小，这里推荐使用<code>HTML</code>标签</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src&#x3D;&quot;图片URL&quot; width&#x3D;&quot;60%&quot; height&#x3D;&quot;60%&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="http://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/202003/09/001759-84139.jpeg" width="60%" height="60%"></p>
+<img src="http://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/202003/09/001759-84139.jpeg" width="60%" height="60%">
 <p>建议使用Typora图床插件</p>
 <p>这里主要参考 <a href="https://blog.csdn.net/zlj1217/article/details/103483498" target="_blank" rel="noopener">windows下Typora图床（阿里云）</a>，里面内容很详细，在这里简单说一下。</p>
 <p>插件下载地址 <a href="https://github.com/Thobian/typora-plugins-win-img" target="_blank" rel="noopener">Typora图床plugin</a></p>
-<figure>
-<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/202003/09/003417-997322.png" alt="image-20200309003414590" /><figcaption>image-20200309003414590</figcaption>
-</figure>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/202003/09/003417-997322.png" alt="image-20200309003414590" /></p>
 <ul>
-<li><p>这里我们直接 <strong>Download ZIP</strong>，然后 <strong>解压</strong>，按照它里面<code>README</code>说的将<code>plugins</code>文件夹复制到<code>Typora\resouces\app</code>目录下，复制<code>window.html</code>替换掉<code>Typora\resouces\app</code>源文件。</p></li>
-<li><p>之后就是对我们阿里云OSS的配置</p>
+<li>
+<p>这里我们直接 <strong>Download ZIP</strong>，然后 <strong>解压</strong>，按照它里面<code>README</code>说的将<code>plugins</code>文件夹复制到<code>Typora\resouces\app</code>目录下，复制<code>window.html</code>替换掉<code>Typora\resouces\app</code>源文件。</p>
+</li>
+<li>
+<p>之后就是对我们阿里云OSS的配置</p>
 <p>打开配置文件<code>plugins\image\upload.js</code>，拉到最底下找到<code>$.image.init()</code>进行配置。</p>
-<figure>
-<img src="http://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/202003/09/004402-994993.png" alt="image-20200309004400816" /><figcaption>image-20200309004400816</figcaption>
-</figure>
+<p><img src="http://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/202003/09/004402-994993.png" alt="image-20200309004400816" /></p>
 <p>这里我们主要配置<code>SecretId</code>,<code>SecretKey</code>,<code>BucketDomain</code>三个参数，这三个参数都可从阿里云OSS控制台获得。</p>
 <p>这里插件作者推荐新建子用户来单独操作OSS，控制OSS的写入操作权限。<a href="https://ram.console.aliyun.com/users" target="_blank" rel="noopener">申请子用户</a></p>
 <p>打开之后点击<code>新建用户</code>，输入登录名称</p>
@@ -351,23 +366,18 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">复选框操作，行首- [x] 编程模式,- [ ] 编程模式即为不勾选</span><br></pre></td></tr></table></figure>
 <p>然后会弹出用户信息界面，里面包括<code>accessKeyId</code>和<code>acessKeySecret</code>,这是外部连接你阿里云服务的id和密钥，<strong>关键的是，这个页面关掉之后就见不到ID和密钥了，所以及时复制保存</strong></p>
-<figure>
-<img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly96bGoxMjE3LWJsb2ctaW1hZ2Uub3NzLWNuLWhvbmdrb25nLmFsaXl1bmNzLmNvbS90eXBvcmEvMjAxOTEyMTAyMDU0NTYtMzQzMTQ2LnBuZw?x-oss-process=image/format,png" alt="image-20191210205455114" /><figcaption>image-20191210205455114</figcaption>
-</figure>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly96bGoxMjE3LWJsb2ctaW1hZ2Uub3NzLWNuLWhvbmdrb25nLmFsaXl1bmNzLmNvbS90eXBvcmEvMjAxOTEyMTAyMDU0NTYtMzQzMTQ2LnBuZw?x-oss-process=image/format,png" alt="image-20191210205455114" /></p>
 <p>然后设置用户权限</p>
-<figure>
-<img src="http://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/202003/09/010219-823566.png" alt="image-20200309010217376" /><figcaption>image-20200309010217376</figcaption>
-</figure>
+<p><img src="http://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/202003/09/010219-823566.png" alt="image-20200309010217376" /></p>
 <p>搜索权限OSS，选择<code>FullAccess</code></p>
 <p>现在还剩一个<code>BucketDomain</code>，我们打开阿里云控制台中<code>OSS</code></p>
-<p>然后选择左侧<code>Bucket列表</code>,在点击<code>创建Bucket</code> ,填写<code>名称</code>,相应地区(买流量的时候注意看好地区购买，我就买错了:cry:)，读写权限选择<code>公共读</code>，点击<code>确定</code>。</p>
+<p>然后选择左侧<code>Bucket列表</code>,在点击<code>创建Bucket</code> ,填写<code>名称</code>,相应地区(买流量的时候注意看好地区购买，我就买错了😢)，读写权限选择<code>公共读</code>，点击<code>确定</code>。</p>
 <p>创建成功之后，点击该Bucket，进入概览界面</p>
-<figure>
-<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/202003/09/011143-230208.png" alt="image-20200309011141292" /><figcaption>image-20200309011141292</figcaption>
-</figure>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/202003/09/011143-230208.png" alt="image-20200309011141292" /></p>
 <p>红线处即为<code>BucketDomain</code>中所填内容，即为<code>https://......com/</code>,反斜杠<code>/</code>一定要有。</p>
 <p>原博中说文件管理中要新建目录 <code>typora/</code>，我一开始没建好像也没事，不过建了也没差。</p>
-<p>至此插件就配置完成了，可以直接拖动图片到<code>Typora</code>或者复制，截图都可。</p></li>
+<p>至此插件就配置完成了，可以直接拖动图片到<code>Typora</code>或者复制，截图都可。</p>
+</li>
 </ul>
 <hr />
 <blockquote>
@@ -379,24 +389,24 @@
 <p>下载安装完之后，来简单介绍下如何使用<code>PicGo</code>.</p>
 <blockquote>
 <p>首先，我们来配置一下阿里云OSS，左侧点击 <strong>图床设置</strong>，选择 <strong>阿里云OSS</strong>，和上面配置插件一样，配置<code>KeyID</code>和<code>KeySecret</code>,<strong>存储空间名</strong>就是阿里云上的<code>Bucket</code>名称，<strong>路径</strong>自己设定。</p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200309155222.png" /></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200309155222.png" alt="" /></p>
 <p>之后回到左侧<strong>上传区</strong>就可以使用了，可以<strong>拖到虚线框内</strong>，也可<strong>复制图片</strong>或者<strong>截图</strong>之后选择右下角 <strong>剪贴板图片上传</strong>，这些默认会返回一个<code>Markdown链接</code>，直接复制到<code>.md</code>文档中便可。</p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200309155614.png" /></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200309155614.png" alt="" /></p>
 </blockquote>
-<h2 id="代码">代码</h2>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
 <p>行内代码即<code>code</code>,使用<strong>单个反引号</strong>`</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#96;code&#96;</span><br></pre></td></tr></table></figure>
 <p>一串代码块使用三个反引号，加上对应语言即可对应代码高亮，也可不输入语言直接<code>Enter</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">​``` java</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> class <span class="title">Typora</span><span class="params">()</span></span>&#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>睡了，现在1.30，太困了，明天继续写:sleepy:。</p>
+<p>睡了，现在1.30，太困了，明天继续写😪。</p>
 <hr />
 <p>来了来了，刚开完开题报告，真的水。</p>
 <hr />
-<h2 id="emoji">Emoji</h2>
+<h2 id="emoji"><a class="markdownIt-Anchor" href="#emoji"></a> Emoji</h2>
 <p>没有<code>emoji</code>的<code>Blog</code>是没有灵魂的。</p>
 <p><code>emoji</code>用法为两个<code>:</code>直接加上<code>emoji</code>的对应代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:cry:	:sleepy:	:shit:	:heart_eyes:</span><br></pre></td></tr></table></figure>
-<p>:cry: :sleepy: :shit: :heart_eyes:</p>
+<p>😢 	😪 	💩	😍</p>
 <p>这里推荐一个挺全的<code>emoji</code>整理网站 <a href="https://blog.todaycoder.cn/2018/11/18/Typora-Emoji/" target="_blank" rel="noopener">Emoji全收集</a>，不过有的博客框架不支持渲染<code>emoji</code>，需要下载额外的插件。</p>
 <p>我使用的<code>Hexo</code>的<code>NeXT</code>主题，原本的渲染引擎是不支持的，所以我们这边更换 <strong>渲染引擎</strong></p>
 <blockquote>
@@ -407,27 +417,27 @@
 <p>编辑配置文件<code>_config.yml</code>,添加如下代码</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"># Markdown-it config</span><br><span class="line">## Docs: https:&#x2F;&#x2F;github.com&#x2F;celsomiranda&#x2F;hexo-renderer-markdown-it&#x2F;wiki</span><br><span class="line">markdown:</span><br><span class="line">  render:</span><br><span class="line">    html: true          </span><br><span class="line">    xhtmlOut: false     </span><br><span class="line">    breaks: true</span><br><span class="line">    linkify: true</span><br><span class="line">    typographer: true</span><br><span class="line">    quotes: &#39;“”‘’&#39;</span><br><span class="line">  plugins:</span><br><span class="line">    - markdown-it-abbr</span><br><span class="line">    - markdown-it-footnote</span><br><span class="line">    - markdown-it-ins</span><br><span class="line">    - markdown-it-sub</span><br><span class="line">    - markdown-it-sup</span><br><span class="line">    - markdown-it-emoji  # 这里添加emoji插件</span><br><span class="line">  anchors:</span><br><span class="line">    # Minimum level for ID creation. (Ex. h2 to h6)</span><br><span class="line">    level: 2</span><br><span class="line">    # A suffix that is prepended to the number given if the ID is repeated.</span><br><span class="line">    collisionSuffix: &#39;v&#39;</span><br><span class="line">    # If &#96;true&#96;, creates an anchor tag with a permalink besides the heading.</span><br><span class="line">    permalink: false</span><br><span class="line">    # Class used for the permalink anchor tag.</span><br><span class="line">    permalinkClass: header-anchor</span><br><span class="line">    # The symbol used to make the permalink</span><br><span class="line">    permalinkSymbol: &#39;&#39;</span><br></pre></td></tr></table></figure>
-<h2 id="表格">表格</h2>
+<h2 id="表格"><a class="markdownIt-Anchor" href="#表格"></a> 表格</h2>
 <p>使用<code>|</code>作为表格分隔符，两个<code>|</code>之间的便是一列。</p>
 <p>不过<code>Typora</code>中只需创建一个初级表格便可左上角自定义表格大小和格式，也可直接键入内容</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|标题|标题|标题|</span><br></pre></td></tr></table></figure>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>标题</th>
 <th>标题</th>
 <th>标题</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/image-20200309162804262.png" /></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/image-20200309162804262.png" alt="" /></p>
 <p>当然也可以通过自己输入控制对齐格式</p>
 <blockquote>
 <p>左对齐 <code>:----</code></p>
@@ -437,73 +447,53 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">|标题|标题|标题|</span><br><span class="line">|:----|----|----:|</span><br><span class="line">|左对齐|居中|右对齐|</span><br></pre></td></tr></table></figure>
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: left;">标题</th>
+<tr>
+<th style="text-align:left">标题</th>
 <th>标题</th>
-<th style="text-align: right;">标题</th>
+<th style="text-align:right">标题</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">左对齐</td>
+<tr>
+<td style="text-align:left">左对齐</td>
 <td>居中</td>
-<td style="text-align: right;">右对齐</td>
+<td style="text-align:right">右对齐</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="分割线">分割线</h2>
+<h2 id="分割线"><a class="markdownIt-Anchor" href="#分割线"></a> 分割线</h2>
 <p>一行中使用三个及以上的<code>*</code>或者<code>-</code>或者<code>_</code>，<strong>行内不能有其他东西</strong>,符号中间可以有<code>space</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">***</span><br><span class="line">分割线</span><br><span class="line">- - -</span><br><span class="line">分割线</span><br><span class="line">____________________</span><br><span class="line">分割线</span><br></pre></td></tr></table></figure>
 <hr />
-<table>
-<thead>
-<tr class="header">
-<th>分</th>
-<th>割</th>
-<th>线</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>分</td>
-<td>割</td>
-<td>线</td>
-</tr>
-<tr class="even">
-<td>__</td>
-<td>__</td>
-<td>________________</td>
-</tr>
-<tr class="odd">
-<td>分</td>
-<td>割</td>
-<td>线</td>
-</tr>
-</tbody>
-</table>
-<h2 id="辅助html标签个人偏好很不全">辅助<code>Html</code>标签(个人偏好,很不全)</h2>
+<p>分割线</p>
+<hr />
+<p>分割线</p>
+<hr />
+<p>分割线</p>
+<h2 id="辅助html标签个人偏好很不全"><a class="markdownIt-Anchor" href="#辅助html标签个人偏好很不全"></a> 辅助<code>Html</code>标签(个人偏好,很不全)</h2>
 <ul>
-<li><p><strong>文本对齐</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">align</span>=<span class="string">"left"</span>&gt;</span>左对齐<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">align</span>=<span class="string">"center"</span>&gt;</span>居中<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">align</span>=<span class="string">"right"</span>&gt;</span>右对齐<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>
+<p><strong>文本对齐</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">align</span>=<span class="string">"left"</span>&gt;</span>左对齐<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">align</span>=<span class="string">"center"</span>&gt;</span>居中<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">align</span>=<span class="string">"right"</span>&gt;</span>右对齐<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<p align="left">
-左对齐
-</p>
-<p align="center">
-居中
-</p>
-<p align="right">
-右对齐
-</p>
+<p align="left">左对齐</p>
+<p align="center">居中</p>
+<p align="right">右对齐</p>
 <ul>
-<li><p><strong>上下标</strong></p>
+<li>
+<p><strong>上下标</strong></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">下标：H<span class="tag">&lt;<span class="name">sub</span>&gt;</span>2<span class="tag">&lt;/<span class="name">sub</span>&gt;</span>O</span><br><span class="line">上标：E=mc<span class="tag">&lt;<span class="name">sup</span>&gt;</span>2<span class="tag">&lt;/<span class="name">sup</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>下标：H<sub>2</sub>O 上标：E=mc<sup>2</sup></p></li>
-<li><p><strong>字体设计</strong></p>
+<p>下标：H<sub>2</sub>O<br />
+上标：E=mc<sup>2</sup></p>
+</li>
+<li>
+<p><strong>字体设计</strong></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">font</span> <span class="attr">size</span>=<span class="string">"5"</span> <span class="attr">color</span>=<span class="string">"pink"</span> <span class="attr">face</span>=<span class="string">"KaiTi"</span>&gt;</span>菜鸡肥肥的Blog<span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p><font size="5" color="pink" face="KaiTi">菜鸡肥肥的Blog</font></p>
-<p>第一篇总结博客终于算是写完了，写这东西是真的累:joy:</p></li>
+<p>第一篇总结博客终于算是写完了，写这东西是真的累😂</p>
+</li>
 </ul>
 
     </div>
@@ -589,7 +579,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#标题"><span class="nav-number">1.</span> <span class="nav-text">标题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表"><span class="nav-number">2.</span> <span class="nav-text">列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用"><span class="nav-number">3.</span> <span class="nav-text">引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#这是一个标题"><span class="nav-number">3.1.</span> <span class="nav-text">这是一个标题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强调"><span class="nav-number">4.</span> <span class="nav-text">强调</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片与链接"><span class="nav-number">5.</span> <span class="nav-text">图片与链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">6.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#emoji"><span class="nav-number">7.</span> <span class="nav-text">Emoji</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表格"><span class="nav-number">8.</span> <span class="nav-text">表格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分割线"><span class="nav-number">9.</span> <span class="nav-text">分割线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#辅助html标签个人偏好很不全"><span class="nav-number">10.</span> <span class="nav-text">辅助Html标签(个人偏好,很不全)</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#标题"><span class="nav-number">1.</span> <span class="nav-text"> 标题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表"><span class="nav-number">2.</span> <span class="nav-text"> 列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用"><span class="nav-number">3.</span> <span class="nav-text"> 引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#这是一个标题"><span class="nav-number">3.1.</span> <span class="nav-text"> 这是一个标题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强调"><span class="nav-number">4.</span> <span class="nav-text"> 强调</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片与链接"><span class="nav-number">5.</span> <span class="nav-text"> 图片与链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">6.</span> <span class="nav-text"> 代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#emoji"><span class="nav-number">7.</span> <span class="nav-text"> Emoji</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表格"><span class="nav-number">8.</span> <span class="nav-text"> 表格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分割线"><span class="nav-number">9.</span> <span class="nav-text"> 分割线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#辅助html标签个人偏好很不全"><span class="nav-number">10.</span> <span class="nav-text"> 辅助Html标签(个人偏好,很不全)</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

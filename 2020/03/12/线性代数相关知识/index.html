@@ -67,8 +67,9 @@
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200321112913.png">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200321165419.png">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200322180416.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200323111657.png">
 <meta property="article:published_time" content="2020-03-11T20:09:32.000Z">
-<meta property="article:modified_time" content="2020-03-22T15:33:37.910Z">
+<meta property="article:modified_time" content="2020-03-23T15:46:51.387Z">
 <meta property="article:author" content="Wanghui Cai">
 <meta property="article:tag" content="线性代数">
 <meta name="twitter:card" content="summary">
@@ -235,7 +236,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-22 15:33:37" itemprop="dateModified" datetime="2020-03-22T15:33:37Z">2020-03-22</time>
+                <time title="修改时间：2020-03-23 15:46:51" itemprop="dateModified" datetime="2020-03-23T15:46:51Z">2020-03-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1115,6 +1116,22 @@ B=\{\vec{u},\vec{v}\} \\
 <blockquote>
 <p><span class="math inline">\(\epsilon=\{\vec{e_1},\vec{e_2}\}\)</span>为标准基 我们也叫作标准坐标系</p>
 </blockquote>
+<h2 id="坐标系转换">坐标系转换</h2>
+<blockquote>
+<p>假设有一组基：<span class="math inline">\(B={\vec{b_1},\vec{b_2},\vec{b_3},...,\vec{b_n}}\)</span>，设立矩阵<span class="math inline">\(P_B=(\vec{b_1}\ \ \vec{b_2}\ \ \vec{b_3}...\vec{b_n})\)</span>（坐标转换矩阵）</p>
+<p>在这组基下的一个向量<span class="math inline">\([\vec{x}]_B\)</span>，有：<span class="math inline">\([\vec{x}]_{\epsilon}=P_B[\vec{x}]_B\)</span> <span class="math display">\[
+[\vec{x}]_B=\begin{pmatrix}2\\2\end{pmatrix},[\vec{x}]_\epsilon=\begin{pmatrix}12\\8\end{pmatrix}\\
+P_B=\begin{pmatrix}4&amp;2\\1&amp;3\end{pmatrix}\\
+\vec{b_1}=(4,1)^T=4\vec{e_1}+1\vec{e_2},\vec{b_2}=(2,3)^T=2\vec{e_1}+3\vec{e_2} \\ 
+[\vec{x}]_B=[(2,2)^T]_B=2\vec{u}+2\vec{v}=12\vec{e_1}+8\vec{e_2}
+\]</span> 再由B坐标系转到标准坐标系</p>
+<p>即等式两边同时乘以一个<span class="math inline">\(P_B^{-1}\)</span></p>
+<p><span class="math inline">\([\vec{x}]_{\epsilon}=P_B[\vec{x}]_B\)</span></p>
+<p><span class="math inline">\(P_B^{-1}[\vec{x}]_{\epsilon}=[\vec{x}]_B\)</span></p>
+<p>对于其他非标准坐标系的转换只需要以标准坐标系为过渡即可</p>
+<p><span class="math inline">\([\vec{x}]_C=P_C^{-1}P_B[\vec{x}]_B\)</span></p>
+<p><span class="math inline">\(P_{B-&gt;C}=P_C^{-1}P_B,P_{C-&gt;B}=P_B^{-1}P_C\)</span></p>
+</blockquote>
 <h2 id="线性变换">线性变换</h2>
 <blockquote>
 <p>一个变换T(x)称为线性变换，必须满足</p>
@@ -1426,6 +1443,157 @@ k\lambda_2\vec{v}-k\lambda_1\vec{v}=0\ \ \ k(\lambda_2-\lambda_1)\vec{v}=0,显�
 <p>即<strong>几何重数不大于代数重数</strong></p>
 <p>具体证明比较复杂，就不证明了。</p>
 </blockquote>
+<h2 id="矩阵相似型">矩阵相似型</h2>
+<blockquote>
+<p><strong>如果矩阵A,B满足<span class="math inline">\(A=P^{-1}BP\)</span> 则称A和B相似。<span class="math inline">\(B=PAP^{-1}\)</span> </strong></p>
+<p>本质其实是不同的视角观察相同的内容</p>
+<p>P是一个坐标系，则A变换是在P坐标系下观察的B变换</p>
+<p>我们等式左右两边各乘以一个P坐标系下的坐标<span class="math inline">\([\vec{x}]_P\)</span></p>
+<p>为了证明<span class="math inline">\(A[\vec{x}]_P=P^{-1}BP[\vec{x}]_P\)</span>，我们分别做A,B变换</p>
+</blockquote>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200323111657.png" style="zoom:80%;" /></p>
+<blockquote>
+<p>在P坐标系中，我们通过A变换，将<span class="math inline">\([\vec{x}]_P\)</span>转换为<span class="math inline">\(A[\vec{x}]_P\)</span></p>
+<p>而B是在标准坐标系中的转换，所以我们先将<span class="math inline">\([\vec{x}]_P\)</span>转换为标准坐标系中的向量<span class="math inline">\(P[\vec{x}]_P\)</span></p>
+<p>然后进行B转换，得到<span class="math inline">\(BP[\vec{x}]_P\)</span></p>
+<p>在将转换完成的标准坐标系坐标转换到P坐标系中，<span class="math inline">\(P^{-1}BP[\vec{x}]_P\)</span></p>
+<p>即A,B都是相同的变换，只是在不同的坐标系中的变换而已，所以我们称A,B相似</p>
+</blockquote>
+<blockquote>
+<p>进一步我们可以发现，A和B的特征方程相同即特征值相同。 <span class="math display">\[
+det(A-\lambda I)=det(P^{-1}BP-\lambda I)=det(P^{-1}BP-\lambda P^{-1}P)\\
+=det(P^{-1}BP-P^{-1}\lambda P)=det(P^{-1}(B-\lambda I)P)\\
+=det(P^{-1})det(B-\lambda I)det(P)\\
+=det(B-\lambda I)det(P^{-1}P)\\=det(B-\lambda I)
+\]</span></p>
+</blockquote>
+<h2 id="矩阵对角化">矩阵对角化</h2>
+<blockquote>
+<p>如果A有n个线性无关的特征向量，则A和某个D相似。<span class="math inline">\(A=PDP^{-1}\)</span></p>
+<p>称A可以被对角化 <span class="math display">\[
+D=\begin{pmatrix}\lambda_1&amp;0&amp;...&amp;0\\0&amp;\lambda_2&amp;...&amp;0\\...&amp;...&amp;...&amp;...\\0&amp;0&amp;...&amp;\lambda_n\end{pmatrix},
+P=\begin{pmatrix}|&amp;|&amp;&amp;|\\\vec{u_1}&amp;\vec{u_2}&amp;...&amp;\vec{u_n}\\|&amp;|&amp;&amp;|\end{pmatrix}
+\]</span> D中对角线上的元素为A的特征值，P中每一列为特征值对应的特征向量</p>
+</blockquote>
+<blockquote>
+<p>为了证明，我们左右同时乘以一个<span class="math inline">\(P^{-1}\)</span> <span class="math display">\[
+AP=PD\\
+AP=A\begin{pmatrix}|&amp;|&amp;&amp;|\\\vec{u_1}&amp;\vec{u_2}&amp;...&amp;\vec{u_n}\\|&amp;|&amp;&amp;|\end{pmatrix}=
+\begin{pmatrix}|&amp;|&amp;&amp;|\\A\vec{u_1}&amp;A\vec{u_2}&amp;...&amp;A\vec{u_n}\\|&amp;|&amp;&amp;|\end{pmatrix}=
+\begin{pmatrix}|&amp;|&amp;&amp;|\\\lambda_1\vec{u_1}&amp;\lambda_2\vec{u_2}&amp;...&amp;\lambda_n\vec{u_n}\\|&amp;|&amp;&amp;|\end{pmatrix}\\
+PD=\begin{pmatrix}|&amp;|&amp;&amp;|\\\vec{u_1}&amp;\vec{u_2}&amp;...&amp;\vec{u_n}\\|&amp;|&amp;&amp;|\end{pmatrix}\begin{pmatrix}\lambda_1&amp;0&amp;...&amp;0\\0&amp;\lambda_2&amp;...&amp;0\\...&amp;...&amp;...&amp;...\\0&amp;0&amp;...&amp;\lambda_n\end{pmatrix}=\begin{pmatrix}|&amp;|&amp;&amp;|\\\lambda_1\vec{u_1}&amp;\lambda_2\vec{u_2}&amp;...&amp;\lambda_n\vec{u_n}\\|&amp;|&amp;&amp;|\end{pmatrix}
+\]</span> 所以等式成立</p>
+</blockquote>
+<blockquote>
+<p>注意：如果A没有n个不同的特征值，A不一定不能被对角化</p>
+</blockquote>
+<h2 id="矩阵对角化的应用">矩阵对角化的应用</h2>
+<blockquote>
+<p>求解矩阵的幂</p>
+<p>我们知道<span class="math inline">\(A=PDP^{-1}\)</span></p>
+<p>那么<span class="math inline">\(A^2=PDP^{-1}PDP^{-1}=PDIDP^{-1}=PD^2P^{-1}\)</span></p>
+<p><span class="math inline">\(A^3=PD^2P^{-1}PDP^{-1}=PD^2IDP^{-1}=PD^3P^{-1}\)</span></p>
+<p>...</p>
+<p><span class="math inline">\(A^n=PD^nP^{-1}\)</span></p>
+</blockquote>
+<blockquote>
+<p>那么对于<span class="math inline">\(D^n\)</span>怎么求解呢</p>
+<p><span class="math inline">\(D=\begin{pmatrix}\lambda_1&amp;0&amp;...&amp;0\\0&amp;\lambda_2&amp;...&amp;0\\...&amp;...&amp;...&amp;...\\0&amp;0&amp;...&amp;\lambda_n\end{pmatrix},D^2=\begin{pmatrix}\lambda_1&amp;0&amp;...&amp;0\\0&amp;\lambda_2&amp;...&amp;0\\...&amp;...&amp;...&amp;...\\0&amp;0&amp;...&amp;\lambda_n\end{pmatrix}\begin{pmatrix}\lambda_1&amp;0&amp;...&amp;0\\0&amp;\lambda_2&amp;...&amp;0\\...&amp;...&amp;...&amp;...\\0&amp;0&amp;...&amp;\lambda_n\end{pmatrix}=\begin{pmatrix}\lambda_1^2&amp;0&amp;...&amp;0\\0&amp;\lambda_2^2&amp;...&amp;0\\...&amp;...&amp;...&amp;...\\0&amp;0&amp;...&amp;\lambda_n^2\end{pmatrix}\)</span></p>
+</blockquote>
+<blockquote>
+<p>即<span class="math inline">\(A^n=PD^nP^{-1}=P\begin{pmatrix}\lambda_1^n&amp;0&amp;...&amp;0\\0&amp;\lambda_2^n&amp;...&amp;0\\...&amp;...&amp;...&amp;...\\0&amp;0&amp;...&amp;\lambda_n^n\end{pmatrix}P^{-1}\)</span></p>
+</blockquote>
+<blockquote>
+<p>对于矩阵的幂有什么用呢？</p>
+<p>因为大量问题的形式是：<span class="math inline">\(\vec{u}_k=A^k\vec{u}_0\)</span></p>
+<p>这个公式表示的是一个动态系统</p>
+<p>这个动态系统的状态是随着时间的变换在动态变化的，而变化则为A，<span class="math inline">\(\vec{u}\)</span>则为状态向量</p>
+<p>我初始的状态为<span class="math inline">\(\vec{u_0}\)</span>,经过一次变换后，<span class="math inline">\(\vec{u_1}=A\vec{u_0}\)</span></p>
+<p>经过k次变换后，<span class="math inline">\(\vec{u}_k=A^k\vec{u}_0=PD^nP^{-1}\vec{u_0}\)</span></p>
+<p><strong>这里我们就可以发现，矩阵A的特征值其实就反应了系统的各个变量的变化速率</strong></p>
+</blockquote>
+<h2 id="完美的对称矩阵">完美的对称矩阵</h2>
+<blockquote>
+<p>对称矩阵 <span class="math inline">\(A=A^T\)</span></p>
+<p>为什么说对称矩阵是完美的呢？</p>
+<p>对称矩阵的特征值一定是实数。</p>
+<p>对称矩阵的多重特征值，其对应的特征空间的维度一定等于重数</p>
+<p>对称矩阵的几何重数等于代数重数</p>
+<p>对称矩阵一定有n个线性无关的特征向量</p>
+<p>即对称矩阵一定可以被对角化</p>
+<p>这些性质证明过于麻烦，只做了解即可。</p>
+</blockquote>
+<h2 id="正交对角化">正交对角化</h2>
+<blockquote>
+<p>对称矩阵的所有不同的特征值对应的特征向量相互垂直</p>
+</blockquote>
+<p><span class="math display">\[
+假设矩阵A的两个特征向量v_1,v_2对应不同的特征值\lambda_1.\lambda_2\\
+证明：\vec{v_1}\cdot \vec{v_2}=0\\
+(\lambda_1\vec{v_1})\cdot \vec{v_2}=(\lambda_1\vec{v_1})^T\vec{v_2}\ \ 我们把(\lambda_1\vec{v_1})这个向量转为为(\lambda_1\vec{v_1})^T这个矩阵，所乘结果不变\\
+=(A\vec{v_1})^T\vec{v_2}=\vec{v_1}^TA^T\vec{v_2}=v_1^TA\vec{v_2},因为A时候对角矩阵，所以A=A^T\\
+=\vec{v_1}^T\lambda_2\vec{v_2}=(\lambda_2\vec{v_1}^T)\vec{v_2}=\lambda_2\vec{v_1}\cdot \vec{v_2}\\
+(\lambda_1-\lambda_2)(\vec{v_1}\cdot \vec{v_2})=0\\
+即得证\vec{v_1}\cdot \vec{v_2}=0
+\]</span></p>
+<blockquote>
+<p>如果A是对称矩阵</p>
+<p><span class="math inline">\(A=QDQ^{-1}\)</span> 将每一个特征向量标准化，Q即为标准特征向量</p>
+<p>因为标准正交矩阵<span class="math inline">\(Q^{-1}=Q^T\)</span></p>
+<p>所以<span class="math inline">\(A=QDQ^{T}\)</span>，即正交对角化</p>
+</blockquote>
+<blockquote>
+<p>那么，如果A可以被正交对角化，则A一定是对称矩阵</p>
+<p>这个很好证明： <span class="math display">\[
+\begin{align}A=QDQ^T,A^T&amp;=(QDQ^T)^T\\
+&amp;=(Q^T)^TD^TQ^T\\
+&amp;=QDQ^T=A
+\end{align}
+\]</span> 所以 <strong>A是对称矩阵&lt;=&gt;A可以被正交对角化</strong></p>
+</blockquote>
+<h2 id="奇异值">奇异值</h2>
+<blockquote>
+<p>我们上面介绍的特征值，特征向量以及正交对角化等等都是基于方阵来说，但是，显然还有很多非方阵的矩阵，那么之前讲的都的都白说了吗，必然不是。</p>
+<p>我们给定任意一个矩阵A，**若A是一个m*n的矩阵，则<span class="math inline">\(A^TA\)</span>是一个 n*n的方阵，且对称**</p>
+<p>方阵很好理解，但是对称，我们这边稍微说明一下</p>
+<p><span class="math inline">\(A^TA\)</span> 第i行j列元素：<span class="math inline">\(A^T\)</span>第i行点乘A第j列，即A第i列点乘A第j列</p>
+<p>​ 第j行i列元素：<span class="math inline">\(A^T\)</span>第j行点乘A第i列，即A第j列点乘A第i列</p>
+<p>显示是相等的，所以<span class="math inline">\(A^TA\)</span>也是一个对称矩阵</p>
+</blockquote>
+<blockquote>
+<p>既然是对称矩阵，那么<span class="math inline">\(A^TA\)</span>必然可以被正交对角化，拥有n个实数特征值；n个互相垂直的标准特征向量</p>
+<p>记特征值为<span class="math inline">\(\lambda_1,\lambda_2,...,\lambda_n\)</span>，标准特征向量 <span class="math inline">\(\vec{v_1},\vec{v_2},...,\vec{v_n}\)</span></p>
+</blockquote>
+<blockquote>
+<p><span class="math display">\[
+\parallel A\vec{v_i}\parallel^2=(A\vec{v_i})\cdot(A\vec{v_i})=(Av_i)^T\cdot(Av_i)=v_i^TA^TAv_i\\=v_i^T(A^TAv_i)=v_i^T(\lambda_iv_i)\\=\lambda_iv_i^Tv_i=\lambda_i\parallel \vec{v_i}\parallel^2=\lambda_i
+\]</span></p>
+<p>我们可以发现<span class="math inline">\(\parallel A\vec{v_i}\parallel^2=\lambda_i&gt;=0\)</span></p>
+<p>我们定义<span class="math inline">\(\sigma=\sqrt{\lambda_i}\)</span>为 <strong>奇异值（Singular Value）</strong></p>
+</blockquote>
+<blockquote>
+<p>那么我们为什么要研究<span class="math inline">\(A\vec{v_i}\)</span> 呢？</p>
+<p>因为<span class="math inline">\(\{A\vec{v_i}\}\)</span>是A的列空间的一组正交基 <span class="math inline">\(\lambda_i\neq0\)</span> <span class="math display">\[
+首先，我们先来证明简单的正交性：(A\vec{v_i})\cdot(A\vec{v_j})=(Av_i)^T\cdot(Av_j)=v_i^TA^TAv_j\\
+=v_i^T(A^TAv_j)=v_i^T(\lambda_jv_j)\\
+=\lambda_jv_i^Tv_j=\lambda_j(\vec{v_i}\cdot\vec{v_j})=0,因为v_i,v_j正交
+\]</span></p>
+<p><span class="math display">\[
+接下来我们再来证明\{A\vec{v_i}\}是A的列空间的一组基\\
+首先\{\vec{v_1},\vec{v_2},...,\vec{v_n}\}是n维空间的一组基\ \ \ \vec{x}=k_1\vec{v_1}+k_2\vec{v_2}+...+k_n\vec{v_n}\\
+那么对于A的列空间，我们可以把该空间的任意向量表示为\\
+\vec{y}=A\vec{x}=Ak_1\vec{v_1}+Ak_2\vec{v_2}+...+Ak_n\vec{v_n}\\
+因为矩阵A为m*n,而\vec{x}为n*1的向量，所以结果为m*1的向量\\
+我们假定{\vec{v_n}}中有r个特征值非零的向量，因为若特征值为零，则\parallel A\vec{v_i}\parallel=0，为零向量\\
+所以\vec{y}=k_1A\vec{v_1}+k_2A\vec{v_2}+...+k_rA\vec{v_r}+0...+0
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>如果A有r个不为零的奇异值：<span class="math inline">\(\{A\vec{v_1},A\vec{v_2},...,A\vec{v_r}\}\)</span>是A的列空间的一组正交基</p>
+<p>A的列空间的维度为r；rank(A)=r</p>
+<p><span class="math inline">\(\{\frac{A\vec{v_1}}{\sigma_1},\frac{A\vec{v_2}}{\sigma_2},...,\frac{A\vec{v_r}}{\sigma_r}\}\)</span>是A的列空间的一组标准正交基</p>
+<p><span class="math inline">\(\{\vec{u_1},\vec{u_2},...,\vec{u_r}\}\)</span>是A的列空间的一组标准正交基,<span class="math inline">\(\vec{u_i}=\frac{A\vec{v_r}}{\sigma_r}\)</span></p>
+</blockquote>
 
     </div>
 
@@ -1507,7 +1675,7 @@ k\lambda_2\vec{v}-k\lambda_1\vec{v}=0\ \ \ k(\lambda_2-\lambda_1)\vec{v}=0,显�
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概论"><span class="nav-number">1.</span> <span class="nav-text">概论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#向量"><span class="nav-number">2.</span> <span class="nav-text">向量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#行向量和列向量"><span class="nav-number">2.1.</span> <span class="nav-text">行向量和列向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量加法"><span class="nav-number">2.2.</span> <span class="nav-text">向量加法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量数量乘法"><span class="nav-number">2.3.</span> <span class="nav-text">向量数量乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量运算的基本性质"><span class="nav-number">2.4.</span> <span class="nav-text">向量运算的基本性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零向量"><span class="nav-number">2.5.</span> <span class="nav-text">零向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量的长度"><span class="nav-number">2.6.</span> <span class="nav-text">向量的长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单位向量"><span class="nav-number">2.7.</span> <span class="nav-text">单位向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量的点乘"><span class="nav-number">2.8.</span> <span class="nav-text">向量的点乘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量的点乘的应用"><span class="nav-number">2.9.</span> <span class="nav-text">向量的点乘的应用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵"><span class="nav-number">3.</span> <span class="nav-text">矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是矩阵"><span class="nav-number">3.1.</span> <span class="nav-text">什么是矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵基本运算"><span class="nav-number">3.2.</span> <span class="nav-text">矩阵基本运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵看做系统"><span class="nav-number">3.3.</span> <span class="nav-text">矩阵看做系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵和矩阵的乘法"><span class="nav-number">3.4.</span> <span class="nav-text">矩阵和矩阵的乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的转置"><span class="nav-number">3.5.</span> <span class="nav-text">矩阵的转置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多的变换矩阵"><span class="nav-number">3.6.</span> <span class="nav-text">更多的变换矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单位矩阵"><span class="nav-number">3.7.</span> <span class="nav-text">单位矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的逆"><span class="nav-number">3.8.</span> <span class="nav-text">矩阵的逆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用矩阵表示空间"><span class="nav-number">3.9.</span> <span class="nav-text">用矩阵表示空间</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线性系统"><span class="nav-number">4.</span> <span class="nav-text">线性系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#高斯消元法"><span class="nav-number">4.1.</span> <span class="nav-text">高斯消元法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高斯约旦消元法"><span class="nav-number">4.2.</span> <span class="nav-text">高斯约旦消元法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行最简形式"><span class="nav-number">4.3.</span> <span class="nav-text">行最简形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#齐次线性方程组"><span class="nav-number">4.4.</span> <span class="nav-text">齐次线性方程组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求解矩阵的逆"><span class="nav-number">4.5.</span> <span class="nav-text">求解矩阵的逆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初等矩阵"><span class="nav-number">4.6.</span> <span class="nav-text">初等矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初等矩阵和可逆性"><span class="nav-number">4.7.</span> <span class="nav-text">初等矩阵和可逆性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么矩阵的逆那么重要"><span class="nav-number">4.8.</span> <span class="nav-text">为什么矩阵的逆那么重要？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的lu分解"><span class="nav-number">4.9.</span> <span class="nav-text">矩阵的LU分解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#plu分解"><span class="nav-number">4.10.</span> <span class="nav-text">PLU分解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列交换"><span class="nav-number">4.11.</span> <span class="nav-text">列交换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线性组合"><span class="nav-number">5.</span> <span class="nav-text">线性组合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性相关与线性无关"><span class="nav-number">5.1.</span> <span class="nav-text">线性相关与线性无关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成空间"><span class="nav-number">5.2.</span> <span class="nav-text">生成空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空间的基"><span class="nav-number">5.3.</span> <span class="nav-text">空间的基</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#空间"><span class="nav-number">6.</span> <span class="nav-text">空间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#广义向量空间"><span class="nav-number">6.1.</span> <span class="nav-text">广义向量空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子空间"><span class="nav-number">6.2.</span> <span class="nav-text">子空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#维度"><span class="nav-number">6.3.</span> <span class="nav-text">维度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行空间"><span class="nav-number">6.4.</span> <span class="nav-text">行空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列空间"><span class="nav-number">6.5.</span> <span class="nav-text">列空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的秩和矩阵的逆"><span class="nav-number">6.6.</span> <span class="nav-text">矩阵的秩和矩阵的逆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零空间"><span class="nav-number">6.7.</span> <span class="nav-text">零空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#左零空间"><span class="nav-number">6.8.</span> <span class="nav-text">左零空间</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正交"><span class="nav-number">7.</span> <span class="nav-text">正交</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#正交基和标准正交基"><span class="nav-number">7.1.</span> <span class="nav-text">正交基和标准正交基</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一维投影"><span class="nav-number">7.2.</span> <span class="nav-text">一维投影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高维投影和gram-schmidt过程"><span class="nav-number">7.3.</span> <span class="nav-text">高维投影和Gram Schmidt过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准正交基的性质"><span class="nav-number">7.4.</span> <span class="nav-text">标准正交基的性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的qr分解"><span class="nav-number">7.5.</span> <span class="nav-text">矩阵的QR分解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#坐标系"><span class="nav-number">8.</span> <span class="nav-text">坐标系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性变换"><span class="nav-number">8.1.</span> <span class="nav-text">线性变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">8.2.</span> <span class="nav-text">应用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#行列式"><span class="nav-number">9.</span> <span class="nav-text">行列式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#行列式的四大基本性质"><span class="nav-number">9.1.</span> <span class="nav-text">行列式的四大基本性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行列式与矩阵的逆"><span class="nav-number">9.2.</span> <span class="nav-text">行列式与矩阵的逆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算行列式的值"><span class="nav-number">9.3.</span> <span class="nav-text">计算行列式的值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初等矩阵与行列式"><span class="nav-number">9.4.</span> <span class="nav-text">初等矩阵与行列式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行式就是列式"><span class="nav-number">9.5.</span> <span class="nav-text">行式就是列式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行列式的代数表达"><span class="nav-number">9.6.</span> <span class="nav-text">行列式的代数表达</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特征值和特征向量"><span class="nav-number">10.</span> <span class="nav-text">特征值和特征向量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#特征值和特征向量的性质"><span class="nav-number">10.1.</span> <span class="nav-text">特征值和特征向量的性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不简单的特征值和特征向量"><span class="nav-number">10.2.</span> <span class="nav-text">不简单的特征值和特征向量</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概论"><span class="nav-number">1.</span> <span class="nav-text">概论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#向量"><span class="nav-number">2.</span> <span class="nav-text">向量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#行向量和列向量"><span class="nav-number">2.1.</span> <span class="nav-text">行向量和列向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量加法"><span class="nav-number">2.2.</span> <span class="nav-text">向量加法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量数量乘法"><span class="nav-number">2.3.</span> <span class="nav-text">向量数量乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量运算的基本性质"><span class="nav-number">2.4.</span> <span class="nav-text">向量运算的基本性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零向量"><span class="nav-number">2.5.</span> <span class="nav-text">零向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量的长度"><span class="nav-number">2.6.</span> <span class="nav-text">向量的长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单位向量"><span class="nav-number">2.7.</span> <span class="nav-text">单位向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量的点乘"><span class="nav-number">2.8.</span> <span class="nav-text">向量的点乘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量的点乘的应用"><span class="nav-number">2.9.</span> <span class="nav-text">向量的点乘的应用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵"><span class="nav-number">3.</span> <span class="nav-text">矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是矩阵"><span class="nav-number">3.1.</span> <span class="nav-text">什么是矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵基本运算"><span class="nav-number">3.2.</span> <span class="nav-text">矩阵基本运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵看做系统"><span class="nav-number">3.3.</span> <span class="nav-text">矩阵看做系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵和矩阵的乘法"><span class="nav-number">3.4.</span> <span class="nav-text">矩阵和矩阵的乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的转置"><span class="nav-number">3.5.</span> <span class="nav-text">矩阵的转置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多的变换矩阵"><span class="nav-number">3.6.</span> <span class="nav-text">更多的变换矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单位矩阵"><span class="nav-number">3.7.</span> <span class="nav-text">单位矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的逆"><span class="nav-number">3.8.</span> <span class="nav-text">矩阵的逆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用矩阵表示空间"><span class="nav-number">3.9.</span> <span class="nav-text">用矩阵表示空间</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线性系统"><span class="nav-number">4.</span> <span class="nav-text">线性系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#高斯消元法"><span class="nav-number">4.1.</span> <span class="nav-text">高斯消元法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高斯约旦消元法"><span class="nav-number">4.2.</span> <span class="nav-text">高斯约旦消元法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行最简形式"><span class="nav-number">4.3.</span> <span class="nav-text">行最简形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#齐次线性方程组"><span class="nav-number">4.4.</span> <span class="nav-text">齐次线性方程组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求解矩阵的逆"><span class="nav-number">4.5.</span> <span class="nav-text">求解矩阵的逆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初等矩阵"><span class="nav-number">4.6.</span> <span class="nav-text">初等矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初等矩阵和可逆性"><span class="nav-number">4.7.</span> <span class="nav-text">初等矩阵和可逆性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么矩阵的逆那么重要"><span class="nav-number">4.8.</span> <span class="nav-text">为什么矩阵的逆那么重要？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的lu分解"><span class="nav-number">4.9.</span> <span class="nav-text">矩阵的LU分解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#plu分解"><span class="nav-number">4.10.</span> <span class="nav-text">PLU分解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列交换"><span class="nav-number">4.11.</span> <span class="nav-text">列交换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线性组合"><span class="nav-number">5.</span> <span class="nav-text">线性组合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性相关与线性无关"><span class="nav-number">5.1.</span> <span class="nav-text">线性相关与线性无关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成空间"><span class="nav-number">5.2.</span> <span class="nav-text">生成空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空间的基"><span class="nav-number">5.3.</span> <span class="nav-text">空间的基</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#空间"><span class="nav-number">6.</span> <span class="nav-text">空间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#广义向量空间"><span class="nav-number">6.1.</span> <span class="nav-text">广义向量空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#子空间"><span class="nav-number">6.2.</span> <span class="nav-text">子空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#维度"><span class="nav-number">6.3.</span> <span class="nav-text">维度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行空间"><span class="nav-number">6.4.</span> <span class="nav-text">行空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列空间"><span class="nav-number">6.5.</span> <span class="nav-text">列空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的秩和矩阵的逆"><span class="nav-number">6.6.</span> <span class="nav-text">矩阵的秩和矩阵的逆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零空间"><span class="nav-number">6.7.</span> <span class="nav-text">零空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#左零空间"><span class="nav-number">6.8.</span> <span class="nav-text">左零空间</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正交"><span class="nav-number">7.</span> <span class="nav-text">正交</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#正交基和标准正交基"><span class="nav-number">7.1.</span> <span class="nav-text">正交基和标准正交基</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一维投影"><span class="nav-number">7.2.</span> <span class="nav-text">一维投影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高维投影和gram-schmidt过程"><span class="nav-number">7.3.</span> <span class="nav-text">高维投影和Gram Schmidt过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准正交基的性质"><span class="nav-number">7.4.</span> <span class="nav-text">标准正交基的性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的qr分解"><span class="nav-number">7.5.</span> <span class="nav-text">矩阵的QR分解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#坐标系"><span class="nav-number">8.</span> <span class="nav-text">坐标系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#坐标系转换"><span class="nav-number">8.1.</span> <span class="nav-text">坐标系转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性变换"><span class="nav-number">8.2.</span> <span class="nav-text">线性变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">8.3.</span> <span class="nav-text">应用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#行列式"><span class="nav-number">9.</span> <span class="nav-text">行列式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#行列式的四大基本性质"><span class="nav-number">9.1.</span> <span class="nav-text">行列式的四大基本性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行列式与矩阵的逆"><span class="nav-number">9.2.</span> <span class="nav-text">行列式与矩阵的逆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算行列式的值"><span class="nav-number">9.3.</span> <span class="nav-text">计算行列式的值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初等矩阵与行列式"><span class="nav-number">9.4.</span> <span class="nav-text">初等矩阵与行列式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行式就是列式"><span class="nav-number">9.5.</span> <span class="nav-text">行式就是列式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行列式的代数表达"><span class="nav-number">9.6.</span> <span class="nav-text">行列式的代数表达</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特征值和特征向量"><span class="nav-number">10.</span> <span class="nav-text">特征值和特征向量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#特征值和特征向量的性质"><span class="nav-number">10.1.</span> <span class="nav-text">特征值和特征向量的性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不简单的特征值和特征向量"><span class="nav-number">10.2.</span> <span class="nav-text">不简单的特征值和特征向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵相似型"><span class="nav-number">10.3.</span> <span class="nav-text">矩阵相似型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵对角化"><span class="nav-number">10.4.</span> <span class="nav-text">矩阵对角化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵对角化的应用"><span class="nav-number">10.5.</span> <span class="nav-text">矩阵对角化的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完美的对称矩阵"><span class="nav-number">10.6.</span> <span class="nav-text">完美的对称矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正交对角化"><span class="nav-number">10.7.</span> <span class="nav-text">正交对角化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#奇异值"><span class="nav-number">10.8.</span> <span class="nav-text">奇异值</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

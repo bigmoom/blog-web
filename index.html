@@ -163,6 +163,398 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2021/07/02/SpringBoot%E6%95%B4%E5%90%88SpringSession%E5%AE%9E%E7%8E%B0session%E5%85%B1%E4%BA%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Wanghui Cai">
+      <meta itemprop="description" content="一些零零散散的学习总结">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜鸡肥肥的私人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/02/SpringBoot%E6%95%B4%E5%90%88SpringSession%E5%AE%9E%E7%8E%B0session%E5%85%B1%E4%BA%AB/" class="post-title-link" itemprop="url">Springboot整合springsession实现session共享</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-01 22:22:22" itemprop="dateCreated datePublished" datetime="2021-07-01T22:22:22Z">2021-07-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-29 08:26:57" itemprop="dateModified" datetime="2021-08-29T08:26:57Z">2021-08-29</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="springboot整合springsession实现session共享"><a class="markdownIt-Anchor" href="#springboot整合springsession实现session共享"></a> Springboot整合springsession实现session共享</h1>
+<h3 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介</h3>
+<p><code>session</code>我们之前有介绍过（可见<a href="https://github.com/bigmoom/springboot/tree/main/springboot%E6%95%B4%E5%90%88springsecurity" target="_blank" rel="noopener">springboot整合springsecurity</a>），简单来说就是将用户信息或者数据存储在服务器上，通常用于验证用户身份或者避免通过获取相关信息。</p>
+<p>但是，缺点也是非常明显：</p>
+<ol>
+<li>
+<p>占用服务器负载：我们可以使用<code>token</code>，用时间换取空间</p>
+</li>
+<li>
+<p>对于多服务器环境，<code>session</code>无法共享</p>
+</li>
+</ol>
+<p>对于第二点缺点，我们目前有几种比较常用的解决方法</p>
+<ol>
+<li>
+<p>使用<code>cookie</code>加密的方式将<code>session</code>保存在客户端上</p>
+<p>优点是可以减轻服务器压力，缺点是每次请求都要带上<code>cookie</code>信息，占用一定带宽。此外若用户禁用<code>cookie</code>则无法使用</p>
+</li>
+<li>
+<p>服务器间同步</p>
+<p>通过配置<code>tomcat</code>集群，在集群中广播自己的<code>session</code>信息，但是缺点很明显，当集群规模较大时，会占用大量资源来进行<code>session</code>同步处理</p>
+</li>
+<li>
+<p>基于分布式缓存的<code>session</code>共享机制</p>
+<p>将<code>session</code>缓存到<code>redis</code>中，这样不同服务器都可以直接到内存中获取<code>session</code>，效率高，也最常用</p>
+</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/07/02/SpringBoot%E6%95%B4%E5%90%88SpringSession%E5%AE%9E%E7%8E%B0session%E5%85%B1%E4%BA%AB/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2021/06/26/SpringBoot%E6%95%B4%E5%90%88Redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Wanghui Cai">
+      <meta itemprop="description" content="一些零零散散的学习总结">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜鸡肥肥的私人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/26/SpringBoot%E6%95%B4%E5%90%88Redis/" class="post-title-link" itemprop="url">SpringBoot整合Redis</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-25 20:20:20" itemprop="dateCreated datePublished" datetime="2021-06-25T20:20:20Z">2021-06-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-29 08:25:03" itemprop="dateModified" datetime="2021-08-29T08:25:03Z">2021-08-29</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="springboot整合redis实现缓存"><a class="markdownIt-Anchor" href="#springboot整合redis实现缓存"></a> SpringBoot整合Redis实现缓存</h1>
+<h3 id="redis"><a class="markdownIt-Anchor" href="#redis"></a> Redis</h3>
+<p><code>redis</code>简单来说就是一款基于内存的以键值对方式存储数据的非关系型数据库。</p>
+<p>优点非常明显，由于存储在内存中，所以读取非常快。这种速度是<code>mysql</code>等数据库完全不能比拟的，所以我们常用<code>redis</code>作为缓存以减少对本地数据库的查询。</p>
+<blockquote>
+<p><code>redis</code>可以作为系统进程间的资源共享，例如使用<code>redis</code>实现<code>spring session</code>共享等等</p>
+</blockquote>
+<blockquote>
+<p>关于<code>redis</code>的安装与操作这里就不多说了，百度有非常详细的教程，个人还是建议将<code>redis</code>部署在<code>linux</code>虚拟机或者服务器上。</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/26/SpringBoot%E6%95%B4%E5%90%88Redis/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2021/06/21/SpringBoot%E6%95%B4%E5%90%88rabbitmq/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Wanghui Cai">
+      <meta itemprop="description" content="一些零零散散的学习总结">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜鸡肥肥的私人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/21/SpringBoot%E6%95%B4%E5%90%88rabbitmq/" class="post-title-link" itemprop="url">SpringBoot整合RabbitMQ</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-20 20:20:20" itemprop="dateCreated datePublished" datetime="2021-06-20T20:20:20Z">2021-06-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-29 08:23:35" itemprop="dateModified" datetime="2021-08-29T08:23:35Z">2021-08-29</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>17k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>16 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="springboot整合rabbitmq"><a class="markdownIt-Anchor" href="#springboot整合rabbitmq"></a> Springboot整合RabbitMQ</h1>
+<h3 id="mq"><a class="markdownIt-Anchor" href="#mq"></a> MQ</h3>
+<h4 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介</h4>
+<p>消息队列（<code>Message Queue</code>，简称<code>MQ</code>），只保存消息的一个容器，本质上是一个容器。</p>
+<p>简单来说，消息队列就是一个存储消息的容器，它接受消息发布者发布的消息，然后将消息存储在容器中等待之后的消费者到容器里消费消息。</p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622153920.png" alt="" /></p>
+<p>这就是最简单的一个消息队列的模型</p>
+<p><code>Producer</code>：消息生产者，负责产生和发布消息到<code>Broker</code>中</p>
+<p><code>Broker</code>：消息处理中心，负责消息的存储，确认等等，一般其中会包含多个<code>queue</code></p>
+<p><code>Consumer</code>：消息消费者，负责从<code>Broker</code>中获取消息，并进行相关处理（消费）</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/21/SpringBoot%E6%95%B4%E5%90%88rabbitmq/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2021/06/18/SpringBoot%E4%BD%BF%E7%94%A8springsecurity%E5%AE%9E%E7%8E%B0OAuth2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Wanghui Cai">
+      <meta itemprop="description" content="一些零零散散的学习总结">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜鸡肥肥的私人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/18/SpringBoot%E4%BD%BF%E7%94%A8springsecurity%E5%AE%9E%E7%8E%B0OAuth2/" class="post-title-link" itemprop="url">SpringBoot使用springsecurity实现OAuth2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-17 20:15:10" itemprop="dateCreated datePublished" datetime="2021-06-17T20:15:10Z">2021-06-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-29 08:21:42" itemprop="dateModified" datetime="2021-08-29T08:21:42Z">2021-08-29</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>9.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="springboot使用security实现oauth2"><a class="markdownIt-Anchor" href="#springboot使用security实现oauth2"></a> SpringBoot使用security实现OAuth2</h1>
+<h3 id="oauth2"><a class="markdownIt-Anchor" href="#oauth2"></a> OAuth2</h3>
+<p><code>OAuth</code>是一个开放标准，允许用户授权地方应用访问他们存储在另外的服务提供者上的信息，而不需要将用户名和密码提供给第三方应用或者分享他们数据的所有内容。</p>
+<p>我们从一个常见的例子来看：</p>
+<p>我们打王者，第一次登录的时候要求我们选择微信登录还是<code>QQ</code>登录，这时假设我们点击<code>QQ</code>登录，那么就会跳转到一个<strong>认证界面</strong>，询问我们是否同意王者使用<code>QQ</code>的数据，例如好友列表等等。当我们点击<strong>同意</strong>之后就会<strong>跳转回</strong>王者，之后进入王者我们可以发现好友列表内容就是我们的<code>QQ</code>中的好友列表。并且过段时间不登录之后，我们会发现又要<strong>再次认证</strong>，这是因为之前的认证令牌过期了，需要重新申请。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/18/SpringBoot%E4%BD%BF%E7%94%A8springsecurity%E5%AE%9E%E7%8E%B0OAuth2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2021/06/16/SpringBoot%E5%AE%9E%E7%8E%B0%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -683,397 +1075,12 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2021/06/15/SpringBoot%E5%88%9D%E8%AF%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Wanghui Cai">
-      <meta itemprop="description" content="一些零零散散的学习总结">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="菜鸡肥肥的私人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/15/SpringBoot%E5%88%9D%E8%AF%86/" class="post-title-link" itemprop="url">SpringBoot初识</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-06-14 22:11:54 / 修改时间：14:45:58" itemprop="dateCreated datePublished" datetime="2021-06-14T22:11:54Z">2021-06-14</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>9.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="springboot-初识"><a class="markdownIt-Anchor" href="#springboot-初识"></a> SpringBoot 初识</h1>
-<h3 id="ioc"><a class="markdownIt-Anchor" href="#ioc"></a> IOC</h3>
-<p>在我们接触Springboot之前，先了解一下一个概念 <code>IOC</code> 。</p>
-<p><code>ioc</code> - <code>Inversion Of Control</code> 即 控制反转。这并不是某个语言专有的特性，而是一种编程思想。</p>
-<p>我们之前编程的时候都是主动的去注入对象，即频繁的使用<code>new</code>去新建一个对象。这种编程方式看似没有什么大的问题，但是其实有很多可以改善的地方。</p>
-<p>我们可以发现，当我们一个类特别复杂的时候，我们在代码中可能要<code>new</code> 数以百计甚至更多的对象，并且不主动使用垃圾回收机制进行清除，这种方式对于内存堆是非常不友好的，并且程序也非常繁冗，类与类之间耦合度极高，之后对代码的修改也非常困难。</p>
-<p>所以呢，我们就引入了一个新的编程思想，就是<code>IOC</code>。<code>IOC</code>的核心思想便是使用容器去查找创建需要创建的对象。具体来说，就是我们只需要在代码中告诉容器，我整个过程需要会将使用到什么对象，那么之后容器便会在需要使用的时候自动去创建所需要的资源以供使用。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/15/SpringBoot%E5%88%9D%E8%AF%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2020/03/12/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Wanghui Cai">
-      <meta itemprop="description" content="一些零零散散的学习总结">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="菜鸡肥肥的私人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/12/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" class="post-title-link" itemprop="url">线性代数相关知识</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-11 20:09:32" itemprop="dateCreated datePublished" datetime="2020-03-11T20:09:32Z">2020-03-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-24 06:10:28" itemprop="dateModified" datetime="2020-03-24T06:10:28Z">2020-03-24</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">基础知识</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>59k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>53 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>因为准备忙毕设的事情，就开始学习推荐系统的相关知识，但是一开始就看到<code>item-based CF</code>和<code>SVD</code>的时候，发现很多线性代数的知识都忘了，就准备开这篇来重新学习一下 <strong>线性代数</strong></p>
-</blockquote>
-<blockquote>
-<p>我主要以<code>YouTube</code>上 <a href="https://www.youtube.com/playlist?list=PL0Kneloi6O0zyVKekh4faY6vun_jkDVko" target="_blank" rel="noopener">为程序员设计的线性代数课程</a> 为资源展开学习（这个貌似是慕课网的资源）</p>
-<p>后来发现B站也有。<a href="https://www.bilibili.com/video/av94991431" target="_blank" rel="noopener">B站链接</a>（好像没了）</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/12/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2020/03/09/Markdown-%E7%9B%B8%E5%85%B3%E8%AF%AD%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Wanghui Cai">
-      <meta itemprop="description" content="一些零零散散的学习总结">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="菜鸡肥肥的私人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/09/Markdown-%E7%9B%B8%E5%85%B3%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">Markdown常用操作</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-08 22:45:57" itemprop="dateCreated datePublished" datetime="2020-03-08T22:45:57Z">2020-03-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-11 11:44:53" itemprop="dateModified" datetime="2020-03-11T11:44:53Z">2020-03-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Markdown/" itemprop="url" rel="index"><span itemprop="name">Markdown</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.7k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="标题"><a class="markdownIt-Anchor" href="#标题"></a> 标题</h2>
-<p>Markdown <strong>支持两种形式</strong></p>
-<ol>
-<li>
-<p><strong>用<code>#</code>作为标记符</strong> （<strong>Typora</strong>中快捷键为<code>ctrl+对应数字</code>）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级</span><br><span class="line">### 三级</span><br><span class="line">...</span><br><span class="line">###### 六级标题</span><br></pre></td></tr></table></figure>
-<p>显示结果如下：（<code>typora</code>貌似不支持<strong>跨级标签</strong>，还有<code>#</code>之后要有一个<strong>空格</strong>）</p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/20200309145634.png" alt="" /></p>
-</li>
-<li>
-<p><strong>用<code>=</code>和<code>-</code>标记</strong></p>
-<p>即在 <strong>标题下面</strong> 加上任意个<code>=</code>表 <strong>一级标题</strong>，<code>-</code>表 <strong>二级标题</strong>（个人不喜欢​ 😉）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">一级标题</span><br><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">二级标题</span><br><span class="line">--------</span><br></pre></td></tr></table></figure>
-<p>效果如上</p>
-</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/09/Markdown-%E7%9B%B8%E5%85%B3%E8%AF%AD%E6%B3%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2020/03/09/First-Blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Wanghui Cai">
-      <meta itemprop="description" content="一些零零散散的学习总结">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="菜鸡肥肥的私人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/09/First-Blog/" class="post-title-link" itemprop="url">First Blog</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-08 19:21:07" itemprop="dateCreated datePublished" datetime="2020-03-08T19:21:07Z">2020-03-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-11 08:42:38" itemprop="dateModified" datetime="2020-03-11T08:42:38Z">2020-03-11</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>146</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="写于正式博客之前"><a class="markdownIt-Anchor" href="#写于正式博客之前"></a> 写于正式博客之前</h1>
-<ol>
-<li>创建自己私人博客的初心主要还是为了总结自己学的东西，不想再在<code>Google</code>里边那个<code>keep</code>一个一个找，实在是太麻烦了。</li>
-<li>其次，就是感觉这样很吊，就当为了以后的社招提前做准备，毕竟私人博客写的好的话也是能加不少分的。</li>
-<li>先写这么多，主要也是测试一下<code>hexo</code>的样式感觉一下😄</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/09/First-Blog/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1140,7 +1147,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1238,7 +1245,7 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(bp, s);
     })();
-  </script>
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -1257,59 +1264,6 @@
   
 
   
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-    
 
   
 

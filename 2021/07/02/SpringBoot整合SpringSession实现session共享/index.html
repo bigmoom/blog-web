@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"www.caiwanghui.top","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Springboot整合springsession实现session共享 简介 session我们之前有介绍过（可见springboot整合springsecurity），简单来说就是将用户信息或者数据存储在服务器上，通常用于验证用户身份或者避免通过获取相关信息。 但是，缺点也是非常明显：  占用服务器负载：我们可以使用token，用时间换取空间 对于多服务器环境，session无法共">
+  <meta name="description" content="Springboot整合springsession实现session共享简介session我们之前有介绍过（可见springboot整合springsecurity），简单来说就是将用户信息或者数据存储在服务器上，通常用于验证用户身份或者避免通过获取相关信息。 但是，缺点也是非常明显：  占用服务器负载：我们可以使用token，用时间换取空间  对于多服务器环境，session无法共享   对于第">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Springboot整合springsession实现session共享">
 <meta property="og:url" content="http://www.caiwanghui.top/2021/07/02/SpringBoot%E6%95%B4%E5%90%88SpringSession%E5%AE%9E%E7%8E%B0session%E5%85%B1%E4%BA%AB/index.html">
 <meta property="og:site_name" content="菜鸡肥肥的私人博客">
-<meta property="og:description" content="Springboot整合springsession实现session共享 简介 session我们之前有介绍过（可见springboot整合springsecurity），简单来说就是将用户信息或者数据存储在服务器上，通常用于验证用户身份或者避免通过获取相关信息。 但是，缺点也是非常明显：  占用服务器负载：我们可以使用token，用时间换取空间 对于多服务器环境，session无法共">
+<meta property="og:description" content="Springboot整合springsession实现session共享简介session我们之前有介绍过（可见springboot整合springsecurity），简单来说就是将用户信息或者数据存储在服务器上，通常用于验证用户身份或者避免通过获取相关信息。 但是，缺点也是非常明显：  占用服务器负载：我们可以使用token，用时间换取空间  对于多服务器环境，session无法共享   对于第">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622111930.png">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622112152.png">
@@ -233,101 +233,113 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="springboot整合springsession实现session共享">Springboot整合springsession实现session共享</h1>
-<h3 id="简介">简介</h3>
-<p><code>session</code>我们之前有介绍过（可见<a href="https://github.com/bigmoom/springboot/tree/main/springboot%E6%95%B4%E5%90%88springsecurity" target="_blank" rel="noopener">springboot整合springsecurity</a>），简单来说就是将用户信息或者数据存储在服务器上，通常用于验证用户身份或者避免通过获取相关信息。</p>
+        <h1 id="Springboot整合springsession实现session共享"><a href="#Springboot整合springsession实现session共享" class="headerlink" title="Springboot整合springsession实现session共享"></a>Springboot整合springsession实现session共享</h1><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p><code>session</code>我们之前有介绍过（可见<a href="https://github.com/bigmoom/springboot/tree/main/springboot%E6%95%B4%E5%90%88springsecurity" target="_blank" rel="noopener">springboot整合springsecurity</a>），简单来说就是将用户信息或者数据存储在服务器上，通常用于验证用户身份或者避免通过获取相关信息。</p>
 <p>但是，缺点也是非常明显：</p>
-<ol type="1">
-<li><p>占用服务器负载：我们可以使用<code>token</code>，用时间换取空间</p></li>
-<li><p>对于多服务器环境，<code>session</code>无法共享</p></li>
+<ol>
+<li><p>占用服务器负载：我们可以使用<code>token</code>，用时间换取空间</p>
+</li>
+<li><p>对于多服务器环境，<code>session</code>无法共享</p>
+</li>
 </ol>
 <p>对于第二点缺点，我们目前有几种比较常用的解决方法</p>
-<ol type="1">
+<ol>
 <li><p>使用<code>cookie</code>加密的方式将<code>session</code>保存在客户端上</p>
-<p>优点是可以减轻服务器压力，缺点是每次请求都要带上<code>cookie</code>信息，占用一定带宽。此外若用户禁用<code>cookie</code>则无法使用</p></li>
+<p>优点是可以减轻服务器压力，缺点是每次请求都要带上<code>cookie</code>信息，占用一定带宽。此外若用户禁用<code>cookie</code>则无法使用</p>
+</li>
 <li><p>服务器间同步</p>
-<p>通过配置<code>tomcat</code>集群，在集群中广播自己的<code>session</code>信息，但是缺点很明显，当集群规模较大时，会占用大量资源来进行<code>session</code>同步处理</p></li>
+<p>通过配置<code>tomcat</code>集群，在集群中广播自己的<code>session</code>信息，但是缺点很明显，当集群规模较大时，会占用大量资源来进行<code>session</code>同步处理</p>
+</li>
 <li><p>基于分布式缓存的<code>session</code>共享机制</p>
-<p>将<code>session</code>缓存到<code>redis</code>中，这样不同服务器都可以直接到内存中获取<code>session</code>，效率高，也最常用</p></li>
+<p>将<code>session</code>缓存到<code>redis</code>中，这样不同服务器都可以直接到内存中获取<code>session</code>，效率高，也最常用</p>
+</li>
 </ol>
 <a id="more"></a>
-<h3 id="springsession">Springsession</h3>
-<blockquote>
+
+<h3 id="Springsession"><a href="#Springsession" class="headerlink" title="Springsession"></a>Springsession</h3><blockquote>
 <p><code>springSession</code>是 <code>spring</code> 旗下的一个项目，把 <code>servlet</code> 容器实现的 <code>httpSession</code>替换为<code>springSession</code>，专注于解决<code>session</code>管理问题。可简单快速且无缝的集成到我们的应用中。</p>
 </blockquote>
 <p><code>springsession</code>就是<code>spring</code>的一个框架，实现了我们上面说的基于分布式缓存的<code>session</code>共享机制</p>
-<h4 id="操作实例">操作实例</h4>
-<p>我们先来看看简单的操作实例</p>
+<h4 id="操作实例"><a href="#操作实例" class="headerlink" title="操作实例"></a>操作实例</h4><p>我们先来看看简单的操作实例</p>
 <p><a href="https://github.com/bigmoom/springboot/tree/main/springboot%E6%95%B4%E5%90%88springsession%E5%AE%9E%E7%8E%B0session%E5%85%B1%E4%BA%AB" target="_blank" rel="noopener">程序源码</a></p>
-<h5 id="pom.xml">pom.xml</h5>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--        springsession--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.session<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-session-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h5 id="application.yml">application.yml</h5>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">redis:</span></span><br><span class="line">    <span class="comment">#    数据库索引，默认为0</span></span><br><span class="line">    <span class="attr">database:</span> <span class="number">0</span></span><br><span class="line">    <span class="comment">#    redis host ip</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">192.168</span><span class="number">.56</span><span class="number">.129</span></span><br><span class="line">    <span class="comment">#    redis  连接端口</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">6379</span></span><br><span class="line">    <span class="comment">#    服务器连接密码（默认为空）</span></span><br><span class="line">    <span class="attr">password:</span></span><br><span class="line">    <span class="comment">#    连接超时时间（毫秒）</span></span><br><span class="line">    <span class="attr">timeout:</span> <span class="number">1000</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">#设置springsession存储类型，默认为redis</span></span><br><span class="line">  <span class="attr">session:</span></span><br><span class="line">    <span class="attr">store-type:</span> <span class="string">redis</span></span><br></pre></td></tr></table></figure>
-<h5 id="启动类加上enableredishttpsession">启动类加上<code>@EnableRedisHttpSession</code></h5>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableRedisHttpSession</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringsessionApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringsessionApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="sessioncontroller">SessionController</h5>
-<p>这里我们构建一个简单的<code>controller</code>测试是否实现了<code>session</code>共享</p>
+<h5 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--        springsession--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.session<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-session-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="application-yml"><a href="#application-yml" class="headerlink" title="application.yml"></a>application.yml</h5><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">redis:</span></span><br><span class="line">    <span class="comment">#    数据库索引，默认为0</span></span><br><span class="line">    <span class="attr">database:</span> <span class="number">0</span></span><br><span class="line">    <span class="comment">#    redis host ip</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">192.168</span><span class="number">.56</span><span class="number">.129</span></span><br><span class="line">    <span class="comment">#    redis  连接端口</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">6379</span></span><br><span class="line">    <span class="comment">#    服务器连接密码（默认为空）</span></span><br><span class="line">    <span class="attr">password:</span></span><br><span class="line">    <span class="comment">#    连接超时时间（毫秒）</span></span><br><span class="line">    <span class="attr">timeout:</span> <span class="number">1000</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">#设置springsession存储类型，默认为redis</span></span><br><span class="line">  <span class="attr">session:</span></span><br><span class="line">    <span class="attr">store-type:</span> <span class="string">redis</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="启动类加上-EnableRedisHttpSession"><a href="#启动类加上-EnableRedisHttpSession" class="headerlink" title="启动类加上@EnableRedisHttpSession"></a>启动类加上<code>@EnableRedisHttpSession</code></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableRedisHttpSession</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringsessionApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringsessionApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="SessionController"><a href="#SessionController" class="headerlink" title="SessionController"></a>SessionController</h5><p>这里我们构建一个简单的<code>controller</code>测试是否实现了<code>session</code>共享</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/session"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SessionController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设置session</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> attributes</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@PostMapping</span>(<span class="string">"/set"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Map&lt;String,Object&gt; <span class="title">setSession</span><span class="params">(HttpServletRequest request, @RequestParam(<span class="string">"attributes"</span>)</span>String attributes)</span>&#123;</span><br><span class="line">        request.getSession().setAttribute(<span class="string">"attributes"</span>,attributes);</span><br><span class="line">        Map&lt;String,Object&gt; map = <span class="keyword">new</span> HashMap&lt;String,Object&gt;();</span><br><span class="line">        map.put(<span class="string">"SessionID:"</span>,request.getSession().getId());</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取session</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/get"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSession</span><span class="params">(HttpServletRequest request)</span></span>&#123;</span><br><span class="line">        String attributes = (String) request.getSession().getAttribute(<span class="string">"attributes"</span>);</span><br><span class="line">        <span class="keyword">return</span> attributes;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>两个方法都很简单</p>
 <p><code>setSession</code>：通过请求中的参数设置<code>session</code>中的<code>attributes</code></p>
 <p><code>getSession</code>：测试是否能获取在其他端口设定的<code>session</code>中对应<code>attributes</code>的值</p>
-<h5 id="运行结果">运行结果</h5>
-<p>由于要体现<code>session</code>共享，所以我们这里将在两个不同端口运行程序</p>
+<h5 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h5><p>由于要体现<code>session</code>共享，所以我们这里将在两个不同端口运行程序</p>
 <blockquote>
 <p>通过<code>IDEA</code>不同端口启用同一个项目，可以在右上角运行处选择<code>edit config</code>，然后添加<code>springboot</code>项目，并同意<code>parallel run</code></p>
 </blockquote>
 <p><code>port:8080</code> <code>/session/set</code></p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622111930.png" style="zoom:80%;" /></p>
+<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622111930.png" style="zoom:80%;" />
+
 <p>可以看到成功设置了<code>session</code>并且返回了<code>SessionID</code></p>
 <p><code>port:8090</code> <code>/session/get</code></p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622112152.png" style="zoom:80%;" /></p>
+<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622112152.png" style="zoom:80%;" />
+
 <p>成功获取到了<code>session</code>中的值，标明我们实现了<code>session</code>共享</p>
 <p>我们再来看看<code>redis</code>存储的<code>session</code></p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622112403.png" /></p>
-<p>这里以<code>sessionID</code>为<code>KEY</code>,<code>session</code>为<code>value</code>存储，但是<code>sessionID</code>前面的命名空间太长了，而且不具有项目标识，我们可以通过在<code>application.yml</code>中设置<code>namespace="xx"</code>即可</p>
-<h4 id="springsession-逻辑分析">Springsession 逻辑分析</h4>
-<p>我们可以看到<code>springsession</code>使用非常简单，对于用户几乎不用进行什么操作，那么<code>springsession</code>具体为我们做了什么工作呢？</p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622112403.png" alt=""></p>
+<p>这里以<code>sessionID</code>为<code>KEY</code>,<code>session</code>为<code>value</code>存储，但是<code>sessionID</code>前面的命名空间太长了，而且不具有项目标识，我们可以通过在<code>application.yml</code>中设置<code>namespace=&quot;xx&quot;</code>即可</p>
+<h4 id="Springsession-逻辑分析"><a href="#Springsession-逻辑分析" class="headerlink" title="Springsession 逻辑分析"></a>Springsession 逻辑分析</h4><p>我们可以看到<code>springsession</code>使用非常简单，对于用户几乎不用进行什么操作，那么<code>springsession</code>具体为我们做了什么工作呢？</p>
 <p>其实<code>springsession</code>通过<code>autoconfigure</code>帮我们自动配置了一个过滤器<code>SessionRepositoryFitlter</code></p>
-<h5 id="sessionrepositoryfitlter"><code>SessionRepositoryFitlter</code></h5>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Order</span>(-<span class="number">2147483598</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SessionRepositoryFilter</span>&lt;<span class="title">S</span> <span class="keyword">extends</span> <span class="title">Session</span>&gt; <span class="keyword">extends</span> <span class="title">OncePerRequestFilter</span> </span>&#123;</span><br></pre></td></tr></table></figure>
+<h5 id="SessionRepositoryFitlter"><a href="#SessionRepositoryFitlter" class="headerlink" title="SessionRepositoryFitlter"></a><code>SessionRepositoryFitlter</code></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Order</span>(-<span class="number">2147483598</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SessionRepositoryFilter</span>&lt;<span class="title">S</span> <span class="keyword">extends</span> <span class="title">Session</span>&gt; <span class="keyword">extends</span> <span class="title">OncePerRequestFilter</span> </span>&#123;</span><br></pre></td></tr></table></figure>
+
 <p>定义来看：</p>
 <ul>
 <li><p>这里为<code>SessionRepositoryFilter</code>设定了一个非常小的<code>order</code>值，以确保能够在<code>filterchain</code>中被优先执行。</p>
 <blockquote>
 <p>优先执行是为了将原生<code>HttpRequest</code>进行替换和封装</p>
-</blockquote></li>
-<li><p>继承了<code>OncePerRequestFilter</code>，确保一次请求只通过一次</p></li>
+</blockquote>
+</li>
+<li><p>继承了<code>OncePerRequestFilter</code>，确保一次请求只通过一次</p>
+</li>
 </ul>
 <blockquote>
 <p>源码命名太长，直接贴代码太乱了，这里就直接截图了</p>
 </blockquote>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622120056.png" /></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622120056.png" alt=""></p>
 <p>可以看到，我们这里首先对<code>request</code>和<code>response</code>进行封装，之后将封装请求传入<code>doFilter()</code></p>
 <p>所以具体逻辑就在两个封装类中，这里我们着重关注<code>request</code>的封装类</p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622133706.png" /></p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622133749.png" /></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622133706.png" alt=""></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622133749.png" alt=""></p>
 <p>获取<code>session</code>的逻辑如下：</p>
-<ol type="1">
-<li><p><code>this.getCurrentSession()</code> 检查<code>serlvet</code>容器中是否有<code>session</code>，如果有<code>session</code>则直接返回，如果没有则去<code>redis</code>中去拿</p></li>
+<ol>
+<li><p><code>this.getCurrentSession()</code> 检查<code>serlvet</code>容器中是否有<code>session</code>，如果有<code>session</code>则直接返回，如果没有则去<code>redis</code>中去拿</p>
+</li>
 <li><p><code>this.getRequestedSession()</code> 根据请求中的信息获取<code>sessionID</code>，然后根据<code>sessionID</code>去<code>redis</code>中获取<code>session</code></p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622134400.png" style="zoom:80%;" /></p>
+<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622134400.png" style="zoom:80%;" />
+
 <p>这里并不是每次查询都是去<code>redis</code>中查询，而是设置了一个<code>session</code>缓存，每次查询先检查缓存中有没有，如果有则直接拿值，如果没有则通过<code>httpSessionIdResolver.resolveSessionIds(this)</code>获取<code>sessionID</code></p>
 <blockquote>
 <p>获取<code>sessionid</code>有两种方式，一种是根据请求中<code>Header</code>信息获取，一种是放在<code>cookie</code>中</p>
 <p>我们这里<code>httpSessionIdResolver = new CookieHttpSessionIdResolver()</code>选择使用<code>cookie</code>获取<code>sessionID</code></p>
 </blockquote>
-<p>查询到<code>session</code>之后，更新<code>session</code>相关信息并返回</p></li>
-<li><p>如果在<code>redis</code>中没有找到，则根据<code>create</code>判断是否创建新的<code>session</code></p></li>
+<p>查询到<code>session</code>之后，更新<code>session</code>相关信息并返回</p>
+</li>
+<li><p>如果在<code>redis</code>中没有找到，则根据<code>create</code>判断是否创建新的<code>session</code></p>
+</li>
 </ol>
 <p>基本的逻辑非常清楚也非常好理解，我们再来具体看看<code>springsession</code>是如何在<code>redis</code>中查询<code>session</code>的</p>
-<h5 id="sessionrepository"><code>SessionRepository</code></h5>
-<p><code>springsession</code>为我们提供了这样一个<code>session</code>仓库，能够完成对<code>session</code>的<code>CRUD</code>操作</p>
+<h5 id="SessionRepository"><a href="#SessionRepository" class="headerlink" title="SessionRepository"></a><code>SessionRepository</code></h5><p><code>springsession</code>为我们提供了这样一个<code>session</code>仓库，能够完成对<code>session</code>的<code>CRUD</code>操作</p>
 <p>我们这里使用的是<code>RedisSessionRepository</code>，实现了将<code>session</code>存储在<code>redis</code>上的<code>CRUD</code>操作</p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622140240.png" /></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622140240.png" alt=""></p>
 <p>这就是我们<code>getRequestedSession()</code>中使用的<code>findById()</code></p>
 <p>可以看到里面就是对<code>redis</code>数据库的直接操作</p>
-<h3 id="总结">总结</h3>
-<p>本文主要介绍了<code>springboot</code>如何整合<code>springsession</code>实现<code>session</code>共享，也简单介绍了其中逻辑原理，具体的部分还是建议仔细阅读源码。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文主要介绍了<code>springboot</code>如何整合<code>springsession</code>实现<code>session</code>共享，也简单介绍了其中逻辑原理，具体的部分还是建议仔细阅读源码。</p>
 
     </div>
 
@@ -412,7 +424,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#springboot整合springsession实现session共享"><span class="nav-number">1.</span> <span class="nav-text">Springboot整合springsession实现session共享</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.0.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#springsession"><span class="nav-number">1.0.2.</span> <span class="nav-text">Springsession</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#操作实例"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">操作实例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#pom.xml"><span class="nav-number">1.0.2.1.1.</span> <span class="nav-text">pom.xml</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#application.yml"><span class="nav-number">1.0.2.1.2.</span> <span class="nav-text">application.yml</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#启动类加上enableredishttpsession"><span class="nav-number">1.0.2.1.3.</span> <span class="nav-text">启动类加上@EnableRedisHttpSession</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#sessioncontroller"><span class="nav-number">1.0.2.1.4.</span> <span class="nav-text">SessionController</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#运行结果"><span class="nav-number">1.0.2.1.5.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#springsession-逻辑分析"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">Springsession 逻辑分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#sessionrepositoryfitlter"><span class="nav-number">1.0.2.2.1.</span> <span class="nav-text">SessionRepositoryFitlter</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#sessionrepository"><span class="nav-number">1.0.2.2.2.</span> <span class="nav-text">SessionRepository</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.0.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Springboot整合springsession实现session共享"><span class="nav-number">1.</span> <span class="nav-text">Springboot整合springsession实现session共享</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.0.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Springsession"><span class="nav-number">1.0.2.</span> <span class="nav-text">Springsession</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#操作实例"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">操作实例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#pom-xml"><span class="nav-number">1.0.2.1.1.</span> <span class="nav-text">pom.xml</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#application-yml"><span class="nav-number">1.0.2.1.2.</span> <span class="nav-text">application.yml</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#启动类加上-EnableRedisHttpSession"><span class="nav-number">1.0.2.1.3.</span> <span class="nav-text">启动类加上@EnableRedisHttpSession</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SessionController"><span class="nav-number">1.0.2.1.4.</span> <span class="nav-text">SessionController</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#运行结果"><span class="nav-number">1.0.2.1.5.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Springsession-逻辑分析"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">Springsession 逻辑分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#SessionRepositoryFitlter"><span class="nav-number">1.0.2.2.1.</span> <span class="nav-text">SessionRepositoryFitlter</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SessionRepository"><span class="nav-number">1.0.2.2.2.</span> <span class="nav-text">SessionRepository</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.0.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

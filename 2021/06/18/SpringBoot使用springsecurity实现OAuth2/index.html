@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"www.caiwanghui.top","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="SpringBoot使用security实现OAuth2 OAuth2 OAuth是一个开放标准，允许用户授权地方应用访问他们存储在另外的服务提供者上的信息，而不需要将用户名和密码提供给第三方应用或者分享他们数据的所有内容。 我们从一个常见的例子来看： 我们打王者，第一次登录的时候要求我们选择微信登录还是QQ登录，这时假设我们点击QQ登录，那么就会跳转到一个认证界面，询问我们是否同意王者使">
+  <meta name="description" content="SpringBoot使用security实现OAuth2OAuth2OAuth是一个开放标准，允许用户授权地方应用访问他们存储在另外的服务提供者上的信息，而不需要将用户名和密码提供给第三方应用或者分享他们数据的所有内容。 我们从一个常见的例子来看： 我们打王者，第一次登录的时候要求我们选择微信登录还是QQ登录，这时假设我们点击QQ登录，那么就会跳转到一个认证界面，询问我们是否同意王者使用QQ的数据">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot使用springsecurity实现OAuth2">
 <meta property="og:url" content="http://www.caiwanghui.top/2021/06/18/SpringBoot%E4%BD%BF%E7%94%A8springsecurity%E5%AE%9E%E7%8E%B0OAuth2/index.html">
 <meta property="og:site_name" content="菜鸡肥肥的私人博客">
-<meta property="og:description" content="SpringBoot使用security实现OAuth2 OAuth2 OAuth是一个开放标准，允许用户授权地方应用访问他们存储在另外的服务提供者上的信息，而不需要将用户名和密码提供给第三方应用或者分享他们数据的所有内容。 我们从一个常见的例子来看： 我们打王者，第一次登录的时候要求我们选择微信登录还是QQ登录，这时假设我们点击QQ登录，那么就会跳转到一个认证界面，询问我们是否同意王者使">
+<meta property="og:description" content="SpringBoot使用security实现OAuth2OAuth2OAuth是一个开放标准，允许用户授权地方应用访问他们存储在另外的服务提供者上的信息，而不需要将用户名和密码提供给第三方应用或者分享他们数据的所有内容。 我们从一个常见的例子来看： 我们打王者，第一次登录的时候要求我们选择微信登录还是QQ登录，这时假设我们点击QQ登录，那么就会跳转到一个认证界面，询问我们是否同意王者使用QQ的数据">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210617102152.png">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210617105249.png">
@@ -232,15 +232,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="springboot使用security实现oauth2">SpringBoot使用security实现OAuth2</h1>
-<h3 id="oauth2">OAuth2</h3>
-<p><code>OAuth</code>是一个开放标准，允许用户授权地方应用访问他们存储在另外的服务提供者上的信息，而不需要将用户名和密码提供给第三方应用或者分享他们数据的所有内容。</p>
+        <h1 id="SpringBoot使用security实现OAuth2"><a href="#SpringBoot使用security实现OAuth2" class="headerlink" title="SpringBoot使用security实现OAuth2"></a>SpringBoot使用security实现OAuth2</h1><h3 id="OAuth2"><a href="#OAuth2" class="headerlink" title="OAuth2"></a>OAuth2</h3><p><code>OAuth</code>是一个开放标准，允许用户授权地方应用访问他们存储在另外的服务提供者上的信息，而不需要将用户名和密码提供给第三方应用或者分享他们数据的所有内容。</p>
 <p>我们从一个常见的例子来看：</p>
 <p>我们打王者，第一次登录的时候要求我们选择微信登录还是<code>QQ</code>登录，这时假设我们点击<code>QQ</code>登录，那么就会跳转到一个<strong>认证界面</strong>，询问我们是否同意王者使用<code>QQ</code>的数据，例如好友列表等等。当我们点击<strong>同意</strong>之后就会<strong>跳转回</strong>王者，之后进入王者我们可以发现好友列表内容就是我们的<code>QQ</code>中的好友列表。并且过段时间不登录之后，我们会发现又要<strong>再次认证</strong>，这是因为之前的认证令牌过期了，需要重新申请。</p>
 <a id="more"></a>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210617102152.png" style="zoom:80%;" /></p>
+
+<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210617102152.png" style="zoom:80%;" />
+
 <p>这就是<code>OAuth</code>的一个大概思路流程</p>
-<ol type="1">
+<ol>
 <li>客户端要求用户给予授权</li>
 <li>用户同意授权</li>
 <li>客户端通过获得授权向认证服务器申请<code>token</code></li>
@@ -249,25 +249,26 @@
 <li>资源服务器确认通过之后，向客户端开放资源</li>
 </ol>
 <p><code>OAuth2</code>又分为四种不同的授权模式（简化模式和密码模式由于安全度太低已被遗弃）：</p>
-<ol type="1">
+<ol>
 <li><strong>授权码模式</strong>：这是最常用也是安全度最高的一种模式，通过获取授权码增加安全性</li>
 <li><strong><del>简化模式</del></strong>：直接申请令牌并且返回令牌，主要用于申请端只有前端没有服务器的情况，例如微信小程序</li>
 <li><strong><del>密码模式</del></strong>：需要用户提供账号密码，通过账号密码获取<code>token</code>，这种模式安全度极低，不推荐</li>
 <li><strong>客户端模式</strong>：与用户无关的一种模式，直接是服务器之间的通信，例如内部系统间的<code>API</code>调用</li>
 </ol>
 <p>接下来主要讲讲授权码这个核心授权模式</p>
-<h4 id="授权码模式">授权码模式</h4>
-<p>授权码模式<code>authorization code</code>，指的是客户端首先向认证服务器申请一个授权码，然后通过该授权码再去向授权服务器申请<code>token</code></p>
+<h4 id="授权码模式"><a href="#授权码模式" class="headerlink" title="授权码模式"></a>授权码模式</h4><p>授权码模式<code>authorization code</code>，指的是客户端首先向认证服务器申请一个授权码，然后通过该授权码再去向授权服务器申请<code>token</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">+----------+</span><br><span class="line">| Resource |</span><br><span class="line">|   Owner  |</span><br><span class="line">|          |</span><br><span class="line">+----------+</span><br><span class="line">     ^</span><br><span class="line">     |</span><br><span class="line">    (B)</span><br><span class="line">+----|-----+          Client Identifier      +---------------+</span><br><span class="line">|         -+----(A)-- &amp; Redirection URI ----&gt;|               |</span><br><span class="line">|  User-   |                                 | Authorization |</span><br><span class="line">|  Agent  -+----(B)-- User authenticates ---&gt;|     Server    |</span><br><span class="line">|          |                                 |               |</span><br><span class="line">|         -+----(C)-- Authorization Code ---&lt;|               |</span><br><span class="line">+-|----|---+                                 +---------------+</span><br><span class="line">  |    |                                         ^      v</span><br><span class="line"> (A)  (C)                                        |      |</span><br><span class="line">  |    |                                         |      |</span><br><span class="line">  ^    v                                         |      |</span><br><span class="line">+---------+                                      |      |</span><br><span class="line">|         |&gt;---(D)-- Authorization Code ---------&#39;      |</span><br><span class="line">|  Client |          &amp; Redirection URI                  |</span><br><span class="line">|         |                                             |</span><br><span class="line">|         |&lt;---(E)----- Access Token -------------------&#39;</span><br><span class="line">+---------+       (w&#x2F; Optional Refresh Token)</span><br></pre></td></tr></table></figure>
+
 <p>步骤如下：</p>
-<p><strong>A</strong> 用户访问客户端，客户端将用户导向认证服务器，并且携带重定向<code>URI</code></p>
+<p><strong>A</strong>  用户访问客户端，客户端将用户导向认证服务器，并且携带重定向<code>URI</code></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//authorization-server.com/auth?</span></span><br><span class="line">response_type=code</span><br><span class="line">&amp;client_id=CLIENT_ID</span><br><span class="line">&amp;redirect_uri=REDIRECT_URI</span><br><span class="line">&amp;scope=photos</span><br><span class="line">&amp;state=<span class="number">1234</span>zyx</span><br><span class="line">&amp;code_challenge=CODE_CHALLENGE</span><br><span class="line">&amp;code_challenge_method=S256</span><br></pre></td></tr></table></figure>
+
 <p><code>response_type=code</code> 表示授权类型为授权码模式</p>
 <p><code>client_id</code> 表示客户端<code>ID</code>,第一次创建应用的时候获得</p>
-<p><code>redirect_uri</code> 表示重定向<code>URI</code>用户在认证完成之后将用户返回到特定<code>URI</code></p>
+<p><code>redirect_uri</code> 表示重定向<code>URI</code>用户在认证完成之后将用户返回到特定<code>URI</code> </p>
 <p><code>scope</code> 表示申请的权限范围，例如<code>READ</code></p>
 <p><code>state</code> 应用随机指定的值，用于后期验证</p>
-<p><code>code_challenge</code> <code>code_challenge=transform(code_verifier,[Plain|S256])</code></p>
+<p><code>code_challenge</code> <code>code_challenge=transform(code_verifier,[Plain|S256])</code>  </p>
 <p>如果<code>method=Plain</code>，那么<code>code-challenge=code_verifier</code></p>
 <p>如果<code>method=S256</code>，那么<code>code_challenge</code>等于<code>code_verifier</code>的<code>Sha256</code>哈希</p>
 <p>在授权码请求中带上<code>code_challenge</code>以及<code>method</code>，这两者与服务器颁发的授权码绑定。</p>
@@ -276,41 +277,44 @@
 <p><code>code_challenge_method=S256</code> 标明使用<code>S256 Hashing</code>方法</p>
 <p><strong>B</strong> 用户选择是否对客户端授权</p>
 <p><strong>C</strong> 授权之后，认证服务器将用户导向之前传入的重定向<code>URI</code>，并且附上授权码</p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210617105249.png" style="zoom:80%;" /></p>
+<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210617105249.png" style="zoom:80%;" />
+
 <p>如果用户点击了<code>Allow</code>了，那么服务器将重定向并且附上授权码</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//example-app.com/cb?code=AUTH_CODE_HERE&amp;state=1234zyx</span></span><br></pre></td></tr></table></figure>
+
 <p><code>code</code>即为授权码，授权码有效期很短，一般为10分钟，并且客户端只能使用一次。该码与客户端<code>ID</code>和重定向<code>URI</code>是一对一关系</p>
 <p><code>state</code>之前传入的<code>state</code></p>
 <p>我们首先要比较传入的<code>state</code>与之前的<code>state</code>是否相同（之前的<code>state</code>可以存在<code>cookie</code>中），用于确认没有被劫持。</p>
 <p><strong>D</strong> 客户端收到授权码后，附上重定向<code>URI</code>以及授权码，向认证服务器申请<code>token</code>（这一步是在客户端的后台服务器上完成，对用户不可见）</p>
 <p>客户端向认证服务器发送申请<code>token</code>的<code>HTTP</code>请求</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST https:<span class="comment">//api.authorization-server.com/token</span></span><br><span class="line">  grant_type=authorization_code&amp;</span><br><span class="line">  code=AUTH_CODE_HERE&amp;</span><br><span class="line">  redirect_uri=REDIRECT_URI&amp;</span><br><span class="line">  client_id=CLIENT_ID&amp;</span><br><span class="line">  code_verifier=CODE_VERIFIER</span><br></pre></td></tr></table></figure>
+
 <p><code>grant_tyoe</code>标明为授权码模式</p>
 <p><code>code</code> 之前收到的授权码</p>
 <p><code>redirect_uri</code> 重定向<code>URI</code>，必须与一开始发送的重定向<code>URI</code>一样</p>
 <p><code>client_id</code> 客户端<code>ID</code>，也必须和之前发送的一样</p>
-<p><code>code_verifier</code> 之前随机生成的字符串，服务器根据之前传入的<code>code-challenge</code>的<code>method</code>进行计算，看是否以之前传入的<code>code_challenge</code>相同，相同才会颁发<code>token</code></p>
+<p><code>code_verifier</code>  之前随机生成的字符串，服务器根据之前传入的<code>code-challenge</code>的<code>method</code>进行计算，看是否以之前传入的<code>code_challenge</code>相同，相同才会颁发<code>token</code></p>
 <p><strong>E</strong> 认证服务器认证授权码等信息，确认无误后向客户端发送<code>token</code>和<code>refresh token</code>（可选）</p>
 <p>通过认证后，服务器发送包含<code>token</code>的<code>HTTPResponse</code></p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"access_token"</span>:<span class="string">"2YotnFZFEjr1zCsicMWpAA"</span>,</span><br><span class="line">  <span class="attr">"token_type"</span>:<span class="string">"bear"</span>,</span><br><span class="line">  <span class="attr">"expires_in"</span>:<span class="number">3600</span>,</span><br><span class="line">  <span class="attr">"refresh_token"</span>:<span class="string">"tGzv3JOkF0XG5Qx2TlKWIA"</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><code>access_token</code> 表示访问令牌</p>
 <p><code>token_type</code> 表示<code>token</code>类型，可以是<code>bear</code>也可以是<code>mac</code></p>
 <p><code>expires_in</code> 表示过期时间，单位为秒</p>
 <p><code>refresh_token</code>表示更新令牌，用来获取下次的访问令牌。即当<code>token</code>过期的时候，向服务器发送请求，告知<code>token</code>过期并且将<code>token</code>更新为<code>refresh_token</code>中的值</p>
-<h3 id="springboot-springsecurity-实现oauth2">SpringBoot +springsecurity 实现OAuth2</h3>
-<p><a href="https://projects.spring.io/spring-security-oauth/docs/oauth2.html" target="_blank" rel="noopener">官方文档</a></p>
+<h3 id="SpringBoot-springsecurity-实现OAuth2"><a href="#SpringBoot-springsecurity-实现OAuth2" class="headerlink" title="SpringBoot +springsecurity 实现OAuth2"></a>SpringBoot +springsecurity 实现OAuth2</h3><p><a href="https://projects.spring.io/spring-security-oauth/docs/oauth2.html" target="_blank" rel="noopener">官方文档</a></p>
 <p><code>springsecurity</code>实现<code>OAuth2</code>分为两个服务，<code>Authorization Server</code>和<code>Resource Server</code>分别作为授权服务器和资源服务器</p>
-<h4 id="authorization-server-configuration">Authorization Server Configuration</h4>
-<p>正如上面<code>OAuth2</code>流程中提到，授权服务器主要作用便是验证客户端，拉起授权页面，用户授权之后通过重定向<code>URI</code>携带授权码返回，之后根据授权码验证客户端，发放令牌<code>Access Token</code></p>
+<h4 id="Authorization-Server-Configuration"><a href="#Authorization-Server-Configuration" class="headerlink" title="Authorization Server Configuration"></a>Authorization Server Configuration</h4><p>正如上面<code>OAuth2</code>流程中提到，授权服务器主要作用便是验证客户端，拉起授权页面，用户授权之后通过重定向<code>URI</code>携带授权码返回，之后根据授权码验证客户端，发放令牌<code>Access Token</code></p>
 <p><code>springboot</code>中，我们在配置类上加上<code>@EnableAuthorizationServer</code>并且实现<code>AuthorizationServerConfigurer</code></p>
 <blockquote>
-<p>也可以直接继承<code>springsecurity</code>提供的<code>AuthorizationServerConfigurerAdapter</code></p>
+<p> 也可以直接继承<code>springsecurity</code>提供的<code>AuthorizationServerConfigurerAdapter</code></p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableAuthorizationServer</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAuthorizationConfig</span> <span class="keyword">extends</span> <span class="title">AuthorizationServerConfigurerAdapter</span></span></span><br></pre></td></tr></table></figure>
+
 <p>配置类中，我们可以通过复写三个不同的<code>configure</code>完成对于授权服务器的所有配置</p>
-<h5 id="clientdetailsserviceconfigurer">ClientDetailsServiceConfigurer</h5>
-<p>配置客户端信息</p>
+<h5 id="ClientDetailsServiceConfigurer"><a href="#ClientDetailsServiceConfigurer" class="headerlink" title="ClientDetailsServiceConfigurer"></a>ClientDetailsServiceConfigurer</h5><p>配置客户端信息</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(ClientDetailsServiceConfigurer clients)</span><span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"><span class="comment">//      采用内存模式，也可以使用数据库模式</span></span><br><span class="line">        clients.inMemory()</span><br><span class="line"><span class="comment">//                设置client_id</span></span><br><span class="line">                .withClient(<span class="string">"client-a"</span>)</span><br><span class="line"><span class="comment">//                设置client_secret</span></span><br><span class="line">                .secret(passwordEncoder.encode((<span class="string">"client-a-secret"</span>)))</span><br><span class="line"><span class="comment">//                设置授权模式</span></span><br><span class="line">                .authorizedGrantTypes(<span class="string">"authorization_code"</span>)</span><br><span class="line"><span class="comment">//                设置权限</span></span><br><span class="line">                .scopes(<span class="string">"read"</span>)</span><br><span class="line"><span class="comment">//                设置当前client可以访问的资源ID</span></span><br><span class="line">                .resourceIds(<span class="string">"resource1"</span>)</span><br><span class="line">                <span class="comment">//自动授权，无需人工点击</span></span><br><span class="line"><span class="comment">//                .autoApprove(true)</span></span><br><span class="line"><span class="comment">//                重定向URI</span></span><br><span class="line">                .redirectUris(<span class="string">"http://localhost:9000/callback"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
 <p>我们这里采用的是内存模式配置客户端，也可以通过<code>JDBC</code>连接数据库配置客户端信息</p>
 <p><code>withClient</code>： 配置<code>clientId</code> ，授权不仅仅对用户授权，还要对客户端授权，例如我信任谷歌客户端，不信任百度客户端。于是通过<code>clientId</code>和<code>clientSecret</code>进行验证</p>
 <p><code>secret</code>：配置<code>clientSecret</code></p>
@@ -319,10 +323,10 @@
 <p><code>resourceIds</code>：配置该<code>client</code>具有的资源服务器，每个资源服务器都有一个唯一的资源<code>ID</code>，如果客户端访问没有授权的资源服务器会提示没有权限</p>
 <p><code>autoApprove</code>：配置是否自动授权，设置<code>true</code>即为开启</p>
 <p><code>redirectUris</code>：配置重定向<code>URI</code></p>
-<h5 id="authorizationserversecurityconfigurer">AuthorizationServerSecurityConfigurer</h5>
-<p>配置<code>token endpoint</code>的安全约束，即提供一些安全访问规则和过滤器</p>
+<h5 id="AuthorizationServerSecurityConfigurer"><a href="#AuthorizationServerSecurityConfigurer" class="headerlink" title="AuthorizationServerSecurityConfigurer"></a>AuthorizationServerSecurityConfigurer</h5><p>配置<code>token endpoint</code>的安全约束，即提供一些安全访问规则和过滤器</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(AuthorizationServerSecurityConfigurer security)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"><span class="comment">//               允许表单认证</span></span><br><span class="line"><span class="comment">//               对于请求/oauth/token的，如果配置了支持allowFormAuthenticationForClients的，且url中有client_id和client_secret的会走ClientCredentialsTokenEndpointFilter</span></span><br><span class="line">        security.allowFormAuthenticationForClients()</span><br><span class="line"><span class="comment">//                开启/oauth/check_token 验证端口认证权限访问</span></span><br><span class="line">                .checkTokenAccess(<span class="string">"isAuthenticated()"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>对于类似<code>/oauth/check_token</code>或者<code>/oauth/token_key</code>这些端点默认是关闭的即<code>"denyAll()"</code></p>
+
+<p>对于类似<code>/oauth/check_token</code>或者<code>/oauth/token_key</code>这些端点默认是关闭的即<code>&quot;denyAll()&quot;</code></p>
 <p>所以说如果要使用这些端点，我们就要对具有某些权限的用户开启</p>
 <p><code>allowFormAuthenticationForClients()</code>：开启表单认证，对于端口<code>/oauth/token</code>，如果开启此配置，并且<code>url</code>中有<code>client_id</code>和<code>client_secret</code>会触发<code>ClientCredentialsTokenEndpointFilter</code>用于校验客户端是否有权限</p>
 <p><code>checkTokenAccess</code>：开启端口<code>/oauth/check_token</code>，用于资源服务器的将获取的<code>token</code>进行验证</p>
@@ -331,8 +335,7 @@
 </blockquote>
 <p><code>addTokenEndpointAuthenticationFilter(IntegrationAuthenticationFilter)</code>：添加过滤去，可以实现自定义认证，例如短信认证等等</p>
 <p><code>tokenKeyAccess()</code>：开启<code>/oauth/token_key</code>端口</p>
-<h5 id="authorizationserverendpointconfigurer">AuthorizationServerEndpointConfigurer</h5>
-<p><code>springsecurity-oauth2</code>默认提供以下端口</p>
+<h5 id="AuthorizationServerEndpointConfigurer"><a href="#AuthorizationServerEndpointConfigurer" class="headerlink" title="AuthorizationServerEndpointConfigurer"></a>AuthorizationServerEndpointConfigurer</h5><p><code>springsecurity-oauth2</code>默认提供以下端口</p>
 <p><code>/oauth/authorize</code>：授权端口</p>
 <p><code>/oauth/token</code>：令牌端口</p>
 <p><code>/oauth/confirm_access</code>：用户确认授权提交端口</p>
@@ -343,15 +346,17 @@
 <p><code>pathMappring(String 该端口默认URL,String 想要替代的URL)</code></p>
 <p><code>AuthorizationServerEndPointsConfigurer</code>其实是一个装载类，装载<code>Endpoints</code>所有相关的类配置（<code>TokenStore</code>,<code>TokenService</code>，<code>UserDetailsService</code>等等）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(AuthorizationServerEndpointsConfigurer endpoints)</span><span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        endpoints</span><br><span class="line"><span class="comment">//                配置tokenstore，默认存在内存里</span></span><br><span class="line">                .tokenStore(<span class="keyword">new</span> InMemoryTokenStore())</span><br><span class="line"><span class="comment">//                添加authenticationManager用于密码授权方式</span></span><br><span class="line"><span class="comment">//                .authenticationManager()</span></span><br><span class="line"><span class="comment">//                不添加无法使用refresh_token</span></span><br><span class="line"><span class="comment">//                .userDetailsService()</span></span><br><span class="line">                .allowedTokenEndpointRequestMethods(HttpMethod.POST,HttpMethod.GET);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><code>tokenStoren</code> ：配置<code>token</code>存储的位置，默认是存储在内存中，也可以存储在<code>Redis</code>等数据库中</p>
 <p><code>authenticationManager</code>：用于配置密码授权方式</p>
 <p><code>userDetailsService</code>：配置用于使用<code>refresh_token</code></p>
 <p><code>allowedTokenEndpointRequestMethods</code>：配置<code>TokenEndpoint</code>允许请求方式</p>
-<h5 id="securityconfig">SecurityConfig</h5>
-<p>因为只是<code>demo</code>项目，所以将授权用户存储在内存中</p>
+<h5 id="SecurityConfig"><a href="#SecurityConfig" class="headerlink" title="SecurityConfig"></a>SecurityConfig</h5><p>因为只是<code>demo</code>项目，所以将授权用户存储在内存中</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(AuthenticationManagerBuilder auth)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line"><span class="comment">//        设置用户名密码存在内存中</span></span><br><span class="line">        auth.inMemoryAuthentication()</span><br><span class="line">                .withUser(<span class="string">"cwh"</span>)</span><br><span class="line">                .password(passwordEncoder().encode(<span class="string">"12345"</span>))</span><br><span class="line">                .authorities(Collections.emptyList());</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="resource-server-configuration">Resource Server Configuration</h4>
-<p>资源服务器提供一些受<code>token</code>令牌保护的资源</p>
+
+
+
+<h4 id="Resource-Server-Configuration"><a href="#Resource-Server-Configuration" class="headerlink" title="Resource Server Configuration"></a>Resource Server Configuration</h4><p>资源服务器提供一些受<code>token</code>令牌保护的资源</p>
 <blockquote>
 <p>资源服务器可以和授权服务器在同一个应用中，也可以是分开为两个不同的应用</p>
 </blockquote>
@@ -360,9 +365,12 @@
 <p>也可以直接继承<code>springsecurity</code>提供的<code>ResourceServerConfigurerAdapter</code></p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableResourceServer</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResourceConfig</span> <span class="keyword">extends</span> <span class="title">ResourceServerConfigurerAdapter</span> </span>&#123;</span><br></pre></td></tr></table></figure>
+
+
+
 <p><code>ResourceServerConfigurerAdapter</code>内部关联了<code>ResourceServerSecurityConfigurer</code>和<code>HttpSecurity</code></p>
 <p>可以配置以下功能：</p>
-<ol type="1">
+<ol>
 <li><code>tokenServices</code>：定义令牌服务的<code>Bean</code>（<code>ResourceServerTokenService</code>的实例）</li>
 <li><code>resourceId</code>：资源<code>id</code></li>
 <li>资源服务器的其他扩展点（例如<code>tokenExtractor</code>用于从传入请求中获取令牌）</li>
@@ -371,19 +379,19 @@
 <li><code>Spring Security</code> 中 <code>HttpSecurity</code> 配置器所允许的受保护资源的其他自定义情况</li>
 </ol>
 <p>这里我们简单配置以下<code>reourceId</code>和<code>tokenServices</code></p>
-<h5 id="resourceserversecurityconfigurer">ResourceServerSecurityConfigurer</h5>
-<p>用于资源服务器的配置</p>
+<h5 id="ResourceServerSecurityConfigurer"><a href="#ResourceServerSecurityConfigurer" class="headerlink" title="ResourceServerSecurityConfigurer"></a>ResourceServerSecurityConfigurer</h5><p>用于资源服务器的配置</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(ResourceServerSecurityConfigurer resources)</span></span>&#123;</span><br><span class="line"><span class="comment">//       resourceID: 规定的资源ID</span></span><br><span class="line"><span class="comment">//       stateless：表示是否只允许基于token的身份验证</span></span><br><span class="line">        resources.resourceId(RESOURCE_ID).stateless(<span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
 <p><code>resourceId</code>：设置资源服务器的<code>ID</code>，用于授权服务器中的权限验证</p>
 <p><code>stateless</code>：设置该资源服务器是否只允许基于<code>token</code>的身份验证，<code>true</code>即为只允许<code>token</code></p>
 <p><code>tokenStore</code>：设置<code>token</code>的存储方式</p>
-<h5 id="remotetokenservices">RemoteTokenServices</h5>
-<p>资源服务器的主要逻辑流程便是对传入请求携带的令牌进行验证，验证通过则放行，验证失败则报错</p>
+<h5 id="RemoteTokenServices"><a href="#RemoteTokenServices" class="headerlink" title="RemoteTokenServices"></a>RemoteTokenServices</h5><p>资源服务器的主要逻辑流程便是对传入请求携带的令牌进行验证，验证通过则放行，验证失败则报错</p>
 <p><code>ResourceServerTokenServices</code>便是主要完成验证的工作</p>
 <p>如果资源服务器和授权服务器放在同一个应用中，那么授权服务器通过<code>AuthorizationServerEndpointsConfigurer</code>默认构建了<code>DefaultTokenServices</code>，它实现了所有必要的接口。</p>
 <p>如果我们的资源服务器是一个单独的应用程序，那么我们必须要确保能够匹配授权服务器的功能，并提供知道如何正确解码<code>token</code>的<code>ResourceServerTokenServices</code>。</p>
 <p>我们这里使用的是<code>RemoteTokenServices</code>，允许资源服务器通过授权服务器<code>/oauth/check_token</code>上的<code>HTTP</code>资源来进行解码，这适用于资源服务器没有大量流量，或者可以负担缓存结果（因为每个请求都必须使用授权服务器进行验证）。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    <span class="meta">@Primary</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RemoteTokenServices <span class="title">remoteTokenServices</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">final</span> RemoteTokenServices remoteTokenServices = <span class="keyword">new</span> RemoteTokenServices();</span><br><span class="line"><span class="comment">//      设置/oauth/check_token端口</span></span><br><span class="line">        remoteTokenServices.setCheckTokenEndpointUrl(<span class="string">"http://localhost:8080/oauth/check_token"</span>);</span><br><span class="line"><span class="comment">//      设置客户端信息</span></span><br><span class="line">        remoteTokenServices.setClientId(<span class="string">"client-a"</span>);</span><br><span class="line">        remoteTokenServices.setClientSecret(<span class="string">"client-a-secret"</span>);</span><br><span class="line">        <span class="keyword">return</span> remoteTokenServices;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p><code>@Primary</code>用于一个接口有多个实现<code>Bean</code>的情况，装载时若没<code>@Qualifier</code>特殊说明则优先装载</p>
 </blockquote>
@@ -391,29 +399,35 @@
 <p>设置授权服务器中<code>/oauth/check_token</code>对应<code>URL</code></p>
 <p>设置了客户端信息</p>
 <p>这样每当有请求携带<code>token</code>过来时，资源服务器都会访问授权服务器中<code>/oauth/check_token</code>端口解析令牌</p>
-<h5 id="httpsecurity">HttpSecurity</h5>
-<p>这就是我们之前<code>spring security</code>中配置的内容，用于配置一些访问规则，这里就不在赘述</p>
+<h5 id="HttpSecurity"><a href="#HttpSecurity" class="headerlink" title="HttpSecurity"></a>HttpSecurity</h5><p>这就是我们之前<code>spring security</code>中配置的内容，用于配置一些访问规则，这里就不在赘述</p>
 <blockquote>
 <p><code>WebSecurityConfigurerAdapter</code>中的配置优先级高于<code>ResourceServerConfigurerAdapter</code>中的配置</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"><span class="comment">//      设置session创建策略 </span></span><br><span class="line">        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);</span><br><span class="line"><span class="comment">//     所有端口全部需要验证</span></span><br><span class="line">        http.authorizeRequests()</span><br><span class="line">                .anyRequest().authenticated();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="运行结果">运行结果</h4>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210617181316.png" style="zoom:80%;" /></p>
+
+
+
+
+
+<h4 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h4><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210617181316.png" style="zoom:80%;" />
+
 <p>我们访问<code>localhost:8080/oauth/authorize</code>并且携带<code>client_id</code>，<code>client_secret</code>，<code>response_type</code></p>
 <p>输入账号密码之后</p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210617181545.png" /></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210617181545.png" alt=""></p>
 <p>可以发现，浏览器重定向到了我们设定的重定向<code>URI</code>，并且携带了授权码<code>code=DIvTGk</code></p>
 <p>现在我们携带这个授权码访问<code>localhost:8080/oauth/token</code>请求<code>token</code></p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210617181833.png" style="zoom:80%;" /></p>
+<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210617181833.png" style="zoom:80%;" />
+
 <p>成功拿到<code>token</code></p>
 <p>接着我们再来看看我们的资源服务器</p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210617181942.png" style="zoom:80%;" /></p>
+<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210617181942.png" style="zoom:80%;" />
+
 <p>当我们直接访问时，提示<code>unauthorized</code>，即没有被授权</p>
 <p>现在我们携带上我们刚刚拿到的<code>token</code></p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210617182057.png" style="zoom:80%;" /></p>
+<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210617182057.png" style="zoom:80%;" />
+
 <p>发现访问接口成功</p>
-<h3 id="总结">总结</h3>
-<p>这次主要是了解了<code>OAuth2</code>和如何在<code>springsecurity</code>中简单的实现<code>OAuth2</code>。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这次主要是了解了<code>OAuth2</code>和如何在<code>springsecurity</code>中简单的实现<code>OAuth2</code>。</p>
 <p>对于授权服务器，我这里只是简单的存在内存中，更合理的话应该是自定义<code>tokenStore</code>并且存在<code>Redis</code>中</p>
 <p>对于资源服务器，由于我是<code>demo</code>使用，所以简单使用了<code>remoteTokenServices</code>，实际操作中还是建议使用自定义的<code>DefaultTOkenService</code>实现自解码。</p>
 
@@ -500,7 +514,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#springboot使用security实现oauth2"><span class="nav-number">1.</span> <span class="nav-text">SpringBoot使用security实现OAuth2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#oauth2"><span class="nav-number">1.0.1.</span> <span class="nav-text">OAuth2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#授权码模式"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">授权码模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#springboot-springsecurity-实现oauth2"><span class="nav-number">1.0.2.</span> <span class="nav-text">SpringBoot +springsecurity 实现OAuth2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#authorization-server-configuration"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">Authorization Server Configuration</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#clientdetailsserviceconfigurer"><span class="nav-number">1.0.2.1.1.</span> <span class="nav-text">ClientDetailsServiceConfigurer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#authorizationserversecurityconfigurer"><span class="nav-number">1.0.2.1.2.</span> <span class="nav-text">AuthorizationServerSecurityConfigurer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#authorizationserverendpointconfigurer"><span class="nav-number">1.0.2.1.3.</span> <span class="nav-text">AuthorizationServerEndpointConfigurer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#securityconfig"><span class="nav-number">1.0.2.1.4.</span> <span class="nav-text">SecurityConfig</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#resource-server-configuration"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">Resource Server Configuration</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#resourceserversecurityconfigurer"><span class="nav-number">1.0.2.2.1.</span> <span class="nav-text">ResourceServerSecurityConfigurer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#remotetokenservices"><span class="nav-number">1.0.2.2.2.</span> <span class="nav-text">RemoteTokenServices</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#httpsecurity"><span class="nav-number">1.0.2.2.3.</span> <span class="nav-text">HttpSecurity</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行结果"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.0.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringBoot使用security实现OAuth2"><span class="nav-number">1.</span> <span class="nav-text">SpringBoot使用security实现OAuth2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OAuth2"><span class="nav-number">1.0.1.</span> <span class="nav-text">OAuth2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#授权码模式"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">授权码模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringBoot-springsecurity-实现OAuth2"><span class="nav-number">1.0.2.</span> <span class="nav-text">SpringBoot +springsecurity 实现OAuth2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Authorization-Server-Configuration"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">Authorization Server Configuration</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ClientDetailsServiceConfigurer"><span class="nav-number">1.0.2.1.1.</span> <span class="nav-text">ClientDetailsServiceConfigurer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AuthorizationServerSecurityConfigurer"><span class="nav-number">1.0.2.1.2.</span> <span class="nav-text">AuthorizationServerSecurityConfigurer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#AuthorizationServerEndpointConfigurer"><span class="nav-number">1.0.2.1.3.</span> <span class="nav-text">AuthorizationServerEndpointConfigurer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SecurityConfig"><span class="nav-number">1.0.2.1.4.</span> <span class="nav-text">SecurityConfig</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Resource-Server-Configuration"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">Resource Server Configuration</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ResourceServerSecurityConfigurer"><span class="nav-number">1.0.2.2.1.</span> <span class="nav-text">ResourceServerSecurityConfigurer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RemoteTokenServices"><span class="nav-number">1.0.2.2.2.</span> <span class="nav-text">RemoteTokenServices</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HttpSecurity"><span class="nav-number">1.0.2.2.3.</span> <span class="nav-text">HttpSecurity</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行结果"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.0.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

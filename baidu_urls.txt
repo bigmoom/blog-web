@@ -1,5 +1,5 @@
-http://www.caiwanghui.top/2023/02/03/%E9%9D%A2%E8%AF%95%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/
 http://www.caiwanghui.top/2021/07/02/SpringBoot%E6%95%B4%E5%90%88SpringSession%E5%AE%9E%E7%8E%B0session%E5%85%B1%E4%BA%AB/
 http://www.caiwanghui.top/2021/06/26/SpringBoot%E6%95%B4%E5%90%88Redis/
 http://www.caiwanghui.top/2021/06/21/SpringBoot%E6%95%B4%E5%90%88rabbitmq/
 http://www.caiwanghui.top/2021/06/18/SpringBoot%E4%BD%BF%E7%94%A8springsecurity%E5%AE%9E%E7%8E%B0OAuth2/
+http://www.caiwanghui.top/2021/06/16/SpringBoot%E5%AE%9E%E7%8E%B0%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8/

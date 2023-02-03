@@ -186,10 +186,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-02-02 21:34:23 / 修改时间：13:38:24" itemprop="dateCreated datePublished" datetime="2023-02-02T21:34:23Z">2023-02-02</time>
+              <time title="创建时间：2023-02-02 21:34:23" itemprop="dateCreated datePublished" datetime="2023-02-02T21:34:23Z">2023-02-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-03 15:44:18" itemprop="dateModified" datetime="2023-02-03T15:44:18Z">2023-02-03</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -206,14 +212,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6</span>
+              <span>5.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -225,7 +231,61 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>表，栈和队列</h1>
+          <h1 id="表栈和队列">表，栈和队列</h1>
+<h2 id="表">表</h2>
+<p>对于表，我们可以普遍地认为有<strong>数组</strong>和<strong>链表</strong>两种实现形式，即能够连续存储一些数的抽象数据类型（<code>ADT</code>）</p>
+<h3 id="表的数组实现">表的数组实现</h3>
+<h4 id="基础知识">基础知识</h4>
+<p>数组是一种非常简单的数据结构，是由相同类型的元素组成的数据集合，在内存中按顺序连续存储数据。</p>
+<p>对于数组的数据，我们可以非常容易的通过下标获取和修改数据，其时间复杂度为<span class="math inline">\(O(1)\)</span>，但是对于插入数据和删除数据则非常的复杂，因为插入删除数据涉及到需要将部分数据全部后移或者迁移一位，开销非常大。</p>
+<p>此外，创建数组的时候需要指定数组的大小，并且根据容量分配内存，这就导致有的时候我们为了初始化较大容量的数组结果空间利用效率极低。为了处理空间效率不高的情况，便设计出了动态数组，会自动根据数组内部容量分配新的空间。</p>
+<p>我们以<code>JAVA</code>中的<code>ArrayList</code>为例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyArrayList</span>&lt;<span class="title">AnyType</span>&gt; <span class="keyword">implements</span> <span class="title">Iterable</span>&lt;<span class="title">AnyType</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_CAPACITY = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> theSize;</span><br><span class="line">    <span class="keyword">private</span> AnyType[] theItems;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyArrayList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ensureCapacity(DEFAULT_CAPACITY);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> theSize;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size() == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> AnyType <span class="title">get</span><span class="params">(<span class="keyword">int</span> idx)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (idx &lt; <span class="number">0</span> || idx &gt;= size()) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ArrayIndexOutOfBoundsException();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> theItems[idx];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//replace the value in theItems</span></span><br><span class="line">    <span class="comment">//return the old value</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> AnyType <span class="title">set</span><span class="params">(<span class="keyword">int</span> idx, AnyType newVal)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (idx &lt; <span class="number">0</span> || idx &gt;= size()) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ArrayIndexOutOfBoundsException();</span><br><span class="line">        &#125;</span><br><span class="line">        AnyType old = theItems[idx];</span><br><span class="line">        theItems[idx] = newVal;</span><br><span class="line">        <span class="keyword">return</span> old;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ensureCapacity</span><span class="params">(<span class="keyword">int</span> newCapacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (newCapacity &lt; theSize) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        AnyType[] old = theItems;</span><br><span class="line">        theItems = (AnyType[]) <span class="keyword">new</span> Object[newCapacity];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size(); i++) &#123;</span><br><span class="line">            theItems[i] = old[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(AnyType x)</span> </span>&#123;</span><br><span class="line">        add(size(), x);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> idx, AnyType x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (theItems.length == size()) &#123;</span><br><span class="line">            ensureCapacity(size() * <span class="number">2</span> + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = theSize; i &gt; idx; i--) &#123;</span><br><span class="line">            theItems[i] = theItems[i - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        theItems[idx] = x;</span><br><span class="line">        theSize++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> AnyType <span class="title">remove</span><span class="params">(<span class="keyword">int</span> idx)</span> </span>&#123;</span><br><span class="line">        AnyType removedItem = theItems[idx];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = idx; i &lt; size() - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            theItems[i] = theItems[i + <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        theSize--;</span><br><span class="line">        <span class="keyword">return</span> removedItem;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterator&lt;AnyType&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MyArrayListIterator();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//use inner class to implement Iterator interface</span></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">MyArrayListIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">AnyType</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> current = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> current&lt;size();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> AnyType <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(!hasNext())&#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> theItems[current++];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            MyArrayList.<span class="keyword">this</span>.remove(--current);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="双指针">双指针</h4>
+<p>双指针是一种非常常见的解题方法，一般我们可以用两个相反或者相同方向的指针扫描数组以达到解题目的。</p>
+<h5 id="排序数组中的两个数字之和">排序数组中的两个数字之和</h5>
+<blockquote>
+<p>输入一个递增排序的数组和一个值<code>k</code>，请问如何在数组中找出两个和为<code>k</code>的数字并返回他们的下标？</p>
+<p>假设数组中存在且只存在一对符合条件的数字，同时一个数字不能使用两次</p>
+<p>输入： <code>[1,2,4,6,10],k=8</code></p>
+<p>输出：<code>[1,3]</code></p>
+</blockquote>
+<ol type="1">
+<li><p>最常规的解法就是遍历数组，然后对于每个数再遍历其余数字看是否有匹配的数字。很明显时间复杂度为<span class="math inline">\(O(N^2)\)</span></p></li>
+<li><p>对于第一种方法的改良，就是在第二层遍历的时候改成<strong>二分查找</strong>（因为是有序数组）。因为二分查找的时间复杂度为<span class="math inline">\(O(logN)\)</span>，所以总的时间复杂度为<span class="math inline">\(O(NlogN)\)</span></p></li>
+<li><p><strong>空间换时间</strong>，我们可以构造<code>HashMap</code>，键为数字的值，值为该数字的下标。那么我们只需要遍历一次数组，对于每个数在哈希表中查找是否存在匹配的数。时间复杂度为<span class="math inline">\(O(N)\)</span>，空间复杂度为<span class="math inline">\(O(N)\)</span></p></li>
+<li><p>因为是递增有序数组，我们可以设置两个<strong>首尾指针</strong>，当两个指针指向的数字和等于目标值时返回下标，当数字和小于目标值时我们只需要将首指针向右移动，因为右边的数字要更大一点，而数字和大于目标值时我们将尾指针向左移动即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] input, <span class="keyword">int</span> sum)&#123;</span><br><span class="line">        <span class="keyword">int</span> headPtr = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> tailPtr = input.length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(input[headPtr]+input[tailPtr]!=sum)&#123;</span><br><span class="line">            <span class="keyword">if</span>(input[headPtr]+input[tailPtr]&lt;sum)&#123;</span><br><span class="line">                headPtr++;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                tailPtr--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;headPtr, tailPtr&#125;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h5 id="数组中和为0的三个数字">数组中和为0的三个数字</h5>
+<blockquote>
+<p>输入一个数组，请问如何找出数组中所有和为0的3个数字的三元组？</p>
+<p>返回值中不得包含重复的三元组</p>
+<p>输入：<code>[-1,0,1,2,-1,-4]</code></p>
+<p>输出：<code>[-1,0,1],[-1,-1,2]</code></p>
+</blockquote>
+<p>求三个数字的和可以看做是上面求两个数字和的加强版，因此我们可以把问题继续转化为固定一个数字，然后对剩余两个数字求和。这样我们就只需要在上面问题上再套一层循环即可，具体操作的时间复杂度为<span class="math inline">\(O(N^2)\)</span></p>
+<p>此外，该题中给的数据是无序的，所以我们先要对数据进行排序，排序算法的时间复杂度为<span class="math inline">\(O(NlogN)\)</span>，小于<span class="math inline">\(O(N^2)\)</span>，所以可以忽略不计。</p>
+<p>题目中还要求我们不得包含重复的三元组，所以我们需要在找到匹配三元组之后，需要将指向第一个数的指针向右移动，直到数字有变化。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt; threeSum(<span class="keyword">int</span>[] input)&#123;</span><br><span class="line">        ArrayList&lt;ArrayList&lt;Integer&gt;&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(input.length&gt;<span class="number">3</span>)&#123;</span><br><span class="line">            Arrays.sort(input);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> firstPtr = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (firstPtr&lt;input.length-<span class="number">2</span>)&#123;</span><br><span class="line">                twoSum(input,firstPtr,result);</span><br><span class="line">                <span class="comment">//为了避免重复</span></span><br><span class="line">                <span class="keyword">int</span> temp = input[firstPtr];</span><br><span class="line">                <span class="keyword">while</span>(firstPtr&lt;input.length&amp;&amp; input[firstPtr]==temp)&#123;</span><br><span class="line">                    firstPtr++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">twoSum</span><span class="params">(<span class="keyword">int</span>[] input,<span class="keyword">int</span> firstPtr, ArrayList&lt;ArrayList&lt;Integer&gt;&gt; result)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> secondPtr = firstPtr + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> thirdPtr = input.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (secondPtr &lt; thirdPtr) &#123;</span><br><span class="line">        <span class="keyword">if</span> (input[firstPtr] + input[secondPtr] + input[thirdPtr] == <span class="number">0</span>) &#123;</span><br><span class="line">            result.add(<span class="keyword">new</span> ArrayList&lt;&gt;(Arrays.asList(input[firstPtr], input[secondPtr], input[thirdPtr])));</span><br><span class="line">            <span class="comment">//为了避免重复</span></span><br><span class="line">            <span class="keyword">int</span> temp = input[secondPtr];</span><br><span class="line">            <span class="keyword">while</span> (input[secondPtr] == temp &amp;&amp; secondPtr &lt; thirdPtr) &#123;</span><br><span class="line">                secondPtr++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (input[firstPtr] + input[secondPtr] + input[thirdPtr] &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            secondPtr++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            thirdPtr--;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="和大于或等于k的最短子数组">和大于或等于k的最短子数组</h5>
+<blockquote>
+<p>输入一个正整数组和一个正整数<code>k</code>，请问数组中和大于<code>k</code>的连续子数组的最短长度是多少？如果不存在，返回0。</p>
+<p>输入：<code>[5,1,4,3],k=7</code></p>
+<p>输出：<code>2</code></p>
+</blockquote>
+<blockquote>
+<p>LeetCode 862 去除了正整数的条件，求最短子数组长度</p>
+</blockquote>
+<p>我们可以用两个指针<code>P1,P2</code>分别指向子数组的首尾，如果子数组的和大于<code>k</code>，那么<code>P1</code>向右移动一位。因为数组为正整数组，所以右移一位即可缩小子数组的和，如果子数组的和小于<code>k</code>，那么<code>P2</code>向左移动一位。</p>
+<p>其实，我们可以换一个角度，就是我们试图从头开始找包括左指针的且和大于等于<code>k</code>最小子数组,类似一个滑动窗口，找到之后便把最左端的数字删除，继续搜寻以下一个数字开始的最小子数组，只不过不用每次都遍历那么复杂。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="keyword">int</span>[] input,<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> leftPtr = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> minLen = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> rightPtr=leftPtr;rightPtr&lt;input.length;rightPtr++)&#123;</span><br><span class="line">            sum+= input[rightPtr];</span><br><span class="line">            <span class="keyword">while</span>(leftPtr&lt;=rightPtr &amp;&amp; sum&gt;=k)&#123;</span><br><span class="line">                minLen = Math.min(minLen,rightPtr-leftPtr+<span class="number">1</span>);</span><br><span class="line">                sum-=input[leftPtr++];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> minLen;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="乘积小于k的子数组">乘积小于k的子数组</h5>
+<blockquote>
+<p>输入一个正整数组成的数组和一个正整数<code>k</code>，请问数组中有多少个乘积小于<code>k</code>的连续子数组？</p>
+<p>输入：<code>[10,5,2,6],k=100</code></p>
+<p>输出：<code>[10],[5],[2],[6],[10,5],[5,2],[5,2,6],[2,6]</code></p>
+</blockquote>
 
       
     </div>
@@ -270,7 +330,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-02-02 17:00:00 / 修改时间：13:43:58" itemprop="dateCreated datePublished" datetime="2023-02-02T17:00:00Z">2023-02-02</time>
+              <time title="创建时间：2023-02-02 17:00:00 / 修改时间：13:54:44" itemprop="dateCreated datePublished" datetime="2023-02-02T17:00:00Z">2023-02-02</time>
             </span>
 
           <br>
@@ -279,14 +339,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.2k</span>
+              <span>3.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -298,17 +358,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>面试基础知识</h1>
+          <h1 id="面试基础知识">面试基础知识</h1>
 <h2 id="时间复杂度">时间复杂度</h2>
 <blockquote>
 <p>内容参考《数据结构与算法分析》</p>
 </blockquote>
 <h3 id="定义">定义</h3>
 <ul>
-<li>定义1 如果存在正常数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.43056em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">c</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>n</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">n_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">n</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>使得当<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mo>≥</mo><msub><mi>n</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">N\geq n_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mrel">≥</span><span class="mord"><span class="mord mathit">n</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>时<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>N</mi><mo>)</mo><mo>≤</mo><mi>c</mi><mi>f</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">T(N)\leq cf(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span class="mrel">≤</span><span class="mord mathit">c</span><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>，记为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>N</mi><mo>)</mo><mo>=</mo><mi>O</mi><mo>(</mo><mi>f</mi><mo>(</mo><mi>N</mi><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">T(N)=O(f(N))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></li>
-<li>定义2 如果存在正常数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.43056em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">c</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>n</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">n_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">n</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>使得当<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mo>≥</mo><msub><mi>n</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">N\geq n_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mrel">≥</span><span class="mord"><span class="mord mathit">n</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>时<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>N</mi><mo>)</mo><mo>≥</mo><mi>c</mi><mi>g</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">T(N)\geq cg(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span class="mrel">≥</span><span class="mord mathit">c</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>，记为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>N</mi><mo>)</mo><mo>=</mo><mi mathvariant="normal">Ω</mi><mo>(</mo><mi>g</mi><mo>(</mo><mi>N</mi><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">T(N)=\Omega(g(N))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathrm">Ω</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></li>
-<li>定义3 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>N</mi><mo>)</mo><mo>=</mo><mi mathvariant="normal">Θ</mi><mo>(</mo><mi>h</mi><mo>(</mo><mi>N</mi><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">T(N)=\Theta(h(N))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathrm">Θ</span><span class="mopen">(</span><span class="mord mathit">h</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span> 当且仅当 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>N</mi><mo>)</mo><mo>=</mo><mi>O</mi><mo>(</mo><mi>h</mi><mo>(</mo><mi>N</mi><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">T(N)=O(h(N))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathit">h</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>N</mi><mo>)</mo><mo>=</mo><mi mathvariant="normal">Ω</mi><mo>(</mo><mi>h</mi><mo>(</mo><mi>N</mi><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">T(N)=\Omega(h(N))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathrm">Ω</span><span class="mopen">(</span><span class="mord mathit">h</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></li>
-<li>定义4 如果对于每一个正常数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.43056em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit">c</span></span></span></span>都存在常数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>n</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">n_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.43056em;"></span><span class="strut bottom" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">n</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>使得当<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mo>&gt;</mo><msub><mi>n</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">N&gt;n_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mrel">&gt;</span><span class="mord"><span class="mord mathit">n</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span>时<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>N</mi><mo>)</mo><mo>&lt;</mo><mi>c</mi><mi>p</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">T(N)&lt;cp(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span class="mrel">&lt;</span><span class="mord mathit">c</span><span class="mord mathit">p</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>，则<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>N</mi><mo>)</mo><mo>=</mo><mi>o</mi><mo>(</mo><mi>p</mi><mo>(</mo><mi>N</mi><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">T(N)=o(p(N))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathit">o</span><span class="mopen">(</span><span class="mord mathit">p</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></li>
+<li>定义1 如果存在正常数<span class="math inline">\(c\)</span>和<span class="math inline">\(n_0\)</span>使得当<span class="math inline">\(N\geq n_0\)</span>时<span class="math inline">\(T(N)\leq cf(N)\)</span>，记为<span class="math inline">\(T(N)=O(f(N))\)</span></li>
+<li>定义2 如果存在正常数<span class="math inline">\(c\)</span>和<span class="math inline">\(n_0\)</span>使得当<span class="math inline">\(N\geq n_0\)</span>时<span class="math inline">\(T(N)\geq cg(N)\)</span>，记为<span class="math inline">\(T(N)=\Omega(g(N))\)</span></li>
+<li>定义3 <span class="math inline">\(T(N)=\Theta(h(N))\)</span> 当且仅当 <span class="math inline">\(T(N)=O(h(N))\)</span>和<span class="math inline">\(T(N)=\Omega(h(N))\)</span></li>
+<li>定义4 如果对于每一个正常数<span class="math inline">\(c\)</span>都存在常数<span class="math inline">\(n_0\)</span>使得当<span class="math inline">\(N&gt;n_0\)</span>时<span class="math inline">\(T(N)&lt;cp(N)\)</span>，则<span class="math inline">\(T(N)=o(p(N))\)</span></li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -395,32 +455,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>Springboot整合springsession实现session共享</h1>
+          <h1 id="springboot整合springsession实现session共享">Springboot整合springsession实现session共享</h1>
 <h3 id="简介">简介</h3>
 <p><code>session</code>我们之前有介绍过（可见<a href="https://github.com/bigmoom/springboot/tree/main/springboot%E6%95%B4%E5%90%88springsecurity" target="_blank" rel="noopener">springboot整合springsecurity</a>），简单来说就是将用户信息或者数据存储在服务器上，通常用于验证用户身份或者避免通过获取相关信息。</p>
 <p>但是，缺点也是非常明显：</p>
-<ol>
-<li>
-<p>占用服务器负载：我们可以使用<code>token</code>，用时间换取空间</p>
-</li>
-<li>
-<p>对于多服务器环境，<code>session</code>无法共享</p>
-</li>
+<ol type="1">
+<li><p>占用服务器负载：我们可以使用<code>token</code>，用时间换取空间</p></li>
+<li><p>对于多服务器环境，<code>session</code>无法共享</p></li>
 </ol>
 <p>对于第二点缺点，我们目前有几种比较常用的解决方法</p>
-<ol>
-<li>
-<p>使用<code>cookie</code>加密的方式将<code>session</code>保存在客户端上</p>
-<p>优点是可以减轻服务器压力，缺点是每次请求都要带上<code>cookie</code>信息，占用一定带宽。此外若用户禁用<code>cookie</code>则无法使用</p>
-</li>
-<li>
-<p>服务器间同步</p>
-<p>通过配置<code>tomcat</code>集群，在集群中广播自己的<code>session</code>信息，但是缺点很明显，当集群规模较大时，会占用大量资源来进行<code>session</code>同步处理</p>
-</li>
-<li>
-<p>基于分布式缓存的<code>session</code>共享机制</p>
-<p>将<code>session</code>缓存到<code>redis</code>中，这样不同服务器都可以直接到内存中获取<code>session</code>，效率高，也最常用</p>
-</li>
+<ol type="1">
+<li><p>使用<code>cookie</code>加密的方式将<code>session</code>保存在客户端上</p>
+<p>优点是可以减轻服务器压力，缺点是每次请求都要带上<code>cookie</code>信息，占用一定带宽。此外若用户禁用<code>cookie</code>则无法使用</p></li>
+<li><p>服务器间同步</p>
+<p>通过配置<code>tomcat</code>集群，在集群中广播自己的<code>session</code>信息，但是缺点很明显，当集群规模较大时，会占用大量资源来进行<code>session</code>同步处理</p></li>
+<li><p>基于分布式缓存的<code>session</code>共享机制</p>
+<p>将<code>session</code>缓存到<code>redis</code>中，这样不同服务器都可以直接到内存中获取<code>session</code>，效率高，也最常用</p></li>
 </ol>
           <!--noindex-->
             <div class="post-button">
@@ -507,8 +557,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>SpringBoot整合Redis实现缓存</h1>
-<h3 id="Redis">Redis</h3>
+          <h1 id="springboot整合redis实现缓存">SpringBoot整合Redis实现缓存</h1>
+<h3 id="redis">Redis</h3>
 <p><code>redis</code>简单来说就是一款基于内存的以键值对方式存储数据的非关系型数据库。</p>
 <p>优点非常明显，由于存储在内存中，所以读取非常快。这种速度是<code>mysql</code>等数据库完全不能比拟的，所以我们常用<code>redis</code>作为缓存以减少对本地数据库的查询。</p>
 <blockquote>
@@ -602,12 +652,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>Springboot整合RabbitMQ</h1>
-<h3 id="MQ">MQ</h3>
+          <h1 id="springboot整合rabbitmq">Springboot整合RabbitMQ</h1>
+<h3 id="mq">MQ</h3>
 <h4 id="简介">简介</h4>
 <p>消息队列（<code>Message Queue</code>，简称<code>MQ</code>），只保存消息的一个容器，本质上是一个容器。</p>
 <p>简单来说，消息队列就是一个存储消息的容器，它接受消息发布者发布的消息，然后将消息存储在容器中等待之后的消费者到容器里消费消息。</p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622153920.png" alt=""></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210622153920.png" /></p>
 <p>这就是最简单的一个消息队列的模型</p>
 <p><code>Producer</code>：消息生产者，负责产生和发布消息到<code>Broker</code>中</p>
 <p><code>Broker</code>：消息处理中心，负责消息的存储，确认等等，一般其中会包含多个<code>queue</code></p>
@@ -697,8 +747,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>SpringBoot使用security实现OAuth2</h1>
-<h3 id="OAuth2">OAuth2</h3>
+          <h1 id="springboot使用security实现oauth2">SpringBoot使用security实现OAuth2</h1>
+<h3 id="oauth2">OAuth2</h3>
 <p><code>OAuth</code>是一个开放标准，允许用户授权地方应用访问他们存储在另外的服务提供者上的信息，而不需要将用户名和密码提供给第三方应用或者分享他们数据的所有内容。</p>
 <p>我们从一个常见的例子来看：</p>
 <p>我们打王者，第一次登录的时候要求我们选择微信登录还是<code>QQ</code>登录，这时假设我们点击<code>QQ</code>登录，那么就会跳转到一个<strong>认证界面</strong>，询问我们是否同意王者使用<code>QQ</code>的数据，例如好友列表等等。当我们点击<strong>同意</strong>之后就会<strong>跳转回</strong>王者，之后进入王者我们可以发现好友列表内容就是我们的<code>QQ</code>中的好友列表。并且过段时间不登录之后，我们会发现又要<strong>再次认证</strong>，这是因为之前的认证令牌过期了，需要重新申请。</p>
@@ -787,7 +837,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>Springboot实现异步调用</h1>
+          <h1 id="springboot实现异步调用">Springboot实现异步调用</h1>
 <h3 id="概述">概述</h3>
 <p>我们之前的开发中往往都是直接按照逻辑写下去，不用考虑系统时间开销。这就是同步调用，即我的下一步操作必须等待上一步操作完成，但是，在一些场景下，我们希望使用异步调用而不是同步调用，即我让另外的资源去执行这个操作，而我的主逻辑不用等待这个操作的完成，这样毫无疑问节省了大量的时间。</p>
 <ul>
@@ -881,8 +931,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>SpringBoot 使用 AOP</h1>
-<h3 id="AOP-简介">AOP 简介</h3>
+          <h1 id="springboot-使用-aop">SpringBoot 使用 AOP</h1>
+<h3 id="aop-简介">AOP 简介</h3>
 <p><code>Springboot</code>两个核心思想便是<code>IOC</code>和<code>AOP</code>。关于<code>IOC</code>控制反转我在<a href="">初识SpringBoot</a>中已经具体介绍了，所以这次就来仔细介绍一下<code>AOP</code></p>
 <p><code>AOP</code>即<code>Aspect Oriented Programming</code>，面向切面编程。<code>AOP</code>和<code>OOP</code>一样，只是一种编程范式，没有具体的编程规范。</p>
           <!--noindex-->
@@ -970,7 +1020,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>Springboot整合springsecurity</h1>
+          <h1 id="springboot整合springsecurity">Springboot整合springsecurity</h1>
 <h3 id="简介">简介</h3>
 <p>我们知道，<strong>登录认证</strong>和<strong>权限验证</strong>是现在每个涉及到用户登录的系统都不必不可缺的。</p>
 <p>本文会简单介绍登录认证和权限认证相关的知识，以及如何使用<code>springsecurity</code>框架实现相关功能。</p>
@@ -1059,7 +1109,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>Springboot整合Mybatis-plus</h1>
+          <h1 id="springboot整合mybatis-plus">Springboot整合Mybatis-plus</h1>
 <h3 id="简介">简介</h3>
 <p><code>Mybatis-plus</code>是基于<code>mybatis</code>的纯粹的增强版，并没有修改<code>mybatis</code>任何功能，只是单纯的添加了一些非常方便的功能。</p>
 <ul>
@@ -1067,7 +1117,7 @@
 <li>通过分页插件实现物理分页查询</li>
 <li>通过继承<code>IService</code>和<code>ServiceImpl</code>实现例如批量更新等等操作</li>
 <li>通过条件构造器简化查询</li>
-<li>…</li>
+<li>......</li>
 </ul>
 <p>总的来说就是简化了单表查询的操作，但是复杂的多表查询还是需要配置<code>mapper.xml</code>手动编写<code>sql</code>语句去实现。</p>
 <p><code>mybatis-plus</code>是国内的开源插件，<a href="https://mybatis.plus/guide/" target="_blank" rel="noopener">官网</a>对于功能写的非常详细，我这里只是简单介绍一下几个常用的简单功能。</p>

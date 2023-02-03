@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"www.caiwanghui.top","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Springboot 整合 JPA 简介 JPA即JAVA Persistance API 是一种官方提出的ORM规范。  什么是ORM？ ORM即Object-Relational Mapping。他的作用是在关系型数据库和对象之间作一个映射，这样我们就不需要使用具体的sql语句 ，而是像平常一样操作对象即可。例如Hibernate就是很著名的ORM框架">
+  <meta name="description" content="Springboot 整合 JPA 简介 JPA即JAVA Persistance API 是一种官方提出的ORM规范。  什么是ORM？ ORM即Object-Relational Mapping。他的作用是在关系型数据库和对象之间作一个映射，这样我们就不需要使用具体的sql语句 ，而是像平常一样操作对象即可。例如Hibernate就是很著名的ORM框架">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot整合JPA">
 <meta property="og:url" content="http://www.caiwanghui.top/2021/06/15/SpringBoot%E6%95%B4%E5%90%88JPA/index.html">
 <meta property="og:site_name" content="菜鸡肥肥的私人博客">
-<meta property="og:description" content="Springboot 整合 JPA 简介 JPA即JAVA Persistance API 是一种官方提出的ORM规范。  什么是ORM？ ORM即Object-Relational Mapping。他的作用是在关系型数据库和对象之间作一个映射，这样我们就不需要使用具体的sql语句 ，而是像平常一样操作对象即可。例如Hibernate就是很著名的ORM框架">
+<meta property="og:description" content="Springboot 整合 JPA 简介 JPA即JAVA Persistance API 是一种官方提出的ORM规范。  什么是ORM？ ORM即Object-Relational Mapping。他的作用是在关系型数据库和对象之间作一个映射，这样我们就不需要使用具体的sql语句 ，而是像平常一样操作对象即可。例如Hibernate就是很著名的ORM框架">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210608101733.png">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210608102406.png">
@@ -230,7 +230,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1>Springboot 整合 JPA</h1>
+        <h1 id="springboot-整合-jpa">Springboot 整合 JPA</h1>
 <h3 id="简介">简介</h3>
 <p><code>JPA</code>即<code>JAVA Persistance API</code> 是一种官方提出的<code>ORM</code>规范。</p>
 <blockquote>
@@ -240,29 +240,29 @@
 <a id="more"></a>
 <p><code>spring-data-jpa</code>便是<code>spring</code>基于<code>Hibernate</code>开发的一个<code>JPA</code>框架。极大的简化了<code>JPA</code>的写法，可以非常简单的实现<code>CRUD</code>和分页操作。</p>
 <blockquote>
-<p>复杂的sql操作也可以使用<code>@Query(&quot;SELECT * FROM TABLE WHERE user_name = :name&quot;)</code>，不过复杂的sql操作还是建议整合mybatis或者mybatis-plus。</p>
+<p>复杂的sql操作也可以使用<code>@Query("SELECT * FROM TABLE WHERE user_name = :name")</code>，不过复杂的sql操作还是建议整合mybatis或者mybatis-plus。</p>
 </blockquote>
 <h3 id="使用示例">使用示例</h3>
 <p><a href="https://github.com/bigmoom/springboot/tree/main/springboot%E6%95%B4%E5%90%88JPA" target="_blank" rel="noopener">程序源码</a></p>
 <h4 id="建表">建表</h4>
 <p>我们这里首先简单构建<code>customer</code>表，该表有<code>id</code>,<code>name</code>,<code>age</code>,<code>create_time</code>,<code>modify_time</code>属性，其中主键为<code>id</code>，递增。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> <span class="string">`customer`</span>;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`customer`</span>(</span><br><span class="line"><span class="string">`id`</span> <span class="built_in">BIGINT</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT <span class="keyword">COMMENT</span> <span class="string">'id'</span>,</span><br><span class="line"><span class="string">`name`</span> <span class="built_in">VARCHAR</span>(<span class="number">64</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'姓名'</span>,</span><br><span class="line"><span class="string">`age`</span> <span class="built_in">SMALLINT</span>(<span class="number">3</span>)  <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'年龄'</span> ,</span><br><span class="line"><span class="string">`create_time`</span> <span class="built_in">TIMESTAMP</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">COMMENT</span> <span class="string">'创建时间'</span>,</span><br><span class="line"><span class="string">`modify_time`</span> <span class="built_in">TIMESTAMP</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">COMMENT</span> <span class="string">'更新时间'</span>,</span><br><span class="line">PRIMARY <span class="keyword">KEY</span>(<span class="string">`id`</span>)</span><br><span class="line">)<span class="keyword">ENGINE</span>=<span class="keyword">INNODB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br></pre></td></tr></table></figure>
-<h4 id="pom-xml">pom.xml</h4>
+<h4 id="pom.xml">pom.xml</h4>
 <p>因为要连接数据库，并且使用<code>spring data jpa</code>，所以添加如下依赖</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 数据库连接 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--jpa--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-jpa<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="application-yml">application.yml</h4>
+<h4 id="application.yml">application.yml</h4>
 <p><code>Springboot</code>参数配置</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#端口设置</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8090</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#数据源设置</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">    <span class="comment">#设置编码和时区</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/springboot?characterEncoding=utf-8&amp;serverTimezone=GMT%2B8</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">1234</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">#jpa设置</span></span><br><span class="line">  <span class="attr">jpa:</span></span><br><span class="line">    <span class="comment">#显示sql语句</span></span><br><span class="line">    <span class="attr">show-sql:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment">#format sql 语句</span></span><br><span class="line">    <span class="attr">hibernate:</span></span><br><span class="line">      <span class="attr">naming:</span></span><br><span class="line">        <span class="comment">#驼峰匹配</span></span><br><span class="line">        <span class="attr">physical-strategy:</span> <span class="string">org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy</span></span><br><span class="line">        <span class="comment">#根据实体类自动更新表结构</span></span><br><span class="line">      <span class="attr">ddl-auto:</span> <span class="string">update</span></span><br></pre></td></tr></table></figure>
 <p><code>Spring Data Jpa</code>默认使用驼峰命名法进行匹配</p>
 <p>例如实体属性为<code>userName</code>，则匹配数据库表中<code>user_name</code>列</p>
-<p>若不想使用驼峰匹配可以在属性上设置<code>@Column(name = &quot;user_name&quot;)</code>进行匹配。</p>
+<p>若不想使用驼峰匹配可以在属性上设置<code>@Column(name = "user_name")</code>进行匹配。</p>
 <blockquote>
 <p><code>jpa.hibernate.ddl-auto</code>使用需要注意，该参数设置为每次启动<code>hibernate</code>自动根据实体类对表进行操作。</p>
 <p><code>update</code>：这是最常使用的，用来在每次启动<code>hibernate</code> 根据实体类更新表结构。</p>
 <p><code>create</code>：这就是最为要注意的，因为每次启动<code>hibernate</code>都会删除之前建的表，重新建表。</p>
 <p><code>create-drop</code>：即加载<code>hibernate</code>时创建表，但是关闭之后表自动删除。</p>
 </blockquote>
-<h4 id="Entity">Entity</h4>
+<h4 id="entity">Entity</h4>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Table</span>(name=<span class="string">"customer"</span>)</span><br><span class="line"><span class="meta">@EntityListeners</span>(AuditingEntityListener<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line"><span class="comment">//  主键</span></span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line"><span class="comment">//  自增</span></span><br><span class="line"><span class="comment">//  自增策略由数据库控制</span></span><br><span class="line">    <span class="meta">@GeneratedValue</span>(strategy = GenerationType.IDENTITY)</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="meta">@Column</span>(name = <span class="string">"name"</span>)</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"><span class="comment">//  自动修改创建更新时间</span></span><br><span class="line">    <span class="meta">@CreatedDate</span></span><br><span class="line">    <span class="keyword">private</span> Date createTime;</span><br><span class="line">    <span class="meta">@LastModifiedDate</span></span><br><span class="line">    <span class="keyword">private</span> Date modifiedTime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>实体类有五个属性<code>id</code>,<code>name</code>,<code>age</code>,<code>createTime</code>,<code>modifyTime</code>与表中<code>id</code>,<code>name</code>,<code>age</code>,<code>create_time</code>,<code>modify_time</code>一一对应。</p>
 <p><code>@Id</code>标明这是主键</p>
@@ -272,40 +272,40 @@
 <p><code>TABLE</code>：spring-data-jpa 会自动建立一个<code>hibernate_sequence</code>表存放自增值</p>
 <p><code>SEQUENCE</code>：根据数据库的序列生成主键（主要用于Oracle等不支持主键自增长的数据库）</p>
 <p><code>IDENTITY</code>：使用数据库主键自增策略</p>
-<p><code>AUTO</code>  程序自动选择一种策略</p>
+<p><code>AUTO</code> 程序自动选择一种策略</p>
 </blockquote>
-<p><code>@Column(name = &quot;user_name&quot;)</code>标明该属性对应表中的<code>user_name</code>列，可以不加，如果开启且满足驼峰匹配）。</p>
+<p><code>@Column(name = "user_name")</code>标明该属性对应表中的<code>user_name</code>列，可以不加，如果开启且满足驼峰匹配）。</p>
 <p><code>@CreatedDate</code> 和<code>@LastModifiedDate</code>是<code>spring data jpa</code>提供的非常方便的自动修改数据库中表信息创建和修改时间。但是该实体类需要加上<code>@EntityListeners(AuditingEntityListener.class)</code>，且启动类需要加上<code>@EnableJpaAuditing</code>，以开启修改权限。</p>
 <p><code>@Entity</code>标明这是一个实体类，只有添加了这个注释，<code>spring data jpa</code>才会去将它与数据库中的表进行映射。</p>
 <p><code>@Table</code> 标明该实体类对应数据库中的表名称，与<code>@Entity</code>一样，也是可加可不加。</p>
 <p><code>@Data</code>是插件<code>lombok</code>中的一个注释，他包含了常用的 <code>get(),set()</code>和无参全参构造器等等，帮我们省略了很多代码。</p>
-<h4 id="数据库访问对象（DAO）">数据库访问对象（DAO）</h4>
+<h4 id="数据库访问对象dao">数据库访问对象（DAO）</h4>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CustomerRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">Customer</span>,<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">LinkedList&lt;Customer&gt; <span class="title">findByName</span><span class="params">(String name)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>我们可以看到<code>spring data jpa</code>中建立数据库访问对象的方法是继承<code>JpaRepository&lt;,&gt;</code>，其中泛型括号中第一个参数为<strong>实体类</strong>，第二个对象为<strong>主键类型</strong>。</p>
 <p>这相当于是建立了一个实体类仓库，仓库中对应这数据库中的该实体类映射的所有数据信息。</p>
 <p>其实<code>spring data jpa</code>提供了不只这一种接口。</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:center">接口</th>
+<tr class="header">
+<th style="text-align: center;">接口</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center"><code>JpaRepository</code></td>
+<tr class="odd">
+<td style="text-align: center;"><code>JpaRepository</code></td>
 <td>是<code>PagingAndSortingRepository</code>的子接口，增加了一些功能，比如<code>findAll()</code></td>
 </tr>
-<tr>
-<td style="text-align:center"><code>PagingAndSortingRepository</code></td>
+<tr class="even">
+<td style="text-align: center;"><code>PagingAndSortingRepository</code></td>
 <td>是<code>CrudRepository</code>的子接口，添加分页和排序的功能</td>
 </tr>
-<tr>
-<td style="text-align:center"><code>CrudRepository</code></td>
+<tr class="odd">
+<td style="text-align: center;"><code>CrudRepository</code></td>
 <td>是<code>Repository</code>的子接口，提供<code>CRUD</code>的功能</td>
 </tr>
-<tr>
-<td style="text-align:center"><code>Repository</code></td>
+<tr class="even">
+<td style="text-align: center;"><code>Repository</code></td>
 <td>最顶层的接口，是一個空的接口，目的是为了统一所有<code>Repository</code>的类型，且能让组件扫描的时候自动识别</td>
 </tr>
 </tbody>
@@ -316,151 +316,147 @@
 </blockquote>
 <h5 id="查询方法">查询方法</h5>
 <p><code>spring data jpa</code>提供两种查询方法</p>
-<ol>
-<li>
-<p>根据方法命名规范查询</p>
+<ol type="1">
+<li><p>根据方法命名规范查询</p>
 <p>例如<code>findByName(String name)</code>，<code>findAll()</code></p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>关键字</th>
 <th>方法命名</th>
 <th>对应 sql 语句</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>And</td>
 <td>findByNameAndPwd</td>
 <td>where name= ? and pwd =?</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Or</td>
 <td>findByNameOrSex</td>
 <td>where name= ? or sex=?</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Is,Equals</td>
 <td>findById,findByIdEquals</td>
 <td>where id= ?</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Between</td>
 <td>findByIdBetween</td>
 <td>where id between ? and ?</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>LessThan</td>
 <td>findByIdLessThan</td>
 <td>where id &lt; ?</td>
 </tr>
-<tr>
+<tr class="even">
 <td>LessThanEquals</td>
 <td>findByIdLessThanEquals</td>
 <td>where id &lt;= ?</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>GreaterThan</td>
 <td>findByIdGreaterThan</td>
 <td>where id &gt; ?</td>
 </tr>
-<tr>
+<tr class="even">
 <td>GreaterThanEquals</td>
 <td>findByIdGreaterThanEquals</td>
 <td>where id &gt; = ?</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>After</td>
 <td>findByIdAfter</td>
 <td>where id &gt; ?</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Before</td>
 <td>findByIdBefore</td>
 <td>where id &lt; ?</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>IsNull</td>
 <td>findByNameIsNull</td>
 <td>where name is null</td>
 </tr>
-<tr>
+<tr class="even">
 <td>isNotNull,NotNull</td>
 <td>findByNameNotNull</td>
 <td>where name is not null</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Like</td>
 <td>findByNameLike</td>
 <td>where name like ?</td>
 </tr>
-<tr>
+<tr class="even">
 <td>NotLike</td>
 <td>findByNameNotLike</td>
 <td>where name not like ?</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>StartingWith</td>
 <td>findByNameStartingWith</td>
 <td>where name like ‘?%’</td>
 </tr>
-<tr>
+<tr class="even">
 <td>EndingWith</td>
 <td>findByNameEndingWith</td>
 <td>where name like ‘%?’</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Containing</td>
 <td>findByNameContaining</td>
 <td>where name like ‘%?%’</td>
 </tr>
-<tr>
+<tr class="even">
 <td>OrderBy</td>
 <td>findByIdOrderByXDesc</td>
 <td>where id=? order by x desc</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Not</td>
 <td>findByNameNot</td>
 <td>where name &lt;&gt; ?</td>
 </tr>
-<tr>
+<tr class="even">
 <td>In</td>
 <td>findByIdIn(Collection&lt;?&gt; c)</td>
 <td>where id in (?)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>NotIn</td>
 <td>findByIdNotIn(Collection&lt;?&gt; c)</td>
 <td>where id not in (?)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>True</td>
 <td>findByAaaTue</td>
 <td>where aaa = true</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>False</td>
 <td>findByAaaFalse</td>
 <td>where aaa = false</td>
 </tr>
-<tr>
+<tr class="even">
 <td>IgnoreCase</td>
 <td>findByNameIgnoreCase</td>
 <td>where UPPER(name)=UPPER(?)</td>
 </tr>
 </tbody>
-</table>
-</li>
-<li>
-<p>使用<code>@Query()</code>查询</p>
+</table></li>
+<li><p>使用<code>@Query()</code>查询</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Query</span>(value = <span class="string">"select * from customer c where c.name=?1"</span>)</span><br><span class="line"><span class="function">List&lt;Customer&gt; <span class="title">finByName</span><span class="params">(String name)</span></span></span><br></pre></td></tr></table></figure>
-<p>个人觉得如果需要使用复杂<code>sql</code>语句，还是建议使用<code>mybatis/mybatis-plus</code>。</p>
-</li>
+<p>个人觉得如果需要使用复杂<code>sql</code>语句，还是建议使用<code>mybatis/mybatis-plus</code>。</p></li>
 </ol>
-<h4 id="Service">Service</h4>
+<h4 id="service">Service</h4>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CustomerService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Page&lt;Customer&gt; <span class="title">getAll</span><span class="params">(Integer pageNum, Integer pageSize)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Customer <span class="title">save</span><span class="params">(Customer customer)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> LinkedList&lt;Customer&gt; <span class="title">searchByName</span><span class="params">(String name)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="ServiceImpl">ServiceImpl</h4>
+<h4 id="serviceimpl">ServiceImpl</h4>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomerServiceImpl</span> <span class="keyword">implements</span> <span class="title">CustomerService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    注入数据仓库</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> CustomerRepository customerRepository;</span><br><span class="line">    </span><br><span class="line"><span class="comment">//    分页操作</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Page&lt;Customer&gt; <span class="title">getAll</span><span class="params">(Integer pageNum, Integer pageSize)</span> </span>&#123;</span><br><span class="line">        Pageable pageable = PageRequest.of(pageNum,pageSize);</span><br><span class="line">        Page&lt;Customer&gt; page = customerRepository.findAll(pageable);</span><br><span class="line">        <span class="keyword">return</span> page;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    对数据库修改之后的保存操作</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Customer <span class="title">save</span><span class="params">(Customer customer)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> customerRepository.save(customer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    查询操作</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> LinkedList&lt;Customer&gt; <span class="title">searchByName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> customerRepository.findByName(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>服务层是我们对功能逻辑实现的模块。</p>
 <p>所以我们这边提供一些接口，以供控制层传入参数使用。</p>
@@ -484,23 +480,23 @@
 <blockquote>
 <p>查询方法返回可以是一个实体类对象，也可以是一个实体类对象列表</p>
 </blockquote>
-<h4 id="VO">VO</h4>
+<h4 id="vo">VO</h4>
 <p>返回视图类主要包括信息码，返回信息，和具体数据。</p>
 <p>我这里简单就只有一个<code>CustomerVO</code>，即实体类对象的一些信息。</p>
-<h5 id="ResultVO">ResultVO</h5>
+<h5 id="resultvo">ResultVO</h5>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@JsonInclude</span>(JsonInclude.Include.NON_NULL)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResultVO</span>&lt;<span class="title">T</span>&gt; </span>&#123;    </span><br><span class="line">    <span class="keyword">private</span> Integer code;    </span><br><span class="line">    <span class="keyword">private</span> String msg;    </span><br><span class="line">    <span class="keyword">private</span> T data;&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="CustomerVO">CustomerVO</h5>
+<h5 id="customervo">CustomerVO</h5>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomerVO</span> </span>&#123;    </span><br><span class="line">    <span class="meta">@JsonProperty</span>(value = <span class="string">"id"</span>)    </span><br><span class="line">    <span class="keyword">private</span> Integer id;    </span><br><span class="line">    <span class="meta">@JsonProperty</span>(value = <span class="string">"name"</span>)    </span><br><span class="line">    <span class="keyword">private</span> String name;    </span><br><span class="line">    <span class="meta">@JsonProperty</span>(value = <span class="string">"age"</span>)    </span><br><span class="line">    <span class="keyword">private</span> Integer age;    </span><br><span class="line">    <span class="meta">@JsonProperty</span>(value = <span class="string">"createTime"</span>)    </span><br><span class="line">    <span class="keyword">private</span> String createTime;    </span><br><span class="line">    <span class="meta">@JsonProperty</span>(value = <span class="string">"modifiedTime"</span>)    </span><br><span class="line">    <span class="keyword">private</span> String modifiedTime;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> CustomerVO <span class="title">setByCustomer</span><span class="params">(Customer customer)</span></span>&#123;        </span><br><span class="line">        CustomerVO customerVO = <span class="keyword">new</span> CustomerVO();        </span><br><span class="line">        customerVO.setId(customer.getId());        </span><br><span class="line">        customerVO.setName(customer.getName());        </span><br><span class="line">        customerVO.setAge(customer.getAge());        </span><br><span class="line">        customerVO.setCreateTime(customer.getCreateTime().toString());        </span><br><span class="line">        customerVO.setModifiedTime(customer.getModifiedTime().toString());        </span><br><span class="line">        <span class="keyword">return</span> customerVO;    &#125;&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Controller">Controller</h4>
+<h4 id="controller">Controller</h4>
 <p>比较简单的<code>controller</code>，就不多赘述，相关信息见注释</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/customer"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomerController</span> </span>&#123;</span><br><span class="line">    <span class="comment">//  注入service接口    </span></span><br><span class="line">    <span class="meta">@Autowired</span>    </span><br><span class="line">    <span class="keyword">private</span> CustomerService customerService;    </span><br><span class="line">    <span class="comment">/**     </span></span><br><span class="line"><span class="comment">    * 分页展示     </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> pagenum 页码（第一页为0）     </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> pagesize 分页大小     </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span>     */</span>    </span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/getall"</span>)    </span><br><span class="line">    <span class="keyword">public</span> ResultVO&lt;LinkedList&lt;CustomerVO&gt;&gt; getAll(<span class="meta">@RequestParam</span>(<span class="string">"pagenum"</span>)Integer pagenum,<span class="meta">@RequestParam</span>(<span class="string">"pagesize"</span>)Integer pagesize) &#123;        </span><br><span class="line">        Page&lt;Customer&gt; page = customerService.getAll(pagenum,pagesize);</span><br><span class="line">        <span class="comment">//        获取页内数据内容        </span></span><br><span class="line">        List&lt;Customer&gt; customerList = page.getContent();</span><br><span class="line">        <span class="comment">//        设置VO        </span></span><br><span class="line">        ResultVO&lt;LinkedList&lt;CustomerVO&gt;&gt; resultVO = <span class="keyword">new</span> ResultVO();        </span><br><span class="line">        resultVO.setCode(<span class="number">1</span>);        </span><br><span class="line">        resultVO.setMsg(<span class="string">"succuss"</span>);        </span><br><span class="line">        LinkedList&lt;CustomerVO&gt; customerVOLinkedList = <span class="keyword">new</span> LinkedList&lt;CustomerVO&gt;();        </span><br><span class="line">        <span class="keyword">for</span>(Customer customer:customerList)&#123;            </span><br><span class="line">            CustomerVO customerVO = <span class="keyword">new</span> CustomerVO().setByCustomer(customer);        &#125;        resultVO.setData(customerVOLinkedList);        </span><br><span class="line">        <span class="keyword">return</span> resultVO;    &#125;    </span><br><span class="line">    <span class="comment">/**     </span></span><br><span class="line"><span class="comment">    * 添加用户     </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> name     </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> age     </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span>     */</span>    </span><br><span class="line">    <span class="meta">@PostMapping</span>(<span class="string">"/add"</span>)    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResultVO&lt;CustomerVO&gt; <span class="title">addCustomer</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">        @RequestParam(value=<span class="string">"name"</span>,required = <span class="keyword">true</span>)</span>String name,</span></span><br><span class="line"><span class="function">        @<span class="title">RequestParam</span><span class="params">(value=<span class="string">"age"</span>,required = <span class="keyword">true</span>)</span>Integer age)</span>&#123;        </span><br><span class="line">        Customer customer = <span class="keyword">new</span> Customer();        </span><br><span class="line">        customer.setAge(age);        </span><br><span class="line">        customer.setName(name);</span><br><span class="line">        <span class="comment">//        保存修改        </span></span><br><span class="line">        customerService.save(customer);</span><br><span class="line">        <span class="comment">//        设置VO        </span></span><br><span class="line">        ResultVO&lt;CustomerVO&gt; resultVO = <span class="keyword">new</span> ResultVO();       </span><br><span class="line">        resultVO.setCode(<span class="number">1</span>);        </span><br><span class="line">        resultVO.setMsg(<span class="string">"add success"</span>);        </span><br><span class="line">        CustomerVO customerVO = <span class="keyword">new</span> CustomerVO().setByCustomer(customer);        </span><br><span class="line">        resultVO.setData(customerVO);        </span><br><span class="line">        <span class="keyword">return</span> resultVO;    &#125;    </span><br><span class="line">    <span class="comment">/**    </span></span><br><span class="line"><span class="comment">    * 通过名字查询     </span></span><br><span class="line"><span class="comment">    * 可以有同名存在，所以返回List     </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> name     </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span>     */</span>    </span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/search"</span>)    </span><br><span class="line">    <span class="keyword">public</span> ResultVO&lt;LinkedList&lt;CustomerVO&gt;&gt; searchByName(<span class="meta">@RequestParam</span>(value=<span class="string">"name"</span>,required = <span class="keyword">true</span>)String name)&#123;        </span><br><span class="line">        ResultVO&lt;LinkedList&lt;CustomerVO&gt;&gt; resultVO = <span class="keyword">new</span> ResultVO();        </span><br><span class="line">        resultVO.setCode(<span class="number">1</span>);        </span><br><span class="line">        resultVO.setMsg(<span class="string">"search success"</span>);</span><br><span class="line">        <span class="comment">//        获取查询结果       </span></span><br><span class="line">        LinkedList&lt;Customer&gt; customerList = customerService.searchByName(name);</span><br><span class="line">        <span class="comment">//        设置VO        </span></span><br><span class="line">        LinkedList&lt;CustomerVO&gt; customerVOLinkedList = <span class="keyword">new</span> LinkedList();        </span><br><span class="line">        <span class="keyword">for</span>(Customer customer:customerList)&#123;            </span><br><span class="line">            CustomerVO customerVO = <span class="keyword">new</span> CustomerVO().setByCustomer(customer);            </span><br><span class="line">            customerVOLinkedList.add(customerVO);        &#125;        </span><br><span class="line">        resultVO.setData(customerVOLinkedList);        </span><br><span class="line">        <span class="keyword">return</span>  resultVO;    &#125;&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="运行结果">运行结果</h4>
-<h5 id="GET-getAll"><code>GET</code> <code>/getAll</code></h5>
-<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210608101733.png" style="zoom:80%;" />
-<h5 id="POST-add"><code>POST</code> <code>/add</code></h5>
-<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210608102406.png" style="zoom:80%;" />
-<h5 id="GET-search"><code>GET</code> <code>/search</code></h5>
-<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210608102336.png" style="zoom:80%;" />
+<h5 id="get-getall"><code>GET</code> <code>/getAll</code></h5>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210608101733.png" style="zoom:80%;" /></p>
+<h5 id="post-add"><code>POST</code> <code>/add</code></h5>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210608102406.png" style="zoom:80%;" /></p>
+<h5 id="get-search"><code>GET</code> <code>/search</code></h5>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210608102336.png" style="zoom:80%;" /></p>
 <h3 id="总结">总结</h3>
 <p>怎么说呢，<code>Spring Data Jpa</code>给我们提供了非常简单的<code>CRUD</code>和<strong>分页排序</strong>操作，但是呢，对复杂的查询就没什么优势了。</p>
 <p>所以个人建议，只有简单<code>CRUD</code>操作的可以用<code>Spring Data Jpa</code>，复杂的还是推荐<code>Mybatis/Mybatis-plus</code>。</p>
@@ -590,7 +586,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">Springboot 整合 JPA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.0.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用示例"><span class="nav-number">1.0.2.</span> <span class="nav-text">使用示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#建表"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">建表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pom-xml"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">pom.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#application-yml"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">application.yml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Entity"><span class="nav-number">1.0.2.4.</span> <span class="nav-text">Entity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库访问对象（DAO）"><span class="nav-number">1.0.2.5.</span> <span class="nav-text">数据库访问对象（DAO）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#查询方法"><span class="nav-number">1.0.2.5.1.</span> <span class="nav-text">查询方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Service"><span class="nav-number">1.0.2.6.</span> <span class="nav-text">Service</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ServiceImpl"><span class="nav-number">1.0.2.7.</span> <span class="nav-text">ServiceImpl</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分页"><span class="nav-number">1.0.2.7.1.</span> <span class="nav-text">分页</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#保存"><span class="nav-number">1.0.2.7.2.</span> <span class="nav-text">保存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查询"><span class="nav-number">1.0.2.7.3.</span> <span class="nav-text">查询</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VO"><span class="nav-number">1.0.2.8.</span> <span class="nav-text">VO</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ResultVO"><span class="nav-number">1.0.2.8.1.</span> <span class="nav-text">ResultVO</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CustomerVO"><span class="nav-number">1.0.2.8.2.</span> <span class="nav-text">CustomerVO</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Controller"><span class="nav-number">1.0.2.9.</span> <span class="nav-text">Controller</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行结果"><span class="nav-number">1.0.2.10.</span> <span class="nav-text">运行结果</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#GET-getAll"><span class="nav-number">1.0.2.10.1.</span> <span class="nav-text">GET &#x2F;getAll</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#POST-add"><span class="nav-number">1.0.2.10.2.</span> <span class="nav-text">POST &#x2F;add</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#GET-search"><span class="nav-number">1.0.2.10.3.</span> <span class="nav-text">GET &#x2F;search</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.0.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#springboot-整合-jpa"><span class="nav-number">1.</span> <span class="nav-text">Springboot 整合 JPA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.0.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用示例"><span class="nav-number">1.0.2.</span> <span class="nav-text">使用示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#建表"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">建表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pom.xml"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">pom.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#application.yml"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">application.yml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#entity"><span class="nav-number">1.0.2.4.</span> <span class="nav-text">Entity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库访问对象dao"><span class="nav-number">1.0.2.5.</span> <span class="nav-text">数据库访问对象（DAO）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#查询方法"><span class="nav-number">1.0.2.5.1.</span> <span class="nav-text">查询方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#service"><span class="nav-number">1.0.2.6.</span> <span class="nav-text">Service</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#serviceimpl"><span class="nav-number">1.0.2.7.</span> <span class="nav-text">ServiceImpl</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分页"><span class="nav-number">1.0.2.7.1.</span> <span class="nav-text">分页</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#保存"><span class="nav-number">1.0.2.7.2.</span> <span class="nav-text">保存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查询"><span class="nav-number">1.0.2.7.3.</span> <span class="nav-text">查询</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vo"><span class="nav-number">1.0.2.8.</span> <span class="nav-text">VO</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#resultvo"><span class="nav-number">1.0.2.8.1.</span> <span class="nav-text">ResultVO</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#customervo"><span class="nav-number">1.0.2.8.2.</span> <span class="nav-text">CustomerVO</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#controller"><span class="nav-number">1.0.2.9.</span> <span class="nav-text">Controller</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行结果"><span class="nav-number">1.0.2.10.</span> <span class="nav-text">运行结果</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#get-getall"><span class="nav-number">1.0.2.10.1.</span> <span class="nav-text">GET &#x2F;getAll</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#post-add"><span class="nav-number">1.0.2.10.2.</span> <span class="nav-text">POST &#x2F;add</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#get-search"><span class="nav-number">1.0.2.10.3.</span> <span class="nav-text">GET &#x2F;search</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.0.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"www.caiwanghui.top","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="SpringBoot整合Redis实现缓存 Redis redis简单来说就是一款基于内存的以键值对方式存储数据的非关系型数据库。 优点非常明显，由于存储在内存中，所以读取非常快。这种速度是mysql等数据库完全不能比拟的，所以我们常用redis作为缓存以减少对本地数据库的查询。  redis可以作为系统进程间的资源共享，例如使用redis实现spring session共享等等   关于redi">
+  <meta name="description" content="SpringBoot整合Redis实现缓存 Redis redis简单来说就是一款基于内存的以键值对方式存储数据的非关系型数据库。 优点非常明显，由于存储在内存中，所以读取非常快。这种速度是mysql等数据库完全不能比拟的，所以我们常用redis作为缓存以减少对本地数据库的查询。  redis可以作为系统进程间的资源共享，例如使用redis实现spring session共享等等">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot整合Redis">
 <meta property="og:url" content="http://www.caiwanghui.top/2021/06/26/SpringBoot%E6%95%B4%E5%90%88Redis/index.html">
 <meta property="og:site_name" content="菜鸡肥肥的私人博客">
-<meta property="og:description" content="SpringBoot整合Redis实现缓存 Redis redis简单来说就是一款基于内存的以键值对方式存储数据的非关系型数据库。 优点非常明显，由于存储在内存中，所以读取非常快。这种速度是mysql等数据库完全不能比拟的，所以我们常用redis作为缓存以减少对本地数据库的查询。  redis可以作为系统进程间的资源共享，例如使用redis实现spring session共享等等   关于redi">
+<meta property="og:description" content="SpringBoot整合Redis实现缓存 Redis redis简单来说就是一款基于内存的以键值对方式存储数据的非关系型数据库。 优点非常明显，由于存储在内存中，所以读取非常快。这种速度是mysql等数据库完全不能比拟的，所以我们常用redis作为缓存以减少对本地数据库的查询。  redis可以作为系统进程间的资源共享，例如使用redis实现spring session共享等等">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210621145610.png">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210621155021.png">
@@ -234,8 +234,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1>SpringBoot整合Redis实现缓存</h1>
-<h3 id="Redis">Redis</h3>
+        <h1 id="springboot整合redis实现缓存">SpringBoot整合Redis实现缓存</h1>
+<h3 id="redis">Redis</h3>
 <p><code>redis</code>简单来说就是一款基于内存的以键值对方式存储数据的非关系型数据库。</p>
 <p>优点非常明显，由于存储在内存中，所以读取非常快。这种速度是<code>mysql</code>等数据库完全不能比拟的，所以我们常用<code>redis</code>作为缓存以减少对本地数据库的查询。</p>
 <blockquote>
@@ -248,27 +248,27 @@
 <h3 id="缓存">缓存</h3>
 <p>缓存的作用就是将数据存储在内存中，之后查询同样的数据便可以直接从内存中获取而不是再次执行方法。这样毫无疑问可以省下很多时间。</p>
 <p>例如我有一个方法<code>getById(Integer id)</code>，通过<code>id</code>到数据库中查询并获取实体类。我第一次查询的时候并没有任何缓存，所以执行该方法，通过<code>mybatis</code>到数据库中获取数据。但是当第二次查询的时候，如果还是查之前传入的<code>id</code>，那么程序便发现缓存中有这个结果，便直接到内存中获取结果，而不是执行方法。</p>
-<h3 id="SpringBoot中的应用">SpringBoot中的应用</h3>
+<h3 id="springboot中的应用">SpringBoot中的应用</h3>
 <p><a href="https://github.com/bigmoom/springboot/tree/main/springboot%E6%95%B4%E5%90%88Redis" target="_blank" rel="noopener">程序源码</a></p>
-<h4 id="Mysql准备">Mysql准备</h4>
+<h4 id="mysql准备">Mysql准备</h4>
 <p>因为只是简单<code>demo</code>，所以这里还是继续使用之前的<code>Customer</code>表</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &#96;customer&#96; (</span><br><span class="line">  &#96;id&#96; bigint NOT NULL AUTO_INCREMENT COMMENT &#39;id&#39;,</span><br><span class="line">  &#96;name&#96; varchar(64) DEFAULT NULL COMMENT &#39;姓名&#39;,</span><br><span class="line">  &#96;age&#96; smallint DEFAULT NULL COMMENT &#39;年龄&#39;,</span><br><span class="line">  &#96;create_time&#96; timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &#39;建立时间&#39;,</span><br><span class="line">  &#96;modify_time&#96; timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT &#39;更新时间&#39;,</span><br><span class="line">  PRIMARY KEY (&#96;id&#96;)</span><br><span class="line">) ENGINE&#x3D;InnoDB AUTO_INCREMENT&#x3D;7 DEFAULT CHARSET&#x3D;utf8</span><br></pre></td></tr></table></figure>
 <p>建立连接</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/springboot?characterEncoding=utf-8&amp;serverTimezone=GMT%2B8</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">1234</span></span><br><span class="line">    </span><br><span class="line"><span class="attr">mybatis-plus:</span></span><br><span class="line">  <span class="attr">configuration:</span></span><br><span class="line">    <span class="attr">map-underscore-to-camel-case:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">log.impl:</span> <span class="string">org.apache.ibatis.logging.stdout.StdOutImpl</span></span><br><span class="line">  <span class="attr">type-aliases-package:</span> <span class="string">com.cwh.springboot.redis.model.entity</span></span><br><span class="line">  <span class="attr">mapper-locations:</span> <span class="string">classpath:mapper/*Mapper.xml</span></span><br></pre></td></tr></table></figure>
-<h5 id="Customer">Customer</h5>
+<h5 id="customer">Customer</h5>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@TableName</span>(<span class="string">"customer"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line">    <span class="comment">//    设置主键，主键生成策略</span></span><br><span class="line"><span class="comment">//    AUTO为数据库自增</span></span><br><span class="line">    <span class="meta">@TableId</span>(type = IdType.AUTO)</span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//    @TableField(value="",exist=true)</span></span><br><span class="line"><span class="comment">//    映射非主键字段 value字段名 exist 标明该属性是否在数据库中</span></span><br><span class="line">    <span class="meta">@TableField</span>(value = <span class="string">"name"</span>)</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@TableField</span>(value = <span class="string">"create_time"</span>,fill = FieldFill.INSERT)</span><br><span class="line"><span class="comment">//    fill 自动填充策略</span></span><br><span class="line"><span class="comment">//    INSERT 插入式填充，UPDATE 更新时填充,INSERT_UPDATE插入更新时填充</span></span><br><span class="line">    <span class="keyword">private</span> Date createTime;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@TableField</span>(value = <span class="string">"modify_time"</span>,fill = FieldFill.INSERT_UPDATE)</span><br><span class="line">    <span class="keyword">private</span> Date modifyTime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Redis的简单使用">Redis的简单使用</h4>
-<p>首先我们看下<code>springboot </code>中对于<code>redis</code>的配置</p>
-<h5 id="pom-xml">pom.xml</h5>
+<h4 id="redis的简单使用">Redis的简单使用</h4>
+<p>首先我们看下<code>springboot</code>中对于<code>redis</code>的配置</p>
+<h5 id="pom.xml">pom.xml</h5>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--        redis--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.6.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h5 id="application-yml">application.yml</h5>
+<h5 id="application.yml">application.yml</h5>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">redis:</span></span><br><span class="line"><span class="comment">#    数据库索引，默认为0</span></span><br><span class="line">    <span class="attr">database:</span> <span class="number">0</span></span><br><span class="line"><span class="comment">#    redis host ip</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">192.168</span><span class="number">.56</span><span class="number">.129</span></span><br><span class="line"><span class="comment">#    redis  连接端口</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">6379</span></span><br><span class="line"><span class="comment">#    服务器连接密码（默认为空）</span></span><br><span class="line">    <span class="attr">password:</span></span><br><span class="line"><span class="comment">#    连接超时时间（毫秒）</span></span><br><span class="line">    <span class="attr">timeout:</span> <span class="number">1000</span></span><br><span class="line">    <span class="attr">jedis:</span></span><br><span class="line"><span class="comment">#      连接池配置</span></span><br><span class="line">      <span class="attr">pool:</span></span><br><span class="line"><span class="comment">#        连接池最大连接数</span></span><br><span class="line">        <span class="attr">max-active:</span> <span class="number">8</span></span><br><span class="line"><span class="comment">#        连接池最大阻塞等待时间（负值表示没有限制）</span></span><br><span class="line">        <span class="attr">max-wait:</span> <span class="number">-1</span></span><br><span class="line"><span class="comment">#        连接池最大空闲连接</span></span><br><span class="line">        <span class="attr">max-idle:</span> <span class="number">8</span></span><br><span class="line"><span class="comment">#        连接池最小空闲连接</span></span><br><span class="line">        <span class="attr">min-idl:</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
 <p>这里我们连接<code>db0</code>，并且配置<code>jedis</code>连接池</p>
 <blockquote>
 <p>连接池主要作用就是进行连接的缓冲，避免重复创建和销毁连接对象，提高性能</p>
 </blockquote>
-<h5 id="Redistemplate">Redistemplate</h5>
-<p><code>redis</code>在<code>springboot </code>中默认提供了两种<code>template</code>：</p>
+<h5 id="redistemplate">Redistemplate</h5>
+<p><code>redis</code>在<code>springboot</code>中默认提供了两种<code>template</code>：</p>
 <p><code>StringRedisTemplate&lt;String,String&gt;</code>：实现键值对都是<code>String</code>类型的操作</p>
 <p><code>RedisTemplate&lt;Object,Object&gt;</code> 泛型类，为<code>StringRedisTempalte</code>的父类，一般用于自定义设定类型键值对的<code>redistemplate</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  设置redisTemplate&lt;String,Obejct&gt;序列化</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> factory</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RedisTemplate&lt;String,Object&gt; <span class="title">redisTemplate</span><span class="params">(RedisConnectionFactory factory)</span></span>&#123;</span><br><span class="line">        RedisTemplate&lt;String,Object&gt; redisTemplate = <span class="keyword">new</span> RedisTemplate&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        redisTemplate.setConnectionFactory(factory);</span><br><span class="line"></span><br><span class="line"><span class="comment">//        使用JackSon2JsonRedisSerialize 替换默认序列化</span></span><br><span class="line">        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = <span class="keyword">new</span> Jackson2JsonRedisSerializer(Object<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"><span class="comment">//        配置ObjecetMapper</span></span><br><span class="line">        ObjectMapper om = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line"></span><br><span class="line"><span class="comment">//        指定要序列化的域，field,get和set,以及修饰符范围，ANY是都有包括private和public</span></span><br><span class="line"><span class="comment">//        setVisibility(forMethod,visibility)</span></span><br><span class="line"><span class="comment">//        用来替换默认序列化检测（默认public fileds或者public getXXX()）</span></span><br><span class="line"><span class="comment">//        formethod 为受影响属性（field/getter/setter）</span></span><br><span class="line"><span class="comment">//        visibility 设置属性最小设定（可以是PUBLIC,ANY,PRIVATE）</span></span><br><span class="line">        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);</span><br><span class="line"><span class="comment">//      指定序列化输入的类型，类必须是非final修饰的，final修饰的类，比如String,Integer等会跑出异常 </span></span><br><span class="line">        			activeDefaultTyping(PolymorphicTypeValidator,ObjectMapper.DefaultTyping,JsonTypeInfo.As)</span><br><span class="line"><span class="comment">//        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);</span></span><br><span class="line">        om.activateDefaultTyping(LaissezFaireSubTypeValidator.instance,ObjectMapper.DefaultTyping.NON_FINAL);</span><br><span class="line">        jackson2JsonRedisSerializer.setObjectMapper(om);</span><br><span class="line"><span class="comment">//        配置redistemplate序列化</span></span><br><span class="line">        RedisSerializer stringSerializer = <span class="keyword">new</span> StringRedisSerializer();</span><br><span class="line">        redisTemplate.setKeySerializer(stringSerializer);</span><br><span class="line">        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);</span><br><span class="line">        redisTemplate.setHashKeySerializer(stringSerializer);</span><br><span class="line">        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);</span><br><span class="line">        redisTemplate.afterPropertiesSet();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> redisTemplate;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
@@ -280,7 +280,7 @@
 <p>所以我们这里使用<code>JackSon2JsonRedisSerialize</code> 替换默认序列化</p>
 <blockquote>
 <p><code>JackSon2JsonRedisSerialize</code> 就是将数据以<code>JSON</code>形式存储在<code>Redis</code>中</p>
-<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210621145610.png" style="zoom:80%;" />
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210621145610.png" style="zoom:80%;" /></p>
 </blockquote>
 <p>我们需要对<code>JackSon2JsonRedisSerialize</code>进行配置</p>
 <p><code>public void setObjectMapper(ObjectMapper objectMapper)</code> 设置<code>ObjectMapper</code></p>
@@ -289,16 +289,13 @@
 </blockquote>
 <p>这里我们通过<code>ObjectMapper</code>设置序列化的域和序列化输入的类型</p>
 <ul>
-<li>
-<p><code>setVisibility(forMethod,visibility)</code>：指定要序列化的域</p>
+<li><p><code>setVisibility(forMethod,visibility)</code>：指定要序列化的域</p>
 <ul>
 <li><code>forMethod</code>： 受影响的属性（<code>filed/getter/setter</code>）</li>
 <li><code>visibility</code>：属性最小设定（<code>PUBLIC/ANY/PRIVATE</code>）</li>
 <li><code>om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY)</code>即为设定序列化所有访问权限的所有属性</li>
-</ul>
-</li>
-<li>
-<p><code>activateDefaultTyping(PolymorphicTypeValidator,ObjectMapper.DefaultTyping)</code>：作用是序列化的时候将对象全类名一起保存下来，方便反序列化</p>
+</ul></li>
+<li><p><code>activateDefaultTyping(PolymorphicTypeValidator,ObjectMapper.DefaultTyping)</code>：作用是序列化的时候将对象全类名一起保存下来，方便反序列化</p>
 <blockquote>
 <p>网上很多教程都是使用<code>objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL)</code></p>
 <p>这是旧版已被抛弃的做法，说是有重大安全隐患</p>
@@ -306,8 +303,7 @@
 <ul>
 <li><code>PolymorphicTypeValidator</code>：多态验证器，主要用于获取类名</li>
 <li><code>ObjectMapper.DefaultTyping</code>：序列化默认类型，<code>NON_FINAL</code>非<code>final</code>对象</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p><code>jackson2JsonRedisSerializer</code>设置完毕之后只需要对<code>redistemplate</code>的键值对分别进行序列化设置即可</p>
 <p>由于我自定义为<code>Redistemplate&lt;String,Object&gt;</code>，所以对<code>KEY</code>还是使用<code>StringRedisSerializer</code>，对<code>VALUE</code>使用我们定义的<code>jackson2JsonRedisSerializer</code></p>
@@ -315,18 +311,18 @@
 <p>这样我们对于<code>&lt;String, Object&gt;</code>键值对的<code>RedisTemplate</code>便设置完毕，接下来看看简单的操作和结果</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> RedisTemplate&lt;String, Object&gt; redisTemplate;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> CustomerService customerService;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 添加&lt;NAME,CUSTOMER&gt;的数据</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> name</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/add"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Customer <span class="title">addCustomer</span><span class="params">(@RequestParam(<span class="string">"name"</span>)</span>String name)</span>&#123;</span><br><span class="line">    Customer customer = customerService.getByName(name);</span><br><span class="line">    redisTemplate.opsForValue().set(name,customer);</span><br><span class="line">    <span class="keyword">return</span> customer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这里我们首先获取传入的<code>name</code>参数，然后调用<code>service</code>中方法获取<code>Customer</code>对象，之后将<code>name</code>为<code>KEY</code>，<code>Customer</code>对象为<code>VALUE</code>存入<code>redis</code>中</p>
-<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210621155021.png" style="zoom:80%;" />
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210621155021.png" style="zoom:80%;" /></p>
 <p>可以看到存储成功</p>
 <blockquote>
 <p>这里使用的是<code>RDM</code>工具连接<code>redis</code>进行可视化管理</p>
 </blockquote>
 <p><code>redisTemplate.opsForValue().set(key,value)</code>：为<code>springboot</code>对<code>redis</code>相关操作的封装</p>
-<p>​	<code>opsForValue</code>即为对字符串的操作，</p>
-<p>​	<code>set(key,value)</code> 向数据库总添加数据</p>
+<p>​ <code>opsForValue</code>即为对字符串的操作，</p>
+<p>​ <code>set(key,value)</code> 向数据库总添加数据</p>
 <blockquote>
 <p>具体原生<code>redis</code>操作指南可以见<a href="http://doc.redisfans.com/" target="_blank" rel="noopener">这个链接</a>，写的很全面</p>
 </blockquote>
-<h4 id="Spring-Cache">Spring Cache</h4>
+<h4 id="spring-cache">Spring Cache</h4>
 <p><code>spring cache</code>其实就是一个使用<code>AOP</code>思想，实现了基于注解的缓存功能</p>
 <p>只需要在需要进行缓存的方法上加上<code>@Cacheable()</code>等注解即可完成注解</p>
 <h5 id="配置">配置</h5>
@@ -338,66 +334,60 @@
 <p>我们主要的任务便是定义自己的<code>cacheManager</code></p>
 <p><code>cacheManager</code> ：顾名思义，即对缓存进行一些管理配置</p>
 <p>构建<code>cacheManager</code>有两种方式：</p>
-<ol>
+<ol type="1">
 <li><code>new RedisCacheManager(redisCacheWriter,redisCacheConfig)</code>：构造器构建，传入一个缓存的<code>writer</code>对象和一个缓存的配置对象</li>
 <li><code>RedisCacheManager.builder(redisConnectionFactory).cacheDefaults(defaultCacheConfig).transactionAware().build()</code>：调用<code>.builder().build()</code>方法构建，并可以对属性赋值</li>
 </ol>
 <p>这里有两个概念</p>
-<ol>
+<ol type="1">
 <li><code>redisCacheWriter</code>即缓存写对象，可以通过<code>nonLockingRedisCacheWriter()</code>和<code>lockingRedisCacaheWriter</code>构建，分别对应有锁写和无锁写</li>
 <li><code>defaultCacheConfig</code> 缓存配置对象，配置缓存一些属性，例如设置缓存的序列化方和缓存过期时间等等</li>
 </ol>
 <p>通过对构建和设置这两个对象即可完成对<code>cacheManager</code>的配置</p>
-<h5 id="Cacheable"><code>@Cacheable</code></h5>
+<h5 id="cacheable"><code>@Cacheable</code></h5>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Cacheable</span>(cacheNames = <span class="string">"customer"</span>,key = <span class="string">"#id"</span> )</span><br><span class="line"><span class="function"><span class="keyword">public</span> Customer <span class="title">getCustomerById</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">    log.info(<span class="string">"===========调用方法============"</span>);</span><br><span class="line">    <span class="keyword">return</span> baseMapper.selectById(id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>我们通过添加<code>@Cacheable</code>标明将该放回返回值放入缓存中</p>
 <p>他有几个属性：</p>
 <ul>
 <li><code>cacheNames/value</code> ：指定缓存组件的名字，可以简单理解为存在数据库中的表名，但是不准确</li>
-<li><code>key</code> ：缓存数据使用的<code>key</code>，可以用它来指定，<code>key=&quot;#param&quot;</code>可以指定参数值，也可以是其他属性</li>
+<li><code>key</code> ：缓存数据使用的<code>key</code>，可以用它来指定，<code>key="#param"</code>可以指定参数值，也可以是其他属性</li>
 <li><code>keyGenerator</code> ：<code>key</code>的生成器，用来自定义<code>key</code>的生成，与<code>key</code>为二选一，不能兼存</li>
-<li><code>condition</code>：设定指定情况下才缓存 <code>conditon=&quot;#id&gt;0&quot;</code></li>
-<li><code>unless</code>：否定缓存，当<code>unless</code>中条件为<code>true</code>时，方法返回值不会被缓存 <code>unless = &quot;result==null&quot;</code></li>
+<li><code>condition</code>：设定指定情况下才缓存 <code>conditon="#id&gt;0"</code></li>
+<li><code>unless</code>：否定缓存，当<code>unless</code>中条件为<code>true</code>时，方法返回值不会被缓存 <code>unless = "result==null"</code></li>
 <li><code>sync</code> ：是否使用异步模式</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Cacheable</span>(cacheNames = <span class="string">"customer"</span>,key = <span class="string">"#id"</span> )</span><br><span class="line"><span class="function"><span class="keyword">public</span> Customer <span class="title">getCustomerById</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">    log.info(<span class="string">"===========调用方法============"</span>);</span><br><span class="line">    <span class="keyword">return</span> baseMapper.selectById(id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>我们这里通过输出日志测试是否调用方法还是直接从缓存中拿值</p>
 <p>第一次请求：</p>
-<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210621175031.png" style="zoom:80%;" />
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210621175658.png" alt=""></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210621175031.png" style="zoom:80%;" /></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210621175658.png" /></p>
 <p>控制台显示第一次请求调用了方法</p>
-<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210621175217.png" style="zoom:80%;" />
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210621175217.png" style="zoom:80%;" /></p>
 <p><code>redis</code>中也成功添加了缓存</p>
 <p>第二次请求：</p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210621175725.png" alt=""></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210621175725.png" /></p>
 <p>可以发现这次并没有调用方法，而是直接到缓存中拿值</p>
-<h5 id="CachePut"><code>@CachePut</code></h5>
+<h5 id="cacheput"><code>@CachePut</code></h5>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  cacheput 即先调用方法，再更新缓存中数据</span></span><br><span class="line">    <span class="meta">@CachePut</span>(cacheNames = <span class="string">"customer"</span>,key = <span class="string">"#customer.id"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Customer <span class="title">updateCustomer</span><span class="params">(Customer customer)</span></span>&#123;</span><br><span class="line">        baseMapper.updateById(customer);</span><br><span class="line">        <span class="keyword">return</span> customer;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p><code>@CachePut</code>标明先调用方法，然后在缓存中更新数据</p>
 <p>属性与<code>@Cacheable</code>一样</p>
-<h5 id="CacheEvict"><code>@CacheEvict</code></h5>
+<h5 id="cacheevict"><code>@CacheEvict</code></h5>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CacheEvict</span>(cacheNames = <span class="string">"customer"</span>,key = <span class="string">"#id"</span> ,beforeInvocation = <span class="keyword">false</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">deleteById</span><span class="params">(Integer id)</span></span>&#123;        </span><br><span class="line">    <span class="keyword">return</span> baseMapper.deleteById(id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>@CacheEvict</code>标明以清除缓存</p>
 <p>属性：</p>
 <ul>
-<li>
-<p><code>key</code>：指定要删除的数据</p>
-</li>
-<li>
-<p><code>beforeInvocation</code> ：缓存的清除是否在方法执行之前执行,</p>
+<li><p><code>key</code>：指定要删除的数据</p></li>
+<li><p><code>beforeInvocation</code> ：缓存的清除是否在方法执行之前执行,</p>
 <ul>
 <li><code>true</code>表示在方法前删除，<code>false</code>表示在方法后删除，如果出现异常则不会清除（<code>true</code>情况下必然会删除）</li>
 <li>默认为<code>false</code></li>
+</ul></li>
+<li><p><code>allEntries</code> ：标明是否要清除所有的数据</p></li>
 </ul>
-</li>
-<li>
-<p><code>allEntries</code> ：标明是否要清除所有的数据</p>
-</li>
-</ul>
-<h5 id="Caching"><code>@Caching()</code></h5>
+<h5 id="caching"><code>@Caching()</code></h5>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Caching</span>(</span><br><span class="line">        cacheable = &#123;</span><br><span class="line">                <span class="meta">@Cacheable</span>(cacheNames = <span class="string">"customer"</span>,key = <span class="string">"#name"</span> )</span><br><span class="line">        &#125;,</span><br><span class="line">        put = &#123;</span><br><span class="line">                <span class="meta">@CachePut</span>(cacheNames = <span class="string">"customer"</span>,key = <span class="string">"#result.id"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Customer <span class="title">getByName</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">    QueryWrapper&lt;Customer&gt; queryWrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    queryWrapper.eq(<span class="string">"name"</span>,name);</span><br><span class="line">    <span class="keyword">return</span> baseMapper.getByName(queryWrapper);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>定义复杂的缓存规则，里面可以嵌套多个<code>@Cacheable,@CachePut,@CacheEvict</code></p>
-<h5 id="keyGenerator"><code>keyGenerator</code></h5>
+<h5 id="keygenerator"><code>keyGenerator</code></h5>
 <p>我们前面提到过可以通过自定义<code>keyGenerator</code>即可实现存入数据时<code>KEY</code>可以是我们期待的格式</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyKeyGenerator</span> <span class="keyword">implements</span> <span class="title">KeyGenerator</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    定义项目前缀</span></span><br><span class="line">    <span class="keyword">private</span> String prefix = <span class="string">"redis"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">generate</span><span class="params">(Object target, Method method, Object... objects)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span> sp =<span class="string">':'</span>;</span><br><span class="line">        StringBuilder stringBuilder = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        stringBuilder.append(prefix);</span><br><span class="line">        stringBuilder.append(sp);</span><br><span class="line"><span class="comment">//        类名</span></span><br><span class="line">        stringBuilder.append(target.getClass().getSimpleName());</span><br><span class="line">        stringBuilder.append(sp);</span><br><span class="line"><span class="comment">//        方法名</span></span><br><span class="line">        stringBuilder.append(method.getName());</span><br><span class="line">        stringBuilder.append(sp);</span><br><span class="line"><span class="comment">//        参数名</span></span><br><span class="line">        <span class="keyword">if</span>(objects.length&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(Object object: objects)&#123;</span><br><span class="line">                stringBuilder.append(object);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            stringBuilder.append(<span class="string">"0"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stringBuilder.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>我们通过实现<code>KeyGenerator</code>接口，实现<code>generate</code>方法定义<code>KEY</code>的生成规则</p>
@@ -406,7 +396,7 @@
 <p><code>objects</code>：参数名</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> MyKeyGenerator myKeyGenerator;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Cacheable</span>(cacheNames = <span class="string">"getall"</span>,keyGenerator = <span class="string">"myKeyGenerator"</span> )</span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Customer&gt; <span class="title">getAll</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> baseMapper.getAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这里简单定义一个方法，标明使用我们自定义的<code>myKeyGenerator</code>生成<code>KEY</code></p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210621180542.png" alt=""></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210621180542.png" /></p>
 <p>可以看到<code>redis</code>中存储的<code>KEY</code>按照逻辑生成</p>
 <h3 id="总结">总结</h3>
 <p>这里只是简单介绍了<code>redis</code>作为缓存在<code>springboot</code>中的使用，其实<code>redis</code>的用途还有很多，例如使用<code>redis</code>实现<code>session</code>共享等等。</p>
@@ -497,7 +487,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">SpringBoot整合Redis实现缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis"><span class="nav-number">1.0.1.</span> <span class="nav-text">Redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存"><span class="nav-number">1.0.2.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringBoot中的应用"><span class="nav-number">1.0.3.</span> <span class="nav-text">SpringBoot中的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mysql准备"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">Mysql准备</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Customer"><span class="nav-number">1.0.3.1.1.</span> <span class="nav-text">Customer</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis的简单使用"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">Redis的简单使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#pom-xml"><span class="nav-number">1.0.3.2.1.</span> <span class="nav-text">pom.xml</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#application-yml"><span class="nav-number">1.0.3.2.2.</span> <span class="nav-text">application.yml</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Redistemplate"><span class="nav-number">1.0.3.2.3.</span> <span class="nav-text">Redistemplate</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Cache"><span class="nav-number">1.0.3.3.</span> <span class="nav-text">Spring Cache</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#配置"><span class="nav-number">1.0.3.3.1.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cacheable"><span class="nav-number">1.0.3.3.2.</span> <span class="nav-text">@Cacheable</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CachePut"><span class="nav-number">1.0.3.3.3.</span> <span class="nav-text">@CachePut</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CacheEvict"><span class="nav-number">1.0.3.3.4.</span> <span class="nav-text">@CacheEvict</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Caching"><span class="nav-number">1.0.3.3.5.</span> <span class="nav-text">@Caching()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#keyGenerator"><span class="nav-number">1.0.3.3.6.</span> <span class="nav-text">keyGenerator</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.0.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#springboot整合redis实现缓存"><span class="nav-number">1.</span> <span class="nav-text">SpringBoot整合Redis实现缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#redis"><span class="nav-number">1.0.1.</span> <span class="nav-text">Redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存"><span class="nav-number">1.0.2.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#springboot中的应用"><span class="nav-number">1.0.3.</span> <span class="nav-text">SpringBoot中的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mysql准备"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">Mysql准备</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#customer"><span class="nav-number">1.0.3.1.1.</span> <span class="nav-text">Customer</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#redis的简单使用"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">Redis的简单使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#pom.xml"><span class="nav-number">1.0.3.2.1.</span> <span class="nav-text">pom.xml</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#application.yml"><span class="nav-number">1.0.3.2.2.</span> <span class="nav-text">application.yml</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#redistemplate"><span class="nav-number">1.0.3.2.3.</span> <span class="nav-text">Redistemplate</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#spring-cache"><span class="nav-number">1.0.3.3.</span> <span class="nav-text">Spring Cache</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#配置"><span class="nav-number">1.0.3.3.1.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#cacheable"><span class="nav-number">1.0.3.3.2.</span> <span class="nav-text">@Cacheable</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#cacheput"><span class="nav-number">1.0.3.3.3.</span> <span class="nav-text">@CachePut</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#cacheevict"><span class="nav-number">1.0.3.3.4.</span> <span class="nav-text">@CacheEvict</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#caching"><span class="nav-number">1.0.3.3.5.</span> <span class="nav-text">@Caching()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#keygenerator"><span class="nav-number">1.0.3.3.6.</span> <span class="nav-text">keyGenerator</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.0.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -513,20 +503,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

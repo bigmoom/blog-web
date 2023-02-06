@@ -163,6 +163,241 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2023/02/06/JAVA%E7%9F%A5%E8%AF%86%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Wanghui Cai">
+      <meta itemprop="description" content="一些零零散散的学习总结">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜鸡肥肥的私人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/02/06/JAVA%E7%9F%A5%E8%AF%86%E7%82%B9/" class="post-title-link" itemprop="url">JAVA知识点</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-02-06 15:16:53 / 修改时间：07:25:08" itemprop="dateCreated datePublished" datetime="2023-02-06T15:16:53Z">2023-02-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>240</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="java知识点">JAVA知识点</h1>
+<p>先建一个文档在这里，看到需要注意的<code>JAVA</code>的知识点就放在这里，等以后再整理</p>
+<h3 id="vector-和-arraylist-区别">Vector 和 ArrayList 区别</h3>
+<p>相同点：</p>
+<ol type="1">
+<li>继承了相同的父类实现了相同的接口</li>
+<li>底层都是数组实现的</li>
+<li>初始默认长度都是10</li>
+</ol>
+<p>不同点：</p>
+<ol type="1">
+<li><code>Vector</code>中<code>public</code>方法多数加了<code>synchronized</code>，线程安全，<code>ArrayList</code>没有</li>
+<li>扩容方式不同，<code>ArrayList</code>扩展后数组大小为原数组的1.5倍，<code>Vector</code>中多了<strong>扩展因子</strong>，当扩展因子大于0的时候，扩展后为原数组大小加上扩展因子大小，否则为原数组的两倍。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2023/02/06/%E6%A0%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Wanghui Cai">
+      <meta itemprop="description" content="一些零零散散的学习总结">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜鸡肥肥的私人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/02/06/%E6%A0%88/" class="post-title-link" itemprop="url">栈</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-02-06 15:03:35 / 修改时间：13:03:57" itemprop="dateCreated datePublished" datetime="2023-02-06T15:03:35Z">2023-02-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="栈">栈</h1>
+<h2 id="栈的基础知识">栈的基础知识</h2>
+<p>栈是一种非常常见的数据结构，他的核心特点就是<code>LIFO</code>，<strong>后进先出</strong>。</p>
+<p>对于栈，我们主要需要知道的是栈的三个主要函数（下面的栈我们使用<code>ArrayList</code>实现，所以对于容量为自动调整）</p>
+<ul>
+<li>PUSH：即入栈，我们在栈顶放入元素，栈顶标识符++</li>
+<li>POP：即出栈，我们取出栈顶元素，栈顶标识符--</li>
+<li>PEEK：获取栈顶元素但不出栈，栈顶标识符不变</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyStack</span>&lt;<span class="title">AnyType</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> topOfStack=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> ArrayList&lt;AnyType&gt; myStack= <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> AnyType <span class="title">push</span><span class="params">(AnyType x)</span></span>&#123;</span><br><span class="line">        myStack.add(x);</span><br><span class="line">        topOfStack++;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> AnyType <span class="title">pop</span><span class="params">()</span></span>&#123;</span><br><span class="line">        AnyType item = myStack.get(topOfStack);</span><br><span class="line">        myStack.remove(topOfStack--);</span><br><span class="line">        <span class="keyword">return</span> item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> AnyType <span class="title">peek</span><span class="params">()</span></span>&#123;</span><br><span class="line">        AnyType item = myStack.get(topOfStack);</span><br><span class="line">        <span class="keyword">return</span> item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> myStack.size()==<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="栈的应用">栈的应用</h2>
+<p>栈的应用其实主要就是<strong>后入先出</strong>的核心思想，当对于数据的存储顺序与使用顺序相反的时候即最后保存的数据最先使用，我们可以将这些数据存储到栈中</p>
+<h3 id="后缀逆波兰表达式">后缀（逆波兰）表达式</h3>
+<p>后缀表达式是一种算术表达式，他的操作符在操作数的后面，我们平时用的是中序表达式，即操作符在操作数中间。</p>
+<p>例如下面式子： <span class="math display">\[
+4.99+5.99+6.99*1.06
+\]</span> 我们自己肯定知道乘法的等级要高于加法，所以先算<span class="math inline">\(6.99*1.06\)</span>再加上前面的和，但是对于计算器或者计算机，没有括号的辅助，很有可能就是直接按照顺序进行计算，就会造成错误。但是我们来看后缀表达式 <span class="math display">\[
+4.99\space5.99\space+\space6.99\space1.06\space*\space+ 
+\]</span> 上面的表达式表示我们先<span class="math inline">\(4.99+5.99\)</span>计为<span class="math inline">\(A_1\)</span>，然后<span class="math inline">\(6.99*1.6\)</span>计为<span class="math inline">\(A_2\)</span>，最后再将<span class="math inline">\(A_1,A_2\)</span>相加</p>
+<p>使用后缀表达式，就已经表明了计算的顺序，无须借用括号来表明。</p>
+<p>计算后缀表达式的方法最容易的就是使用栈来操作：当遇到一个数，那么我们就把他入栈，遇到表达式弹出栈顶两个数进行计算，将结果入栈。</p>
+<h4 id="计算后缀表达式的值">计算后缀表达式的值</h4>
+<blockquote>
+<p>LeetCode 150</p>
+<p>给你一个字符串数组 <code>tokens</code> ，表示一个根据 <a href="https://baike.baidu.com/item/逆波兰式/128437" target="_blank" rel="noopener">逆波兰表示法</a> 表示的算术表达式。</p>
+<p>请你计算该表达式。返回一个表示表达式值的整数。</p>
+<p>输入：<code>tokens = ["2","1","+","3","*"]</code></p>
+<p>输出：<code>9</code></p>
+<p>解释：该算式转化为常见的中缀算术表达式为：<span class="math inline">\(((2 + 1) * 3) = 9\)</span></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">evalRPN</span><span class="params">(String[] tokens)</span> </span>&#123;</span><br><span class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">for</span>(String token:tokens)&#123;</span><br><span class="line">            <span class="keyword">switch</span>(token)&#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">"+"</span>:</span><br><span class="line">                <span class="keyword">case</span> <span class="string">"-"</span>:</span><br><span class="line">                <span class="keyword">case</span> <span class="string">"*"</span>:</span><br><span class="line">                <span class="keyword">case</span> <span class="string">"/"</span>:</span><br><span class="line">                    <span class="keyword">int</span> num1 = stack.pop();</span><br><span class="line">                    <span class="keyword">int</span> num2 = stack.pop();</span><br><span class="line">                    <span class="keyword">int</span> result = calculate(num2,num1,token);</span><br><span class="line">                    stack.push(result);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                    stack.push(Integer.parseInt(token));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stack.pop();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">calculate</span><span class="params">(<span class="keyword">int</span> num1,<span class="keyword">int</span> num2, String operator)</span></span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (operator)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"+"</span>:</span><br><span class="line">                <span class="keyword">return</span> num1+num2;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"-"</span>:</span><br><span class="line">                <span class="keyword">return</span> num1-num2;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"*"</span>:</span><br><span class="line">                <span class="keyword">return</span> num1*num2;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"/"</span>:</span><br><span class="line">                <span class="keyword">return</span> num1/num2;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="中缀转后缀表达式">中缀转后缀表达式</h4>
+<blockquote>
+<p>输入：<code>tokens = ["a","+","b","*","c","+","(","d","*","e","+","f",")","*","g"]</code></p>
+<p>输出：<code>abc*+de*f+g*+</code></p>
+</blockquote>
+<p>题目中中序表达式为 <span class="math display">\[
+a+b*c+(d*e+f)*g
+\]</span> 我们需要转换为 <span class="math display">\[
+abc*+de*f+g*+
+\]</span> 中序转后缀表达式的策略就是：</p>
+<ul>
+<li>操作数：直接输出</li>
+<li>操作符：对于操作符我们使用一个栈来存储操作符。当遇到左括号时，直接入栈，遇到右括号时，弹出栈顶所有操作符并输出直到遇到左括号，弹出左括号，左括号不输出。当遇到其他操作符时，弹出栈顶操作符并输出直到栈顶操作符优先级低于改操作符，但是遇到左括号停止。其中+-优先级较低，*/优先级较高</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">infix2Postfix</span><span class="params">(String[] tokens)</span> </span>&#123;</span><br><span class="line">        StringBuilder output = <span class="keyword">new</span> StringBuilder(tokens.length);</span><br><span class="line">        Stack&lt;String&gt; stack = <span class="keyword">new</span> Stack&lt;String&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (String token : tokens) &#123;</span><br><span class="line">            <span class="keyword">if</span> (token.matches(<span class="string">"\\w+"</span>)) &#123;</span><br><span class="line">                output.append(token);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(token.equals(<span class="string">"("</span>))&#123;</span><br><span class="line">                stack.push(token);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(token.equals(<span class="string">")"</span>))&#123;</span><br><span class="line">                <span class="keyword">while</span>(!stack.peek().equals(<span class="string">"("</span>))&#123;</span><br><span class="line">                    output.append(stack.pop());</span><br><span class="line">                &#125;</span><br><span class="line">                stack.pop();</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; getPriority(token)&lt;=getPriority(stack.peek()))&#123;</span><br><span class="line">                    output.append(stack.pop());</span><br><span class="line">                &#125;</span><br><span class="line">                stack.push(token);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty())&#123;</span><br><span class="line">            output.append(stack.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> output.toString();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getPriority</span><span class="params">(String operator)</span></span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (operator)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"+"</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"-"</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"*"</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"/"</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="小行星碰撞">小行星碰撞</h3>
+<blockquote>
+<p>LeetCode 735</p>
+<p>给定一个整数数组 <code>asteroids</code>，表示在同一行的小行星。</p>
+<p>对于数组中的每一个元素，其绝对值表示小行星的大小，正负表示小行星的移动方向（正表示向右移动，负表示向左移动）。每一颗小行星以相同的速度移动。</p>
+<p>找出碰撞后剩下的所有小行星。碰撞规则：两个行星相互碰撞，较小的行星会爆炸。如果两颗行星大小相同，则两颗行星都会爆炸。两颗移动方向相同的行星，永远不会发生碰撞。</p>
+<p>输入：<code>asteroids = [4,5,-6,4,8,-5]</code></p>
+<p>输出：<code>[-6,4,8]</code></p>
+</blockquote>
+<p>这道题乍一看比较新颖，但其实观察碰撞规律之后就可以发现非常简单。</p>
+<p>第一个行星<code>4</code>，不知道其他行星，先放到容器，看第二个行星<code>5</code>，跟第一个同向，所以同样也放到容器，第三个行星<code>-6</code>，方向与前面两个不同，所以先看上一个行星<code>5</code>，所以碰撞之后剩下<code>-6</code>，然后再看第一个行星<code>4</code>，也会碰撞，所以最后只剩下<code>-6</code>，依次类推。可以很明显发现符合栈的后入先出的特点。</p>
+<p>要注意的其实就是几个条件的判断，理清逻辑就很简单了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] asteroidCollision(<span class="keyword">int</span>[] asteroids) &#123;</span><br><span class="line">       Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">       <span class="comment">//List&lt;Integer&gt; result = new ArrayList&lt;&gt;();</span></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> asteroid : asteroids) &#123;</span><br><span class="line">           <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; stack.peek() &gt; <span class="number">0</span> &amp;&amp; stack.peek() &lt; -asteroid) &#123;</span><br><span class="line">               stack.pop();</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> (!stack.isEmpty() &amp;&amp; asteroid &lt; <span class="number">0</span> &amp;&amp; stack.peek() == -asteroid) &#123;</span><br><span class="line">               stack.pop();</span><br><span class="line">               <span class="keyword">continue</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (asteroid &gt; <span class="number">0</span> || stack.isEmpty() || stack.peek() &lt; <span class="number">0</span>) &#123;</span><br><span class="line">               stack.push(asteroid);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> stack.stream().mapToInt(i-&gt;i).toArray();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2023/02/03/%E6%95%B0%E7%BB%84%E5%92%8C%E9%93%BE%E8%A1%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -916,192 +1151,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2021/06/15/SpringBoot%E6%95%B4%E5%90%88springsecurity/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Wanghui Cai">
-      <meta itemprop="description" content="一些零零散散的学习总结">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="菜鸡肥肥的私人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/15/SpringBoot%E6%95%B4%E5%90%88springsecurity/" class="post-title-link" itemprop="url">SpringBoot整合springsecurity</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-14 22:12:44" itemprop="dateCreated datePublished" datetime="2021-06-14T22:12:44Z">2021-06-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-02 13:41:47" itemprop="dateModified" datetime="2023-02-02T13:41:47Z">2023-02-02</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="springboot整合springsecurity">Springboot整合springsecurity</h1>
-<h3 id="简介">简介</h3>
-<p>我们知道，<strong>登录认证</strong>和<strong>权限验证</strong>是现在每个涉及到用户登录的系统都不必不可缺的。</p>
-<p>本文会简单介绍登录认证和权限认证相关的知识，以及如何使用<code>springsecurity</code>框架实现相关功能。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/15/SpringBoot%E6%95%B4%E5%90%88springsecurity/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2021/06/15/SpringBoot%E6%95%B4%E5%90%88mybatis-plus/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Wanghui Cai">
-      <meta itemprop="description" content="一些零零散散的学习总结">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="菜鸡肥肥的私人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/15/SpringBoot%E6%95%B4%E5%90%88mybatis-plus/" class="post-title-link" itemprop="url">SpringBoot整合mybatis-plus</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-14 22:12:30" itemprop="dateCreated datePublished" datetime="2021-06-14T22:12:30Z">2021-06-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-02 13:41:06" itemprop="dateModified" datetime="2023-02-02T13:41:06Z">2023-02-02</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>14k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>13 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="springboot整合mybatis-plus">Springboot整合Mybatis-plus</h1>
-<h3 id="简介">简介</h3>
-<p><code>Mybatis-plus</code>是基于<code>mybatis</code>的纯粹的增强版，并没有修改<code>mybatis</code>任何功能，只是单纯的添加了一些非常方便的功能。</p>
-<ul>
-<li>类似<code>spring-data-jpa</code>，通过继承<code>BaseMapper</code>无须配置<code>xml</code>文件即可实现<code>CRUD</code>等操作</li>
-<li>通过分页插件实现物理分页查询</li>
-<li>通过继承<code>IService</code>和<code>ServiceImpl</code>实现例如批量更新等等操作</li>
-<li>通过条件构造器简化查询</li>
-<li>......</li>
-</ul>
-<p>总的来说就是简化了单表查询的操作，但是复杂的多表查询还是需要配置<code>mapper.xml</code>手动编写<code>sql</code>语句去实现。</p>
-<p><code>mybatis-plus</code>是国内的开源插件，<a href="https://mybatis.plus/guide/" target="_blank" rel="noopener">官网</a>对于功能写的非常详细，我这里只是简单介绍一下几个常用的简单功能。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/15/SpringBoot%E6%95%B4%E5%90%88mybatis-plus/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1174,7 +1223,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1187,7 +1236,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

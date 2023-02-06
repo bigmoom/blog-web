@@ -22,22 +22,20 @@
     var CONFIG = {"hostname":"www.caiwanghui.top","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="写于正式博客之前  创建自己私人博客的初心主要还是为了总结自己学的东西，不想再在Google里边那个keep一个一个找，实在是太麻烦了。 其次，就是感觉这样很吊，就当为了以后的社招提前做准备，毕竟私人博客写的好的话也是能加不少分的。 先写这么多，主要也是测试一下hexo的样式感觉一下:smile:">
+  <meta name="description" content="JAVA知识点 先建一个文档在这里，看到需要注意的JAVA的知识点就放在这里，等以后再整理 Vector 和 ArrayList 区别 相同点：  继承了相同的父类实现了相同的接口 底层都是数组实现的 初始默认长度都是10  不同点：  Vector中public方法多数加了synchronized，线程安全，ArrayList没有 扩容方式不同，ArrayList扩展后数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="First Blog">
-<meta property="og:url" content="http://www.caiwanghui.top/2020/03/09/First-Blog/index.html">
+<meta property="og:title" content="JAVA知识点">
+<meta property="og:url" content="http://www.caiwanghui.top/2023/02/06/JAVA%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
 <meta property="og:site_name" content="菜鸡肥肥的私人博客">
-<meta property="og:description" content="写于正式博客之前  创建自己私人博客的初心主要还是为了总结自己学的东西，不想再在Google里边那个keep一个一个找，实在是太麻烦了。 其次，就是感觉这样很吊，就当为了以后的社招提前做准备，毕竟私人博客写的好的话也是能加不少分的。 先写这么多，主要也是测试一下hexo的样式感觉一下:smile:">
+<meta property="og:description" content="JAVA知识点 先建一个文档在这里，看到需要注意的JAVA的知识点就放在这里，等以后再整理 Vector 和 ArrayList 区别 相同点：  继承了相同的父类实现了相同的接口 底层都是数组实现的 初始默认长度都是10  不同点：  Vector中public方法多数加了synchronized，线程安全，ArrayList没有 扩容方式不同，ArrayList扩展后数">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/202003/08/222646-188252.jpeg">
-<meta property="article:published_time" content="2020-03-08T19:21:07.000Z">
-<meta property="article:modified_time" content="2020-03-11T08:42:38.230Z">
+<meta property="article:published_time" content="2023-02-06T15:16:53.000Z">
+<meta property="article:modified_time" content="2023-02-06T07:25:08.816Z">
 <meta property="article:author" content="Wanghui Cai">
-<meta property="article:tag" content="闲谈">
+<meta property="article:tag" content="面试，JAVA">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/202003/08/222646-188252.jpeg">
 
-<link rel="canonical" href="http://www.caiwanghui.top/2020/03/09/First-Blog/">
+<link rel="canonical" href="http://www.caiwanghui.top/2023/02/06/JAVA%E7%9F%A5%E8%AF%86%E7%82%B9/">
 
 
 <script id="page-configurations">
@@ -49,7 +47,7 @@
   };
 </script>
 
-  <title>First Blog | 菜鸡肥肥的私人博客</title>
+  <title>JAVA知识点 | 菜鸡肥肥的私人博客</title>
   
 
 
@@ -168,7 +166,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2020/03/09/First-Blog/">
+    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2023/02/06/JAVA%E7%9F%A5%E8%AF%86%E7%82%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -181,7 +179,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          First Blog
+          JAVA知识点
         </h2>
 
         <div class="post-meta">
@@ -190,16 +188,19 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-03-08 19:21:07" itemprop="dateCreated datePublished" datetime="2020-03-08T19:21:07Z">2020-03-08</time>
+              <time title="创建时间：2023-02-06 15:16:53 / 修改时间：07:25:08" itemprop="dateCreated datePublished" datetime="2023-02-06T15:16:53Z">2023-02-06</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-11 08:42:38" itemprop="dateModified" datetime="2020-03-11T08:42:38Z">2020-03-11</time>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
               </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -207,7 +208,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>191</span>
+              <span>240</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -226,17 +227,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="写于正式博客之前">写于正式博客之前</h1>
+        <h1 id="java知识点">JAVA知识点</h1>
+<p>先建一个文档在这里，看到需要注意的<code>JAVA</code>的知识点就放在这里，等以后再整理</p>
+<h3 id="vector-和-arraylist-区别">Vector 和 ArrayList 区别</h3>
+<p>相同点：</p>
 <ol type="1">
-<li>创建自己私人博客的初心主要还是为了总结自己学的东西，不想再在<code>Google</code>里边那个<code>keep</code>一个一个找，实在是太麻烦了。</li>
-<li>其次，就是感觉这样很吊，就当为了以后的社招提前做准备，毕竟私人博客写的好的话也是能加不少分的。</li>
-<li>先写这么多，主要也是测试一下<code>hexo</code>的样式感觉一下:smile:</li>
+<li>继承了相同的父类实现了相同的接口</li>
+<li>底层都是数组实现的</li>
+<li>初始默认长度都是10</li>
 </ol>
-<a id="more"></a>
-<figure>
-<img src="http://typora-cwh.oss-cn-hangzhou.aliyuncs.com/typora/202003/08/222646-188252.jpeg" alt="023b5bb5c9ea15cee5c77f18372c60f63a87b2ac" /><figcaption aria-hidden="true">023b5bb5c9ea15cee5c77f18372c60f63a87b2ac</figcaption>
-</figure>
-<p>​ 换头怪镇楼</p>
+<p>不同点：</p>
+<ol type="1">
+<li><code>Vector</code>中<code>public</code>方法多数加了<code>synchronized</code>，线程安全，<code>ArrayList</code>没有</li>
+<li>扩容方式不同，<code>ArrayList</code>扩展后数组大小为原数组的1.5倍，<code>Vector</code>中多了<strong>扩展因子</strong>，当扩展因子大于0的时候，扩展后为原数组大小加上扩展因子大小，否则为原数组的两倍。</li>
+</ol>
 
     </div>
 
@@ -246,7 +250,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E9%97%B2%E8%B0%88/" rel="tag"># 闲谈</a>
+              <a href="/tags/%E9%9D%A2%E8%AF%95%EF%BC%8CJAVA/" rel="tag"># 面试，JAVA</a>
           </div>
 
         
@@ -254,11 +258,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2020/03/09/Markdown-%E7%9B%B8%E5%85%B3%E8%AF%AD%E6%B3%95/" rel="next" title="Markdown常用操作">
-      Markdown常用操作 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/02/06/%E6%A0%88/" rel="prev" title="栈">
+      <i class="fa fa-chevron-left"></i> 栈
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -318,7 +322,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#写于正式博客之前"><span class="nav-number">1.</span> <span class="nav-text">写于正式博客之前</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#java知识点"><span class="nav-number">1.</span> <span class="nav-text">JAVA知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vector-和-arraylist-区别"><span class="nav-number">1.0.1.</span> <span class="nav-text">Vector 和 ArrayList 区别</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

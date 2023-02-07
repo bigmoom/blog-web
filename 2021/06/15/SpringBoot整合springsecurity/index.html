@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"www.caiwanghui.top","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Springboot整合springsecurity 简介 我们知道，登录认证和权限验证是现在每个涉及到用户登录的系统都不必不可缺的。 本文会简单介绍登录认证和权限认证相关的知识，以及如何使用springsecurity框架实现相关功能。">
+  <meta name="description" content="Springboot整合springsecurity  简介 我们知道，登录认证和权限验证是现在每个涉及到用户登录的系统都不必不可缺的。 本文会简单介绍登录认证和权限认证相关的知识，以及如何使用springsecurity框架实现相关功能。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot整合springsecurity">
 <meta property="og:url" content="http://www.caiwanghui.top/2021/06/15/SpringBoot%E6%95%B4%E5%90%88springsecurity/index.html">
 <meta property="og:site_name" content="菜鸡肥肥的私人博客">
-<meta property="og:description" content="Springboot整合springsecurity 简介 我们知道，登录认证和权限验证是现在每个涉及到用户登录的系统都不必不可缺的。 本文会简单介绍登录认证和权限认证相关的知识，以及如何使用springsecurity框架实现相关功能。">
+<meta property="og:description" content="Springboot整合springsecurity  简介 我们知道，登录认证和权限验证是现在每个涉及到用户登录的系统都不必不可缺的。 本文会简单介绍登录认证和权限认证相关的知识，以及如何使用springsecurity框架实现相关功能。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210611133943.png">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210611145109.png">
@@ -229,22 +229,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="springboot整合springsecurity">Springboot整合springsecurity</h1>
-<h3 id="简介">简介</h3>
+        <h1 id="springboot整合springsecurity"><a class="markdownIt-Anchor" href="#springboot整合springsecurity"></a> Springboot整合springsecurity</h1>
+<h3 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介</h3>
 <p>我们知道，<strong>登录认证</strong>和<strong>权限验证</strong>是现在每个涉及到用户登录的系统都不必不可缺的。</p>
 <p>本文会简单介绍登录认证和权限认证相关的知识，以及如何使用<code>springsecurity</code>框架实现相关功能。</p>
 <a id="more"></a>
-<h3 id="基础知识">基础知识</h3>
-<h4 id="登录认证">登录认证</h4>
+<h3 id="基础知识"><a class="markdownIt-Anchor" href="#基础知识"></a> 基础知识</h3>
+<h4 id="登录认证"><a class="markdownIt-Anchor" href="#登录认证"></a> 登录认证</h4>
 <p>登录认证的概念非常简单，主要是处理两个问题，<strong>登录密码校验</strong>和<strong>验证登录状态</strong></p>
-<h5 id="登录密码校验">登录密码校验</h5>
+<h5 id="登录密码校验"><a class="markdownIt-Anchor" href="#登录密码校验"></a> 登录密码校验</h5>
 <p>系统一般都有登录界面，用户在登录界面输入用户名和登录密码。</p>
 <p>那么我们要做的就是根据用户名，去用户数据库中查询到用户的密码，然后将数据库中的密码与用户输入的密码进行比对。如果相同，那么登录成功，如果不同，则提示账号密码错误。</p>
-<h5 id="认证登录状态">认证登录状态</h5>
+<h5 id="认证登录状态"><a class="markdownIt-Anchor" href="#认证登录状态"></a> 认证登录状态</h5>
 <p>我们要知道<code>HTTP</code>请求是一个<strong>无状态</strong>协议，即每次的请求都是相互独立的。服务器不会知晓你之前的行为，只会看到你当前的请求。</p>
 <p>所以我们需要一种机制能够将用户的登录状态保存下来，即<strong>凭证</strong>。用户登录之后，每次发送请求的同时携带该凭证，那么服务器就可以通过这个凭证认证你的登录状态。</p>
 <p>现在最常用的便是使用<code>Session</code>，<code>Token</code>，<code>Cookie</code>携带凭证。</p>
-<h6 id="session">Session</h6>
+<h6 id="session"><a class="markdownIt-Anchor" href="#session"></a> Session</h6>
 <p><code>session</code>即会话，用户访问服务器是便是与服务器产生了一次<code>session</code>。服务器为了记住该用户，则在服务器上使用<code>session</code>存储这个用户的信息。</p>
 <p><code>session</code>不会随着浏览器的关闭而消失，他具有可定义失效日期，失效后服务器便认为与客户端断开联系，并删除<code>session</code>以节约空间。</p>
 <p><code>session</code>的缺点很明显，就是会占用服务器的存储空间。当服务器的访问较少时，<code>session</code>还是可行的，但是当有大量的访问时，便会占用服务器的负载和性能。</p>
@@ -252,17 +252,17 @@
 <blockquote>
 <p>当然我们可以使用<code>springsession</code>实现分布式会话管理，实现<code>session</code>共享功能。</p>
 </blockquote>
-<h6 id="cookie">Cookie</h6>
+<h6 id="cookie"><a class="markdownIt-Anchor" href="#cookie"></a> Cookie</h6>
 <p>为了解决<code>session</code>保存在服务器上的问题，<code>cookie</code>同样由服务器生成（与<code>session</code>一样，生成的是<code>session ID</code>），但是交由浏览器保存在客户端本地，以<code>key-value</code>形式存储用户信息。</p>
 <p>其实就是写在客户端的一段<code>txt</code>文件，里面包括了你的登录信息，这样下次登录时就会自动调用<code>cookie</code>登录。</p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210611133943.png" /></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210611133943.png" alt="" /></p>
 <p>这就是我使用<code>Chrome</code>浏览器中<code>github</code>上的<code>cookies</code></p>
 <blockquote>
 <p><code>name</code>（名字）+<code>value</code>（值）+<code>Domain</code>（域名）+<code>Path</code>（路径）+<code>Expires</code>（过期时间）+<code>Size</code>（大小）</p>
 </blockquote>
 <p><code>cookie</code>相较<code>session</code>对于服务器更加友好，但是由于存储在客户端，容易被修改，所以非常不安全</p>
 <p>此外，<code>cookie</code>只能保存少量数据，而且是基于使用的浏览器而不同的，不同浏览器访问相同网页使用的<code>cookie</code>都是不同的。</p>
-<h6 id="token">Token</h6>
+<h6 id="token"><a class="markdownIt-Anchor" href="#token"></a> Token</h6>
 <p><code>token</code>是目前较为主流的一种凭证，他的基本思想便是提供一个加密和解密的功能</p>
 <p>用户登录之后，根据一段数据，可以是用户名或者其他数据，加密成一段字符串，并返回给客户端。客户端脚本会将<code>token</code>储存起来，可以是存储到<code>cookie</code>也开始是<code>localStorage</code></p>
 <p>之后用户再次访问该域名时，便会将<code>token</code>放到 <code>Authorization header</code>中，此时服务器可以是对该<code>token</code>进行解密或者对数据进行再次加密，检查是否匹配。若解密成功或者匹配成功即实现登陆认证。</p>
@@ -271,7 +271,7 @@
 <p>而<code>token</code>和他们两个不同的是，<code>token</code>是无状态的，他不需要依赖<code>session</code>，即服务器不需要保存对<code>token</code>的记录，服务器只需要验证他的有效性即可。</p>
 <p>此外，<code>session</code>和<code>cookie</code>很关键的问题就是跨域问题，因为产生的<code>session id</code>是依赖<code>session</code>的，所以不同<code>session</code>将导致登录认证失败。而<code>token</code>由于不依赖<code>session</code>所以完全可以实现<code>CORS(跨域资源共享)</code></p>
 </blockquote>
-<h4 id="权限验证">权限验证</h4>
+<h4 id="权限验证"><a class="markdownIt-Anchor" href="#权限验证"></a> 权限验证</h4>
 <p>登录认证是对用户身份的认证，而权限认证则是在用户认证之后，对于该用户是否具有访问该接口或者执行该功能的权限的验证。</p>
 <p>例如对于一个用户管理的系统，管理员具有对用户的<code>CRUD</code>的操作，而普通用户只具有查看的操作。所以当客户端发送请求的时候，我们就要验证该用户是否具有访问当前权限资源的权限。</p>
 <p>往往我们将权限实现为权限资源，即对应的访问<code>url</code>（<code>/user/add</code>）和接口的请求<code>url</code>（<code>POST:/user/add</code>）</p>
@@ -283,27 +283,33 @@
 <p>过滤器</p>
 <p>过滤器是对传入<code>servlet</code>之前的<code>request</code>或者之后的<code>response</code>进行业务逻辑处理，例如过滤掉危险字符等等。</p>
 </blockquote>
-<h3 id="springsecurity">SpringSecurity</h3>
+<h3 id="springsecurity"><a class="markdownIt-Anchor" href="#springsecurity"></a> SpringSecurity</h3>
 <p><code>springboot</code>这类安全框架对于<code>web</code>系统的支持其实就是提供<strong>基于一个个过滤组成的过滤器链</strong></p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210611145109.png" style="zoom: 67%;" /></p>
+<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20210611145109.png" style="zoom: 67%;" />
 <p>我们通过过滤器链中的过滤器完成相应的类似<strong>登录认证</strong>和<strong>权限验证</strong>的功能。</p>
 <p><code>springsecurity</code>的具体操作便是在过滤器链中添加一个<code>FilterChainProxy</code>过滤器，这个代理过滤器会为服务器创建一套<code>springsecurity</code>自定义的过滤器链。</p>
 <p>这样便会启用<code>springsecurity</code>默认的一些过滤器，类似<code>UsernamePasswordAuthenticationFilter</code>负责登录认证，<code>FilterSecurityInterceptor</code>负责权限授权。</p>
-<h4 id="登录认证-1">登录认证</h4>
+<h4 id="登录认证-2"><a class="markdownIt-Anchor" href="#登录认证-2"></a> 登录认证</h4>
 <p>首先我们先介绍几个概念</p>
 <hr />
 <p><code>Authentication</code> ：<code>springsecurity</code>存储认证信息的组件，其中存储内容就是用户认证信息：</p>
-<p>:bell:<code>Principal</code> 用户信息，没有认证时一般是用户名，认证后一般是用户对象。</p>
-<p>:bell:<code>Credentials</code>用户凭证</p>
-<p>:bell:<code>Authorities</code>用户权限</p>
+<p>🔔<code>Principal</code> 用户信息，没有认证时一般是用户名，认证后一般是用户对象。</p>
+<p>🔔<code>Credentials</code>用户凭证</p>
+<p>🔔<code>Authorities</code>用户权限</p>
 <p><code>SecurityContext</code>上下文对象，用来获取<code>Authentication</code></p>
 <p><code>SecurityContextHolder</code>上下文管理对象，用来在程序任何地方获取<code>SecurityContext</code></p>
 <hr />
 <p>了解了这几个概念之后就很好理解<code>springsecurity</code>的认证流程了：</p>
 <ul>
-<li><p>初次登录验证（验证密码是否相同）</p></li>
-<li><p>登录之后设置<code>authentication</code>，将其放入上下文中，代表该用户已登录。</p></li>
-<li><p>之后发出其他请求时，如果用户上下文中存在<code>authentication</code>即代表已登录。</p></li>
+<li>
+<p>初次登录验证（验证密码是否相同）</p>
+</li>
+<li>
+<p>登录之后设置<code>authentication</code>，将其放入上下文中，代表该用户已登录。</p>
+</li>
+<li>
+<p>之后发出其他请求时，如果用户上下文中存在<code>authentication</code>即代表已登录。</p>
+</li>
 </ul>
 <p>了解了认证流程之后，我们具体来看下<code>springsecurity</code>是如何完成认证的：</p>
 <p><code>spring security</code>使用<code>AuthenticationManager</code>组件进行登录认证，其校验逻辑非常简单：</p>
@@ -403,7 +409,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#springboot整合springsecurity"><span class="nav-number">1.</span> <span class="nav-text">Springboot整合springsecurity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.0.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础知识"><span class="nav-number">1.0.2.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#登录认证"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">登录认证</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#登录密码校验"><span class="nav-number">1.0.2.1.1.</span> <span class="nav-text">登录密码校验</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#认证登录状态"><span class="nav-number">1.0.2.1.2.</span> <span class="nav-text">认证登录状态</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#session"><span class="nav-number">1.0.2.1.2.1.</span> <span class="nav-text">Session</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#cookie"><span class="nav-number">1.0.2.1.2.2.</span> <span class="nav-text">Cookie</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#token"><span class="nav-number">1.0.2.1.2.3.</span> <span class="nav-text">Token</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#权限验证"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">权限验证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#springsecurity"><span class="nav-number">1.0.3.</span> <span class="nav-text">SpringSecurity</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#登录认证-1"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">登录认证</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#springboot整合springsecurity"><span class="nav-number">1.</span> <span class="nav-text"> Springboot整合springsecurity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.0.1.</span> <span class="nav-text"> 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础知识"><span class="nav-number">1.0.2.</span> <span class="nav-text"> 基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#登录认证"><span class="nav-number">1.0.2.1.</span> <span class="nav-text"> 登录认证</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#登录密码校验"><span class="nav-number">1.0.2.1.1.</span> <span class="nav-text"> 登录密码校验</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#认证登录状态"><span class="nav-number">1.0.2.1.2.</span> <span class="nav-text"> 认证登录状态</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#session"><span class="nav-number">1.0.2.1.2.1.</span> <span class="nav-text"> Session</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#cookie"><span class="nav-number">1.0.2.1.2.2.</span> <span class="nav-text"> Cookie</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#token"><span class="nav-number">1.0.2.1.2.3.</span> <span class="nav-text"> Token</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#权限验证"><span class="nav-number">1.0.2.2.</span> <span class="nav-text"> 权限验证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#springsecurity"><span class="nav-number">1.0.3.</span> <span class="nav-text"> SpringSecurity</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#登录认证-2"><span class="nav-number">1.0.3.1.</span> <span class="nav-text"> 登录认证</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -419,7 +425,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

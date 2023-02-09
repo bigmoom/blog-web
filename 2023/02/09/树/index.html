@@ -22,20 +22,23 @@
     var CONFIG = {"hostname":"www.caiwanghui.top","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="JAVA知识点 先建一个文档在这里，看到需要注意的JAVA的知识点就放在这里，等以后再整理 Vector 和 ArrayList 区别 相同点：  继承了相同的父类实现了相同的接口 底层都是数组实现的 初始默认长度都是10  不同点：  Vector中public方法多数加了synchronized，线程安全，ArrayList没有 扩容方式不同，ArrayList扩展后数">
+  <meta name="description" content="树 树的基础知识 树是一种非常常见也非常重要的数据结构，下图所示就是一个普通的树：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JAVA知识点">
-<meta property="og:url" content="http://www.caiwanghui.top/2023/02/06/JAVA%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
+<meta property="og:title" content="树">
+<meta property="og:url" content="http://www.caiwanghui.top/2023/02/09/%E6%A0%91/index.html">
 <meta property="og:site_name" content="菜鸡肥肥的私人博客">
-<meta property="og:description" content="JAVA知识点 先建一个文档在这里，看到需要注意的JAVA的知识点就放在这里，等以后再整理 Vector 和 ArrayList 区别 相同点：  继承了相同的父类实现了相同的接口 底层都是数组实现的 初始默认长度都是10  不同点：  Vector中public方法多数加了synchronized，线程安全，ArrayList没有 扩容方式不同，ArrayList扩展后数">
+<meta property="og:description" content="树 树的基础知识 树是一种非常常见也非常重要的数据结构，下图所示就是一个普通的树：">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-02-06T15:16:53.000Z">
-<meta property="article:modified_time" content="2023-02-06T07:25:08.816Z">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230209161254.png">
+<meta property="article:published_time" content="2023-02-09T15:23:11.000Z">
+<meta property="article:modified_time" content="2023-02-09T09:18:03.023Z">
 <meta property="article:author" content="Wanghui Cai">
-<meta property="article:tag" content="面试，JAVA">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230209161254.png">
 
-<link rel="canonical" href="http://www.caiwanghui.top/2023/02/06/JAVA%E7%9F%A5%E8%AF%86%E7%82%B9/">
+<link rel="canonical" href="http://www.caiwanghui.top/2023/02/09/%E6%A0%91/">
 
 
 <script id="page-configurations">
@@ -47,7 +50,7 @@
   };
 </script>
 
-  <title>JAVA知识点 | 菜鸡肥肥的私人博客</title>
+  <title>树 | 菜鸡肥肥的私人博客</title>
   
 
 
@@ -166,7 +169,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2023/02/06/JAVA%E7%9F%A5%E8%AF%86%E7%82%B9/">
+    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2023/02/09/%E6%A0%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -179,7 +182,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          JAVA知识点
+          树
         </h2>
 
         <div class="post-meta">
@@ -190,7 +193,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-02-06 15:16:53 / 修改时间：07:25:08" itemprop="dateCreated datePublished" datetime="2023-02-06T15:16:53Z">2023-02-06</time>
+              <time title="创建时间：2023-02-09 15:23:11 / 修改时间：09:18:03" itemprop="dateCreated datePublished" datetime="2023-02-09T15:23:11Z">2023-02-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -208,7 +211,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>240</span>
+              <span>1.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -227,20 +230,48 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="java知识点">JAVA知识点</h1>
-<p>先建一个文档在这里，看到需要注意的<code>JAVA</code>的知识点就放在这里，等以后再整理</p>
-<h3 id="vector-和-arraylist-区别">Vector 和 ArrayList 区别</h3>
-<p>相同点：</p>
-<ol type="1">
-<li>继承了相同的父类实现了相同的接口</li>
-<li>底层都是数组实现的</li>
-<li>初始默认长度都是10</li>
-</ol>
-<p>不同点：</p>
-<ol type="1">
-<li><code>Vector</code>中<code>public</code>方法多数加了<code>synchronized</code>，线程安全，<code>ArrayList</code>没有</li>
-<li>扩容方式不同，<code>ArrayList</code>扩展后数组大小为原数组的1.5倍，<code>Vector</code>中多了<strong>扩展因子</strong>，当扩展因子大于0的时候，扩展后为原数组大小加上扩展因子大小，否则为原数组的两倍。</li>
-</ol>
+        <h1 id="树">树</h1>
+<h2 id="树的基础知识">树的基础知识</h2>
+<p>树是一种非常常见也非常重要的数据结构，下图所示就是一个普通的树：</p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230209161254.png" style="zoom:67%;" /></p>
+<a id="more"></a>
+<h3 id="树的结点">树的结点：</h3>
+<ul>
+<li>结点：使用树结构存储的每一个数据元素都被称为”结点“，例如图中<code>A</code>就是该树的一个结点</li>
+<li>父结点（双亲结点）：上图所示，<code>A</code>是<code>B,C,D</code>的父结点，<code>B</code>是<code>E,F</code>的结点</li>
+<li>子结点：有父结点就必然有子结点，相应的<code>B,C,D</code>都是<code>A</code>的子结点</li>
+<li>兄弟结点：具有相同父结点的子结点互为兄弟结点</li>
+<li>根结点：树中没有父结点的那个结点就是根结点，可以说是树的起点</li>
+<li>叶子结点：没有任何子结点的结点，例如<code>K,L,F,G,M,I,J</code>都是叶子结点</li>
+</ul>
+<h3 id="子树和空树">子树和空树：</h3>
+<ul>
+<li>子树：例如上图由<code>B,E,F,K,L</code>构成的以<code>B</code>结点为根结点的树就是原树的一个子树</li>
+<li>空树：没有结点的树</li>
+</ul>
+<h3 id="结点的度和层次">结点的度和层次</h3>
+<ul>
+<li>度：对于一个结点，有多少分支称为结点的度，例如结点<code>A</code>的度为3，一棵树的度为树中所有结点的最大度</li>
+<li>层次：树根所在层为第一层，根的孩子结点所在层为第二层，依次类推</li>
+</ul>
+<h3 id="深度和高度">深度和高度</h3>
+<ul>
+<li>深度：对于任意结点<code>n</code>,<code>n</code>的深度为从根到<code>n</code>的唯一路径长，根的深度为0；</li>
+<li>高度：对于任意节点<code>n</code>,<code>n</code>的高度为从<code>n</code>到一片树叶的最长路径长，所有树叶的高度为0；</li>
+</ul>
+<h3 id="有序树和无序树">有序树和无序树</h3>
+<p>树中每个结点的子结点谁在左边谁在右边有明确规定的称为有序树，否则为无序树，例如二叉搜索树就是有序树</p>
+<h3 id="森林">森林</h3>
+<p>由<span class="math inline">\(m(m&gt;=0)\)</span>个互不相交的树组成的集合为森林，例如图中由<code>B,C,D</code>为根结点的三棵子树组成的集合便是森林。所以我们可以说一棵树是由根结点与森林组成</p>
+<h2 id="树的应用">树的应用</h2>
+<h3 id="二叉树的深度优先算法">二叉树的深度优先算法</h3>
+<p>二叉树是一种非常典型的具有递归性质的数据结构。因为二叉树的根结点可能具有子结点，而子结点又是对应子树的根结点，它也可能有自己的子结点。二叉树的深度优先算法便是使用二叉树的递归性质。</p>
+<h4 id="中序遍历">中序遍历</h4>
+<p>中序遍历的顺序是先遍历二叉树的左子树，再遍历二叉树的根结点，最后遍历二叉树的右子树。因此中序遍历可以直接使用递归实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">inorderTraversalByRecursion</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">    List&lt;Integer&gt; nodes = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    dfs(root,nodes);</span><br><span class="line">    <span class="keyword">return</span> nodes;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode root,List&lt;Integer&gt; nodes)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        dfs(root.left,nodes);</span><br><span class="line">        nodes.add(root.val);</span><br><span class="line">        dfs(root.right,nodes);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是递归会存在局限性，即如果二叉树的深度太大时，递归的代码可能会导致调用栈溢出，所以我们这里使用栈进行调整。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">inorderTraversalByStack</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">    List&lt;Integer&gt; nodes = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    TreeNode cur = root;</span><br><span class="line">    <span class="keyword">while</span> (cur!=<span class="keyword">null</span> || !stack.isEmpty())&#123;</span><br><span class="line">        <span class="keyword">while</span>(cur!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            stack.push(cur);</span><br><span class="line">            cur = cur.left;</span><br><span class="line">        &#125;</span><br><span class="line">        cur = stack.pop();</span><br><span class="line">        nodes.add(cur.val);</span><br><span class="line">        cur = cur.right;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> nodes;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>cur</code> 表示当前结点，因为是中序遍历，所以遍历左结点并压入栈，当到达最左端时开始出栈，并遍历右结点。</p>
 
     </div>
 
@@ -250,7 +281,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E9%9D%A2%E8%AF%95%EF%BC%8CJAVA/" rel="tag"># 面试，JAVA</a>
+              <a href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag"># 面试</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
           </div>
 
         
@@ -259,13 +291,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/02/06/%E6%A0%88/" rel="prev" title="栈">
-      <i class="fa fa-chevron-left"></i> 栈
+    <a href="/2023/02/08/%E9%98%9F%E5%88%97/" rel="prev" title="队列">
+      <i class="fa fa-chevron-left"></i> 队列
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/02/08/%E9%98%9F%E5%88%97/" rel="next" title="队列">
-      队列 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -325,7 +354,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#java知识点"><span class="nav-number">1.</span> <span class="nav-text">JAVA知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vector-和-arraylist-区别"><span class="nav-number">1.0.1.</span> <span class="nav-text">Vector 和 ArrayList 区别</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#树"><span class="nav-number">1.</span> <span class="nav-text">树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#树的基础知识"><span class="nav-number">1.1.</span> <span class="nav-text">树的基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#树的结点"><span class="nav-number">1.1.1.</span> <span class="nav-text">树的结点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子树和空树"><span class="nav-number">1.1.2.</span> <span class="nav-text">子树和空树：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结点的度和层次"><span class="nav-number">1.1.3.</span> <span class="nav-text">结点的度和层次</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度和高度"><span class="nav-number">1.1.4.</span> <span class="nav-text">深度和高度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序树和无序树"><span class="nav-number">1.1.5.</span> <span class="nav-text">有序树和无序树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#森林"><span class="nav-number">1.1.6.</span> <span class="nav-text">森林</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#树的应用"><span class="nav-number">1.2.</span> <span class="nav-text">树的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉树的深度优先算法"><span class="nav-number">1.2.1.</span> <span class="nav-text">二叉树的深度优先算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中序遍历"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">中序遍历</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"www.caiwanghui.top","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="堆  堆的基础知识 堆是一种经常使用的数据结构，最多使用的就是大顶堆和小顶堆，他可以保证数据的局部有序，而避免全局有序的大量开销。在大顶堆中，保证每个节点的值总是大于或者等于任意子结点的值，小顶堆中，保证每个节点的值总是小于任意子结点的值。  我们这里提到并且使用的堆都是普通二叉堆，其他的类似左式堆，d-堆，二项队列等都暂不介绍">
+  <meta name="description" content="堆 堆的基础知识 堆是一种经常使用的数据结构，最多使用的就是大顶堆和小顶堆，他可以保证数据的局部有序，而避免全局有序的大量开销。在大顶堆中，保证每个节点的值总是大于或者等于任意子结点的值，小顶堆中，保证每个节点的值总是小于任意子结点的值。  我们这里提到并且使用的堆都是普通二叉堆，其他的类似左式堆，d-堆，二项队列等都暂不介绍">
 <meta property="og:type" content="article">
 <meta property="og:title" content="堆">
 <meta property="og:url" content="http://www.caiwanghui.top/2023/02/28/%E5%A0%86/index.html">
 <meta property="og:site_name" content="菜鸡肥肥的私人博客">
-<meta property="og:description" content="堆  堆的基础知识 堆是一种经常使用的数据结构，最多使用的就是大顶堆和小顶堆，他可以保证数据的局部有序，而避免全局有序的大量开销。在大顶堆中，保证每个节点的值总是大于或者等于任意子结点的值，小顶堆中，保证每个节点的值总是小于任意子结点的值。  我们这里提到并且使用的堆都是普通二叉堆，其他的类似左式堆，d-堆，二项队列等都暂不介绍">
+<meta property="og:description" content="堆 堆的基础知识 堆是一种经常使用的数据结构，最多使用的就是大顶堆和小顶堆，他可以保证数据的局部有序，而避免全局有序的大量开销。在大顶堆中，保证每个节点的值总是大于或者等于任意子结点的值，小顶堆中，保证每个节点的值总是小于任意子结点的值。  我们这里提到并且使用的堆都是普通二叉堆，其他的类似左式堆，d-堆，二项队列等都暂不介绍">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230228143945.png">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230228144943.png">
@@ -215,7 +215,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.7k</span>
+              <span>6.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -234,81 +234,81 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="堆"><a class="markdownIt-Anchor" href="#堆"></a> 堆</h1>
-<h2 id="堆的基础知识"><a class="markdownIt-Anchor" href="#堆的基础知识"></a> 堆的基础知识</h2>
+        <h1 id="堆">堆</h1>
+<h2 id="堆的基础知识">堆的基础知识</h2>
 <p>堆是一种经常使用的数据结构，最多使用的就是大顶堆和小顶堆，他可以保证数据的局部有序，而避免全局有序的大量开销。在大顶堆中，保证每个节点的值总是大于或者等于任意子结点的值，小顶堆中，保证每个节点的值总是小于任意子结点的值。</p>
 <blockquote>
 <p>我们这里提到并且使用的堆都是普通二叉堆，其他的类似左式堆，d-堆，二项队列等都暂不介绍</p>
 </blockquote>
 <a id="more"></a>
-<h3 id="结构性质"><a class="markdownIt-Anchor" href="#结构性质"></a> 结构性质</h3>
+<h3 id="结构性质">结构性质</h3>
 <p>二叉堆通常使用完全二叉树实现</p>
 <blockquote>
 <p>完全二叉树是指倒数第二层全部被填满，且最底层的叶子结点都从左到右依次填入，但是无须填满</p>
 </blockquote>
-<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230228143945.png" style="zoom:67%;" />
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230228143945.png" style="zoom:67%;" /></p>
 <p>我们可以发现，因为完全二叉树的结构规律性，我们可以使用一个数组表示栈</p>
-<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230228144943.png" style="zoom:67%;" />
-<p>对于数组上任一位置<code>i</code>上的元素，其左儿子在<code>2i+1</code>位置上，右儿子在<code>2i+2</code>的位置上，他的父亲则在位置<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">⌊</mo><mo stretchy="false">(</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mn>2</mn><mo stretchy="false">⌋</mo></mrow><annotation encoding="application/x-tex">\lfloor (i-1)/2 \rfloor</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">⌊</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">⌋</span></span></span></span>上</p>
-<h3 id="堆的基本操作"><a class="markdownIt-Anchor" href="#堆的基本操作"></a> 堆的基本操作</h3>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230228144943.png" style="zoom:67%;" /></p>
+<p>对于数组上任一位置<code>i</code>上的元素，其左儿子在<code>2i+1</code>位置上，右儿子在<code>2i+2</code>的位置上，他的父亲则在位置<span class="math inline">\(\lfloor (i-1)/2 \rfloor\)</span>上</p>
+<h3 id="堆的基本操作">堆的基本操作</h3>
 <blockquote>
 <p>下面的程序默认是堆元素从数组下标1开始，方便计算父子结点的下标</p>
 </blockquote>
-<h4 id="下滤操作"><a class="markdownIt-Anchor" href="#下滤操作"></a> 下滤操作</h4>
+<h4 id="下滤操作">下滤操作</h4>
 <p>即自顶向下的堆化（维护堆序结构）的操作</p>
 <p>一般用于删除堆顶元素后维护堆</p>
 <p>依次比较该元素与左右结点的大小，如果不满足堆序，则与其中元素进行交换，小顶堆交换最小的元素，大顶堆交换最大的元素直到到达堆尾并且保持堆序</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">percolateDown</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> leftIndex = getLeftIndex(index);</span><br><span class="line">        <span class="keyword">int</span> rightIndex = getRightIndex(index);</span><br><span class="line">        <span class="keyword">int</span> minIndex = index;</span><br><span class="line">        <span class="keyword">if</span>(leftIndex&lt;=currentSize &amp;&amp; array[leftIndex].compareTo(array[index])&lt;<span class="number">0</span>)&#123;</span><br><span class="line">            minIndex = leftIndex;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(rightIndex&lt;=currentSize &amp;&amp; array[rightIndex].compareTo(array[index])&lt;<span class="number">0</span>)&#123;</span><br><span class="line">            minIndex = array[rightIndex].compareTo(array[leftIndex])&lt;<span class="number">0</span>?rightIndex:leftIndex;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(minIndex==index)&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        swapTwoItem(index,minIndex);</span><br><span class="line">        index = minIndex;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="上滤操作"><a class="markdownIt-Anchor" href="#上滤操作"></a> 上滤操作</h4>
+<h4 id="上滤操作">上滤操作</h4>
 <p>即自底向上的的堆化（维护堆序结构）的操作</p>
 <p>一般是在插入元素之后用于保持堆序</p>
 <p>依次比较元素是否大于或者小于父结点，如果不满足要求则交换该元素与父结点直到到达堆顶元素并且保持堆序</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">percolateUp</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (array[index/<span class="number">2</span>].compareTo(array[index])&lt;<span class="number">0</span> &amp;&amp; index&gt;<span class="number">1</span>)&#123;</span><br><span class="line">        swapTwoItem(index/<span class="number">2</span>,index);</span><br><span class="line">        index /=<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="插入元素"><a class="markdownIt-Anchor" href="#插入元素"></a> 插入元素</h4>
+<h4 id="插入元素">插入元素</h4>
 <ul>
 <li>将插入元素放到堆底</li>
 <li>对该结点进行上滤操作，修复堆序</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(AnyType x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(currentSize&lt;array.length-<span class="number">1</span>)&#123;</span><br><span class="line">        enlargeArray(array.length*<span class="number">2</span>+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    array[++currentSize]=x;</span><br><span class="line">    percolateUp(currentSize);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="删除堆顶元素"><a class="markdownIt-Anchor" href="#删除堆顶元素"></a> 删除堆顶元素</h4>
+<h4 id="删除堆顶元素">删除堆顶元素</h4>
 <ul>
 <li>用堆底元素替代堆顶元素</li>
 <li>删除堆底元素</li>
 <li>对新堆顶元素进行下滤操作，修复堆序</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> AnyType <span class="title">deleteMin</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    AnyType minItem = array[<span class="number">1</span>];</span><br><span class="line">    array[<span class="number">1</span>] = array[currentSize--];</span><br><span class="line">    array[currentSize]=<span class="keyword">null</span>;</span><br><span class="line">    percolateDown(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> minItem;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="priorityqueue"><a class="markdownIt-Anchor" href="#priorityqueue"></a> PriorityQueue</h4>
+<h4 id="priorityqueue">PriorityQueue</h4>
 <p><code>JAVA</code>中使用<code>PriorityQueue</code>实现了堆，默认是最小堆，如果要实现最大堆，则需要传入<code>Comparator</code>改变排序规则</p>
 <p>虽然<code>PriorityQueue</code>实现了<code>Queue</code>接口，但是并不是队列，<code>PriorityQueue</code>的删除顺序与插入元素的顺序无关，只与大小有关</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:center">操作</th>
-<th style="text-align:center">抛异常</th>
-<th style="text-align:center">不抛异常</th>
+<tr class="header">
+<th style="text-align: center;">操作</th>
+<th style="text-align: center;">抛异常</th>
+<th style="text-align: center;">不抛异常</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center">插入新的元素</td>
-<td style="text-align:center">add</td>
-<td style="text-align:center">offer</td>
+<tr class="odd">
+<td style="text-align: center;">插入新的元素</td>
+<td style="text-align: center;">add</td>
+<td style="text-align: center;">offer</td>
 </tr>
-<tr>
-<td style="text-align:center">删除堆顶元素</td>
-<td style="text-align:center">remove</td>
-<td style="text-align:center">poll</td>
+<tr class="even">
+<td style="text-align: center;">删除堆顶元素</td>
+<td style="text-align: center;">remove</td>
+<td style="text-align: center;">poll</td>
 </tr>
-<tr>
-<td style="text-align:center">返回堆顶元素</td>
-<td style="text-align:center">element</td>
-<td style="text-align:center">peek</td>
+<tr class="odd">
+<td style="text-align: center;">返回堆顶元素</td>
+<td style="text-align: center;">element</td>
+<td style="text-align: center;">peek</td>
 </tr>
 </tbody>
 </table>
-<h2 id="堆的应用"><a class="markdownIt-Anchor" href="#堆的应用"></a> 堆的应用</h2>
-<p>堆的特点就是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>时间复杂度就能获取最大或者最小元素，所以堆经常用来获取元素中最大最小元素</p>
-<h3 id="数据流的第k大数字"><a class="markdownIt-Anchor" href="#数据流的第k大数字"></a> 数据流的第k大数字</h3>
+<h2 id="堆的应用">堆的应用</h2>
+<p>堆的特点就是<span class="math inline">\(O(1)\)</span>时间复杂度就能获取最大或者最小元素，所以堆经常用来获取元素中最大最小元素</p>
+<h3 id="数据流的第k大数字">数据流的第k大数字</h3>
 <blockquote>
 <p>LeetCode 703</p>
 <p>设计一个找到数据流中第 <code>k</code> 大元素的类（class）。注意是排序后的第 <code>k</code> 大元素，不是第 <code>k</code> 个不同的元素。</p>
@@ -323,7 +323,7 @@
 <p>因为要获取第k大元素，所以我们可以维护一个大小为k的小顶堆，小顶堆里面存的就是最大的k个数，堆顶元素即第k大元素</p>
 <p>每次插入的时候，如果堆大小小于k直接插入小顶堆，否则与堆顶元素进行比较，如果插入元素更大则删除堆顶元素，插入新元素</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">KthLargest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> PriorityQueue&lt;Integer&gt; minHeap;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">KthLargest</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        size = k;</span><br><span class="line">        minHeap = <span class="keyword">new</span> PriorityQueue&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num:nums)&#123;</span><br><span class="line">            add(num);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(minHeap.size()&lt;size)&#123;</span><br><span class="line">            minHeap.offer(val);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(val&gt;minHeap.peek())&#123;</span><br><span class="line">            minHeap.poll();</span><br><span class="line">            minHeap.offer(val);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> minHeap.peek();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="出现频率最高的k个数组"><a class="markdownIt-Anchor" href="#出现频率最高的k个数组"></a> 出现频率最高的k个数组</h3>
+<h3 id="出现频率最高的k个数组">出现频率最高的k个数组</h3>
 <blockquote>
 <p>LeetCode 347</p>
 <p>给你一个整数数组 <code>nums</code> 和一个整数 <code>k</code> ，请你返回其中出现频率前 <code>k</code> 高的元素。你可以按 <strong>任意顺序</strong> 返回答案。</p>
@@ -331,28 +331,28 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: nums &#x3D; [1,1,1,2,2,3], k &#x3D; 2</span><br><span class="line">输出: [1,2]</span><br></pre></td></tr></table></figure>
 <p>这道题和上面的类似，我们只需要额外构建一个散列表对每个数计算频数，然后继续构建小顶堆保存前k高的元素</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] topKFrequent(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">    Map&lt;Integer,Integer&gt; frequentCount = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    PriorityQueue&lt;Map.Entry&lt;Integer,Integer&gt;&gt; topKFrequentQueue = <span class="keyword">new</span> PriorityQueue&lt;&gt;(</span><br><span class="line">            (e1,e2)-&gt;e1.getValue()-e2.getValue()</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> num:nums)&#123;</span><br><span class="line">        frequentCount.put(num, frequentCount.getOrDefault(num,<span class="number">0</span>)+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(Map.Entry&lt;Integer,Integer&gt; entry:frequentCount.entrySet())&#123;</span><br><span class="line">        <span class="keyword">if</span>(topKFrequentQueue.size()&lt;k)&#123;</span><br><span class="line">            topKFrequentQueue.offer(entry);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(entry.getValue()&gt;topKFrequentQueue.peek().getValue())&#123;</span><br><span class="line">            topKFrequentQueue.poll();</span><br><span class="line">            topKFrequentQueue.offer(entry);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    List&lt;Integer&gt; result = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span>(Map.Entry&lt;Integer,Integer&gt; entry:topKFrequentQueue)&#123;</span><br><span class="line">        result.add(entry.getKey());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result.stream().mapToInt(Integer::intValue).toArray();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="和最小的k个数对"><a class="markdownIt-Anchor" href="#和最小的k个数对"></a> 和最小的k个数对</h3>
+<h3 id="和最小的k个数对">和最小的k个数对</h3>
 <blockquote>
 <p>LeetCode 373</p>
 <p>给定两个以 <strong>升序排列</strong> 的整数数组 <code>nums1</code> 和 <code>nums2</code> , 以及一个整数 <code>k</code> 。</p>
 <p>定义一对值 <code>(u,v)</code>，其中第一个元素来自 <code>nums1</code>，第二个元素来自 <code>nums2</code> 。</p>
-<p>请找到和最小的 <code>k</code> 个数对 <code>(u1,v1)</code>, <code>(u2,v2)</code> …  <code>(uk,vk)</code> 。</p>
+<p>请找到和最小的 <code>k</code> 个数对 <code>(u1,v1)</code>, <code>(u2,v2)</code> ... <code>(uk,vk)</code> 。</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: nums1 &#x3D; [1,7,11], nums2 &#x3D; [2,4,6], k &#x3D; 3</span><br><span class="line">输出: [1,2],[1,4],[1,6]</span><br><span class="line">解释: 返回序列中的前 3 对数：</span><br><span class="line">     [1,2],[1,4],[1,6],[7,2],[7,4],[11,2],[7,6],[11,4],[11,6]</span><br></pre></td></tr></table></figure>
-<p>这道题一开始直观上是遍历<code>nums1,nums2</code>，构建大小为k的大顶堆，当新的数对小于堆顶的值时，删除堆顶，插入新数对，最终获得最小的k个数对。很明显时间复杂度为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>n</mi><mo separator="true">,</mo><mi>k</mi><mo stretchy="false">)</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>m</mi><mo separator="true">,</mo><mi>k</mi><mo stretchy="false">)</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(min(n,k)min(m,k)logk)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span></span></span></span>，其中<code>m,n</code>为<code>nums1,nums2</code>的长度。时间复杂度较大，所以有一个用例超出时间限制了</p>
+<p>这道题一开始直观上是遍历<code>nums1,nums2</code>，构建大小为k的大顶堆，当新的数对小于堆顶的值时，删除堆顶，插入新数对，最终获得最小的k个数对。很明显时间复杂度为<span class="math inline">\(O(min(n,k)min(m,k)logk)\)</span>，其中<code>m,n</code>为<code>nums1,nums2</code>的长度。时间复杂度较大，所以有一个用例超出时间限制了</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; kSmallestPairs(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span>[] nums2, <span class="keyword">int</span> k) &#123;</span><br><span class="line"></span><br><span class="line">    PriorityQueue&lt;Integer[]&gt; topKSmallestPairs = <span class="keyword">new</span> PriorityQueue&lt;&gt;(</span><br><span class="line">            (pair1,pair2)-&gt;pair2[<span class="number">0</span>]+pair2[<span class="number">1</span>]-pair1[<span class="number">0</span>]-pair1[<span class="number">1</span>]</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;Math.min(nums1.length,k);i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;Math.min(nums2.length,k);j++)&#123;</span><br><span class="line">            Integer[] pair = <span class="keyword">new</span> Integer[]&#123;nums1[i],nums2[j]&#125;;</span><br><span class="line">            <span class="keyword">if</span>(topKSmallestPairs.size()&lt;k)&#123;</span><br><span class="line">                topKSmallestPairs.offer(pair);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(getPairSum(pair)&lt;getPairSum(topKSmallestPairs.peek()))&#123;</span><br><span class="line">                topKSmallestPairs.poll();</span><br><span class="line">                topKSmallestPairs.offer(pair);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span>(Integer[] pair:topKSmallestPairs)&#123;</span><br><span class="line">        result.add(Arrays.asList(pair));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getPairSum</span><span class="params">(Integer[] pair)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> pair[<span class="number">0</span>]+pair[<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这种多个有序数组求组合排序或者一起排序的时候，我们可以使用多路归并(k-way merge)的思路</p>
 <p>多路归并的思路其实就是将需要排序的项放到一个大顶堆或者小顶堆里面，每次弹出堆顶，插入新的元素，知道弹出k个元素</p>
-<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230228202531.png" style="zoom:67%;" />
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230228202531.png" style="zoom:67%;" /></p>
 <p>这道题，我们可以将<code>nums1,nums2</code>中的下标放入小顶堆中，比如<code>(0,0)</code>肯定是第一个放进去的，那么堆顶元素就是<code>(0,0)</code>，那么待选元素就是<code>(1,0)</code>或者<code>(0,1)</code>，我们将这两个元素放到堆中自动处理，然后没弹出一个元素，找出两个备选元素放进去，直到弹出k个元素</p>
 <p>不过我们每次放入两个元素可能导致元素被重复放入的情况，所以为了解决这一问题，我们可以先将<code>(0,0)</code>到<code>(k,0)</code>都放到堆中，然后每次堆顶元素直接在第二个下标+1即可。</p>
 <blockquote>
 <p>当然也可以用一个散列表记录每个元素的是否被放进去</p>
 </blockquote>
 <p>关于这个处理，可以看一下下面这张图</p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230228203112.png" alt="" /></p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230228203112.png" /></p>
 <p>从上图我们可以看到<code>(1,1)</code>是<code>(1,0)</code>和<code>(0,1)</code>的候选元素，所以会出现重复放入的情况，并且可以发现，当<code>(1,1)</code>放进去的时候<code>(1,0),(0,1)</code>肯定已经被放进去了，所以不需要担心会有漏掉的问题</p>
-<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230228204429.png" style="zoom:67%;" />
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230228204429.png" style="zoom:67%;" /></p>
 <p>所以按照上面的方案就会变成上图这样，避免了重复元素</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; kSmallestPairs(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span>[] nums2, <span class="keyword">int</span> k)&#123;</span><br><span class="line">        PriorityQueue&lt;<span class="keyword">int</span>[]&gt; minHeap = <span class="keyword">new</span> PriorityQueue&lt;&gt;(</span><br><span class="line">                (pair1,pair2)-&gt;nums1[pair1[<span class="number">0</span>]]+nums2[pair1[<span class="number">1</span>]]-nums1[pair2[<span class="number">0</span>]]-nums2[pair2[<span class="number">1</span>]]</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(nums2.length&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;Math.min(nums1.length,k);i++)&#123;</span><br><span class="line">                minHeap.offer(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;i,<span class="number">0</span>&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span>(k--&gt;<span class="number">0</span> &amp;&amp; !minHeap.isEmpty())&#123;</span><br><span class="line">            <span class="keyword">int</span>[] ids = minHeap.poll();</span><br><span class="line">            result.add(Arrays.asList(nums1[ids[<span class="number">0</span>]],nums2[ids[<span class="number">1</span>]]));</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(ids[<span class="number">1</span>]&lt;nums2.length-<span class="number">1</span>)&#123;</span><br><span class="line">                minHeap.offer(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;ids[<span class="number">0</span>],ids[<span class="number">1</span>]+<span class="number">1</span>&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
@@ -440,7 +440,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#堆"><span class="nav-number">1.</span> <span class="nav-text"> 堆</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#堆的基础知识"><span class="nav-number">1.1.</span> <span class="nav-text"> 堆的基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构性质"><span class="nav-number">1.1.1.</span> <span class="nav-text"> 结构性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆的基本操作"><span class="nav-number">1.1.2.</span> <span class="nav-text"> 堆的基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下滤操作"><span class="nav-number">1.1.2.1.</span> <span class="nav-text"> 下滤操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上滤操作"><span class="nav-number">1.1.2.2.</span> <span class="nav-text"> 上滤操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入元素"><span class="nav-number">1.1.2.3.</span> <span class="nav-text"> 插入元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除堆顶元素"><span class="nav-number">1.1.2.4.</span> <span class="nav-text"> 删除堆顶元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#priorityqueue"><span class="nav-number">1.1.2.5.</span> <span class="nav-text"> PriorityQueue</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆的应用"><span class="nav-number">1.2.</span> <span class="nav-text"> 堆的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据流的第k大数字"><span class="nav-number">1.2.1.</span> <span class="nav-text"> 数据流的第k大数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#出现频率最高的k个数组"><span class="nav-number">1.2.2.</span> <span class="nav-text"> 出现频率最高的k个数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和最小的k个数对"><span class="nav-number">1.2.3.</span> <span class="nav-text"> 和最小的k个数对</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#堆"><span class="nav-number">1.</span> <span class="nav-text">堆</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#堆的基础知识"><span class="nav-number">1.1.</span> <span class="nav-text">堆的基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构性质"><span class="nav-number">1.1.1.</span> <span class="nav-text">结构性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆的基本操作"><span class="nav-number">1.1.2.</span> <span class="nav-text">堆的基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下滤操作"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">下滤操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上滤操作"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">上滤操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入元素"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">插入元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除堆顶元素"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">删除堆顶元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#priorityqueue"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">PriorityQueue</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆的应用"><span class="nav-number">1.2.</span> <span class="nav-text">堆的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据流的第k大数字"><span class="nav-number">1.2.1.</span> <span class="nav-text">数据流的第k大数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#出现频率最高的k个数组"><span class="nav-number">1.2.2.</span> <span class="nav-text">出现频率最高的k个数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和最小的k个数对"><span class="nav-number">1.2.3.</span> <span class="nav-text">和最小的k个数对</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

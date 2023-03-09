@@ -163,6 +163,204 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2023/02/06/JAVA%E7%9F%A5%E8%AF%86%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Wanghui Cai">
+      <meta itemprop="description" content="一些零零散散的学习总结">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜鸡肥肥的私人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/02/06/JAVA%E7%9F%A5%E8%AF%86%E7%82%B9/" class="post-title-link" itemprop="url">JAVA知识点</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-02-06 15:16:53 / 修改时间：07:25:08" itemprop="dateCreated datePublished" datetime="2023-02-06T15:16:53Z">2023-02-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>240</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="java知识点">JAVA知识点</h1>
+<p>先建一个文档在这里，看到需要注意的<code>JAVA</code>的知识点就放在这里，等以后再整理</p>
+<h3 id="vector-和-arraylist-区别">Vector 和 ArrayList 区别</h3>
+<p>相同点：</p>
+<ol type="1">
+<li>继承了相同的父类实现了相同的接口</li>
+<li>底层都是数组实现的</li>
+<li>初始默认长度都是10</li>
+</ol>
+<p>不同点：</p>
+<ol type="1">
+<li><code>Vector</code>中<code>public</code>方法多数加了<code>synchronized</code>，线程安全，<code>ArrayList</code>没有</li>
+<li>扩容方式不同，<code>ArrayList</code>扩展后数组大小为原数组的1.5倍，<code>Vector</code>中多了<strong>扩展因子</strong>，当扩展因子大于0的时候，扩展后为原数组大小加上扩展因子大小，否则为原数组的两倍。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2023/02/06/%E6%A0%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Wanghui Cai">
+      <meta itemprop="description" content="一些零零散散的学习总结">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菜鸡肥肥的私人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/02/06/%E6%A0%88/" class="post-title-link" itemprop="url">栈</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-06 15:03:35" itemprop="dateCreated datePublished" datetime="2023-02-06T15:03:35Z">2023-02-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-08 14:59:43" itemprop="dateModified" datetime="2023-02-08T14:59:43Z">2023-02-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="栈">栈</h1>
+<h2 id="栈的基础知识">栈的基础知识</h2>
+<p>栈是一种非常常见的数据结构，他的核心特点就是<code>LIFO</code>，<strong>后进先出</strong>。</p>
+<p>对于栈，我们主要需要知道的是栈的三个主要函数（下面的栈我们使用<code>ArrayList</code>实现，所以对于容量为自动调整）</p>
+<ul>
+<li>PUSH：即入栈，我们在栈顶放入元素，栈顶标识符++</li>
+<li>POP：即出栈，我们取出栈顶元素，栈顶标识符--</li>
+<li>PEEK：获取栈顶元素但不出栈，栈顶标识符不变</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/02/06/%E6%A0%88/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2023/02/03/%E6%95%B0%E7%BB%84%E5%92%8C%E9%93%BE%E8%A1%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -916,192 +1114,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2021/06/15/SpringBoot%E6%95%B4%E5%90%88springsecurity/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Wanghui Cai">
-      <meta itemprop="description" content="一些零零散散的学习总结">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="菜鸡肥肥的私人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/15/SpringBoot%E6%95%B4%E5%90%88springsecurity/" class="post-title-link" itemprop="url">SpringBoot整合springsecurity</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-14 22:12:44" itemprop="dateCreated datePublished" datetime="2021-06-14T22:12:44Z">2021-06-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-02 13:41:47" itemprop="dateModified" datetime="2023-02-02T13:41:47Z">2023-02-02</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="springboot整合springsecurity">Springboot整合springsecurity</h1>
-<h3 id="简介">简介</h3>
-<p>我们知道，<strong>登录认证</strong>和<strong>权限验证</strong>是现在每个涉及到用户登录的系统都不必不可缺的。</p>
-<p>本文会简单介绍登录认证和权限认证相关的知识，以及如何使用<code>springsecurity</code>框架实现相关功能。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/15/SpringBoot%E6%95%B4%E5%90%88springsecurity/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.caiwanghui.top/2021/06/15/SpringBoot%E6%95%B4%E5%90%88mybatis-plus/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Wanghui Cai">
-      <meta itemprop="description" content="一些零零散散的学习总结">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="菜鸡肥肥的私人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/15/SpringBoot%E6%95%B4%E5%90%88mybatis-plus/" class="post-title-link" itemprop="url">SpringBoot整合mybatis-plus</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-14 22:12:30" itemprop="dateCreated datePublished" datetime="2021-06-14T22:12:30Z">2021-06-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-02 13:41:06" itemprop="dateModified" datetime="2023-02-02T13:41:06Z">2023-02-02</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>14k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>13 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="springboot整合mybatis-plus">Springboot整合Mybatis-plus</h1>
-<h3 id="简介">简介</h3>
-<p><code>Mybatis-plus</code>是基于<code>mybatis</code>的纯粹的增强版，并没有修改<code>mybatis</code>任何功能，只是单纯的添加了一些非常方便的功能。</p>
-<ul>
-<li>类似<code>spring-data-jpa</code>，通过继承<code>BaseMapper</code>无须配置<code>xml</code>文件即可实现<code>CRUD</code>等操作</li>
-<li>通过分页插件实现物理分页查询</li>
-<li>通过继承<code>IService</code>和<code>ServiceImpl</code>实现例如批量更新等等操作</li>
-<li>通过条件构造器简化查询</li>
-<li>......</li>
-</ul>
-<p>总的来说就是简化了单表查询的操作，但是复杂的多表查询还是需要配置<code>mapper.xml</code>手动编写<code>sql</code>语句去实现。</p>
-<p><code>mybatis-plus</code>是国内的开源插件，<a href="https://mybatis.plus/guide/" target="_blank" rel="noopener">官网</a>对于功能写的非常详细，我这里只是简单介绍一下几个常用的简单功能。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/15/SpringBoot%E6%95%B4%E5%90%88mybatis-plus/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1174,7 +1186,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

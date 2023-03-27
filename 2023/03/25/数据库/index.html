@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"www.caiwanghui.top","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="数据库 不管是后端还是数开，对数据库的要求都是非常高的，所以这次对数据库进行一些知识的整理（新学） 数据库基础知识 事务 事务的定义：事务（Transaction）指一个操作，由多个步骤组成，要么全部成功，要么全部失败。 例如我们常用的转账功能，假设A账户向B账号转账，那么涉及两个操作：  从A账户扣钱； 往B账户加入等量的钱  因为是独立的两个操作，所以可能一个失败一个成功，但是事务保证两个操作">
+  <meta name="description" content="数据库 不管是后端还是数开，对数据库的要求都是非常高的，所以这次对数据库进行一些知识的整理（新学） 数据库基础知识 事务 事务的定义：事务（Transaction）指一个操作，由多个步骤组成，要么全部成功，要么全部失败。 例如我们常用的转账功能，假设A账户向B账号转账，那么涉及两个操作：  从A账户扣钱； 往B账户加入等量的钱  因为是独立的两个操作，所以可能一个失败一个成功，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库">
 <meta property="og:url" content="http://www.caiwanghui.top/2023/03/25/%E6%95%B0%E6%8D%AE%E5%BA%93/index.html">
 <meta property="og:site_name" content="菜鸡肥肥的私人博客">
-<meta property="og:description" content="数据库 不管是后端还是数开，对数据库的要求都是非常高的，所以这次对数据库进行一些知识的整理（新学） 数据库基础知识 事务 事务的定义：事务（Transaction）指一个操作，由多个步骤组成，要么全部成功，要么全部失败。 例如我们常用的转账功能，假设A账户向B账号转账，那么涉及两个操作：  从A账户扣钱； 往B账户加入等量的钱  因为是独立的两个操作，所以可能一个失败一个成功，但是事务保证两个操作">
+<meta property="og:description" content="数据库 不管是后端还是数开，对数据库的要求都是非常高的，所以这次对数据库进行一些知识的整理（新学） 数据库基础知识 事务 事务的定义：事务（Transaction）指一个操作，由多个步骤组成，要么全部成功，要么全部失败。 例如我们常用的转账功能，假设A账户向B账号转账，那么涉及两个操作：  从A账户扣钱； 往B账户加入等量的钱  因为是独立的两个操作，所以可能一个失败一个成功，">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-25T14:16:17.000Z">
-<meta property="article:modified_time" content="2023-03-25T08:45:19.370Z">
+<meta property="article:modified_time" content="2023-03-27T12:08:54.088Z">
 <meta property="article:author" content="Wanghui Cai">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="数据库">
@@ -189,10 +189,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-03-25 14:16:17 / 修改时间：08:45:19" itemprop="dateCreated datePublished" datetime="2023-03-25T14:16:17Z">2023-03-25</time>
+              <time title="创建时间：2023-03-25 14:16:17" itemprop="dateCreated datePublished" datetime="2023-03-25T14:16:17Z">2023-03-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-27 12:08:54" itemprop="dateModified" datetime="2023-03-27T12:08:54Z">2023-03-27</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -228,7 +234,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1>数据库</h1>
+        <h1 id="数据库">数据库</h1>
 <p>不管是后端还是数开，对数据库的要求都是非常高的，所以这次对数据库进行一些知识的整理（新学）</p>
 <h2 id="数据库基础知识">数据库基础知识</h2>
 <h3 id="事务">事务</h3>
@@ -239,7 +245,8 @@
 <li>往B账户加入等量的钱</li>
 </ul>
 <p>因为是独立的两个操作，所以可能一个失败一个成功，但是事务保证两个操作要么全部失败要么全部成功，不存在从A账户扣了钱但是B账户不加钱的情况</p>
-<h4 id="ACID">ACID</h4>
+<a id="more"></a>
+<h4 id="acid">ACID</h4>
 <p>数据库事务具有四个属性（<code>ACID</code>）：</p>
 <ul>
 <li>原子性（<code>Atomicity</code>）：事务作为一个整体执行，要么全部成功要么全部失败</li>
@@ -265,21 +272,13 @@
 <h4 id="事务隔离级别">事务隔离级别</h4>
 <p>那么为了解决上面并发操作可能带来的问题，数据库系统提供了隔离级别来让我们有针对性的选择事务的隔离级别，避免出现上面不一致的问题</p>
 <ul>
-<li>
-<p><strong>第一级别：未提交读</strong>（<code>Read Uncommited</code>）：在一个事务提交之前，他的执行结果对其他事务也是可见的，会导致脏读，不可重复读和幻读</p>
-</li>
-<li>
-<p><strong>第二级别：提交读</strong>（<code>Read Commited</code>）：一个事务只能看见已经提交的事务所做的改变，可避免脏读问题</p>
-</li>
-<li>
-<p><strong>第三级别：可重复读</strong>（<code>Repeatable Read</code>）：可以确保同一个事务在多次读取同样的数据时得到同样的结果（<code>Mysql</code>默认隔离级别）,可避免不可重复读</p>
+<li><p><strong>第一级别：未提交读</strong>（<code>Read Uncommited</code>）：在一个事务提交之前，他的执行结果对其他事务也是可见的，会导致脏读，不可重复读和幻读</p></li>
+<li><p><strong>第二级别：提交读</strong>（<code>Read Commited</code>）：一个事务只能看见已经提交的事务所做的改变，可避免脏读问题</p></li>
+<li><p><strong>第三级别：可重复读</strong>（<code>Repeatable Read</code>）：可以确保同一个事务在多次读取同样的数据时得到同样的结果（<code>Mysql</code>默认隔离级别）,可避免不可重复读</p>
 <blockquote>
 <p><code>InnoDB</code>在可重复读级别就已经实际解决了幻读的问题</p>
-</blockquote>
-</li>
-<li>
-<p><strong>第四级别：可串行化</strong>（<code>Serializable</code>）：强制事务串行执行，使之不可能相互冲突，从而解决幻读问题，可能导致大量的超时现象和锁竞争问题，实际很少用</p>
-</li>
+</blockquote></li>
+<li><p><strong>第四级别：可串行化</strong>（<code>Serializable</code>）：强制事务串行执行，使之不可能相互冲突，从而解决幻读问题，可能导致大量的超时现象和锁竞争问题，实际很少用</p></li>
 </ul>
 <h3 id="锁">锁</h3>
 <p>锁是计算机中协调多个进程或者线程并发访问某一资源的机制</p>
@@ -291,7 +290,7 @@
 <li>按照锁的<strong>状态</strong>划分：<strong>意向共享锁，意向排他锁</strong></li>
 <li>按照<strong>模式</strong>划分：<strong>乐观锁，悲观锁</strong></li>
 </ul>
-<h4 id="Mysql中的行级锁，表级锁，页级锁，全局锁">Mysql中的行级锁，表级锁，页级锁，全局锁</h4>
+<h4 id="mysql中的行级锁表级锁页级锁全局锁">Mysql中的行级锁，表级锁，页级锁，全局锁</h4>
 <h5 id="行级锁">行级锁</h5>
 <p>行级锁是<code>Mysql</code>中锁定粒度最细的一种锁，表示只对当前操作的行进行加锁。行级锁能够大大减少数据库操作的冲突，但是开销也是最大的</p>
 <ul>
@@ -317,15 +316,15 @@
 <h5 id="全局锁">全局锁</h5>
 <p>全局锁就是对<strong>整个数据库实例</strong>加锁，应用于<strong>全库的逻辑备份</strong></p>
 <h4 id="共享锁和排他锁">共享锁和排他锁</h4>
-<h5 id="排他锁（Exclusive-Lock）-X锁">排他锁（Exclusive Lock）/X锁</h5>
+<h5 id="排他锁exclusive-lockx锁">排他锁（Exclusive Lock）/X锁</h5>
 <p>排他锁又称<strong>写锁</strong>，如果事务T对数据A加上排他锁后，则其他事务不能再对A加任何类型的封锁，获准排他锁的事务即可以读数据也可以写数据</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FOR</span> <span class="keyword">UPDATE</span></span><br></pre></td></tr></table></figure>
-<h5 id="共享锁（Shared-Lock）-S锁">共享锁（Shared Lock）/S锁</h5>
+<h5 id="共享锁shared-locks锁">共享锁（Shared Lock）/S锁</h5>
 <p>共享锁又称<strong>读锁</strong>，是读取操作创建的锁，其他用户可以并发读取数据，但任何事务都不能对数据进行修改，直到已释放所有共享锁</p>
 <h3 id="范式">范式</h3>
 <h3 id="表链接">表链接</h3>
-<h2 id="MySQL">MySQL</h2>
-<h2 id="NoSQL-Redis">NoSQL/Redis</h2>
+<h2 id="mysql">MySQL</h2>
+<h2 id="nosqlredis">NoSQL/Redis</h2>
 
     </div>
 
@@ -408,7 +407,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库基础知识"><span class="nav-number">1.1.</span> <span class="nav-text">数据库基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务"><span class="nav-number">1.1.1.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ACID"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">ACID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发问题"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">并发问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务隔离级别"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">事务隔离级别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#锁"><span class="nav-number">1.1.2.</span> <span class="nav-text">锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#锁的分类"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">锁的分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mysql中的行级锁，表级锁，页级锁，全局锁"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">Mysql中的行级锁，表级锁，页级锁，全局锁</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#行级锁"><span class="nav-number">1.1.2.2.1.</span> <span class="nav-text">行级锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#表级锁"><span class="nav-number">1.1.2.2.2.</span> <span class="nav-text">表级锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#页级锁"><span class="nav-number">1.1.2.2.3.</span> <span class="nav-text">页级锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#全局锁"><span class="nav-number">1.1.2.2.4.</span> <span class="nav-text">全局锁</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#共享锁和排他锁"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">共享锁和排他锁</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#排他锁（Exclusive-Lock）-X锁"><span class="nav-number">1.1.2.3.1.</span> <span class="nav-text">排他锁（Exclusive Lock）&#x2F;X锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#共享锁（Shared-Lock）-S锁"><span class="nav-number">1.1.2.3.2.</span> <span class="nav-text">共享锁（Shared Lock）&#x2F;S锁</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#范式"><span class="nav-number">1.1.3.</span> <span class="nav-text">范式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表链接"><span class="nav-number">1.1.4.</span> <span class="nav-text">表链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL"><span class="nav-number">1.2.</span> <span class="nav-text">MySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NoSQL-Redis"><span class="nav-number">1.3.</span> <span class="nav-text">NoSQL&#x2F;Redis</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库"><span class="nav-number">1.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库基础知识"><span class="nav-number">1.1.</span> <span class="nav-text">数据库基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务"><span class="nav-number">1.1.1.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#acid"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">ACID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发问题"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">并发问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务隔离级别"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">事务隔离级别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#锁"><span class="nav-number">1.1.2.</span> <span class="nav-text">锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#锁的分类"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">锁的分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mysql中的行级锁表级锁页级锁全局锁"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">Mysql中的行级锁，表级锁，页级锁，全局锁</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#行级锁"><span class="nav-number">1.1.2.2.1.</span> <span class="nav-text">行级锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#表级锁"><span class="nav-number">1.1.2.2.2.</span> <span class="nav-text">表级锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#页级锁"><span class="nav-number">1.1.2.2.3.</span> <span class="nav-text">页级锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#全局锁"><span class="nav-number">1.1.2.2.4.</span> <span class="nav-text">全局锁</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#共享锁和排他锁"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">共享锁和排他锁</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#排他锁exclusive-lockx锁"><span class="nav-number">1.1.2.3.1.</span> <span class="nav-text">排他锁（Exclusive Lock）&#x2F;X锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#共享锁shared-locks锁"><span class="nav-number">1.1.2.3.2.</span> <span class="nav-text">共享锁（Shared Lock）&#x2F;S锁</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#范式"><span class="nav-number">1.1.3.</span> <span class="nav-text">范式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表链接"><span class="nav-number">1.1.4.</span> <span class="nav-text">表链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql"><span class="nav-number">1.2.</span> <span class="nav-text">MySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nosqlredis"><span class="nav-number">1.3.</span> <span class="nav-text">NoSQL&#x2F;Redis</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

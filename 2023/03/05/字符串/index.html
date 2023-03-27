@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"www.caiwanghui.top","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="字符串 字符串的基本知识 字符串是由任意长度（长度可能为0）的字符组成，是编程语言中表示文本的数据类型，JAVA中使用String来表示字符串，与其他原因有不小的区别 String的不可变性 JAVA中String设计为不可变类 12@Stableprivate final byte[] value; 上面代码其实就是String存储字符的变量，可以发现是一个final不可变属性，这样">
+  <meta name="description" content="字符串 字符串的基本知识 字符串是由任意长度（长度可能为0）的字符组成，是编程语言中表示文本的数据类型，JAVA中使用String来表示字符串，与其他原因有不小的区别 String的不可变性 JAVA中String设计为不可变类 12@Stableprivate final byte[] value; 上面代码其实就是String存储字符的变量，可以发现是一个final不可变属性，这样设计的原因有">
 <meta property="og:type" content="article">
 <meta property="og:title" content="字符串">
 <meta property="og:url" content="http://www.caiwanghui.top/2023/03/05/%E5%AD%97%E7%AC%A6%E4%B8%B2/index.html">
 <meta property="og:site_name" content="菜鸡肥肥的私人博客">
-<meta property="og:description" content="字符串 字符串的基本知识 字符串是由任意长度（长度可能为0）的字符组成，是编程语言中表示文本的数据类型，JAVA中使用String来表示字符串，与其他原因有不小的区别 String的不可变性 JAVA中String设计为不可变类 12@Stableprivate final byte[] value; 上面代码其实就是String存储字符的变量，可以发现是一个final不可变属性，这样">
+<meta property="og:description" content="字符串 字符串的基本知识 字符串是由任意长度（长度可能为0）的字符组成，是编程语言中表示文本的数据类型，JAVA中使用String来表示字符串，与其他原因有不小的区别 String的不可变性 JAVA中String设计为不可变类 12@Stableprivate final byte[] value; 上面代码其实就是String存储字符的变量，可以发现是一个final不可变属性，这样设计的原因有">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230304234654.png">
 <meta property="article:published_time" content="2023-03-04T19:00:51.000Z">
@@ -217,7 +217,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7.9k</span>
+              <span>8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -236,17 +236,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="字符串">字符串</h1>
+        <h1>字符串</h1>
 <h2 id="字符串的基本知识">字符串的基本知识</h2>
 <p>字符串是由任意长度（长度可能为0）的字符组成，是编程语言中表示文本的数据类型，<code>JAVA</code>中使用<code>String</code>来表示字符串，与其他原因有不小的区别</p>
-<h3 id="string的不可变性">String的不可变性</h3>
+<h3 id="String的不可变性">String的不可变性</h3>
 <p><code>JAVA</code>中<code>String</code>设计为不可变类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Stable</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">byte</span>[] value;</span><br></pre></td></tr></table></figure>
 <p>上面代码其实就是<code>String</code>存储字符的变量，可以发现是一个<code>final</code>不可变属性，这样设计的原因有三点</p>
 <ul>
-<li>字符串常量池的需要：字符串常量池是 <code>Java</code> 堆内存中⼀个特殊的存储区域, 当创建⼀个 <code>String</code> 对象时，假如 此字符串值已经存在于常量池中，则不会创建⼀个新的对象，⽽是引⽤已经存在的对象；</li>
-<li>允许 <code>String</code> 对象缓存 <code>HashCode</code>：<code>Java</code> 中 <code>String</code> 对象的哈希码被频繁地使⽤, ⽐如在 <code>HashMap</code> 等容器中。 字符串不变性保证了 <code>hash</code> 码的唯⼀性，因此可以放⼼地进⾏缓存。这也是⼀种性能优化⼿段，意味着不必每次都 去计算新的哈希码；</li>
-<li><code>String</code> 被许多的 <code>Java</code> 类(库)⽤来当做参数，例如：⽹络连接地址 <code>URL</code>、⽂件路径 <code>path</code>、还有反射机制所需要 的 <code>String</code> 参数等, 假若 <code>String</code> 不是固定不变的，将会引起各种安全隐患。</li>
+<li>字符串常量池的需要：字符串常量池是 <code>Java</code> 堆内存中⼀个特殊的存储区域, 当创建⼀个 <code>String</code> 对象时，假如<br>
+此字符串值已经存在于常量池中，则不会创建⼀个新的对象，⽽是引⽤已经存在的对象；</li>
+<li>允许 <code>String</code> 对象缓存 <code>HashCode</code>：<code>Java</code> 中 <code>String</code> 对象的哈希码被频繁地使⽤, ⽐如在 <code>HashMap</code> 等容器中。<br>
+字符串不变性保证了 <code>hash</code> 码的唯⼀性，因此可以放⼼地进⾏缓存。这也是⼀种性能优化⼿段，意味着不必每次都<br>
+去计算新的哈希码；</li>
+<li><code>String</code> 被许多的 <code>Java</code> 类(库)⽤来当做参数，例如：⽹络连接地址 <code>URL</code>、⽂件路径 <code>path</code>、还有反射机制所需要<br>
+的 <code>String</code> 参数等, 假若 <code>String</code> 不是固定不变的，将会引起各种安全隐患。</li>
 </ul>
 <a id="more"></a>
 <blockquote>
@@ -254,12 +258,12 @@
 </blockquote>
 <p>我们可以通过下面的用例来理解一下字符串常量池和字符串变量</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">"abc"</span>;</span><br><span class="line">String str2 = <span class="string">"abc"</span>;</span><br><span class="line"></span><br><span class="line">String str3 = <span class="keyword">new</span> String(<span class="string">"abc"</span>);</span><br><span class="line">String str4 = <span class="keyword">new</span> String(<span class="string">"abc"</span>);</span><br><span class="line"></span><br><span class="line">System.out.println(str1==str2); <span class="comment">//true</span></span><br><span class="line">System.out.println(str1==str3); <span class="comment">//false</span></span><br><span class="line">System.out.println(str3==str4); <span class="comment">//false</span></span><br><span class="line">System.out.println(str3.equals(str4)); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>关于<code>String str1="abc"</code>，这里创建了一个字符串常量，<code>JVM</code>首先会检查字符串常量池中是否存在该字符串对象，如果已经存在就不会再创建，直接返回字符串在字符串变量池中的内存地址，如果字符串变量池中还不存在则会在字符串变量池中创建该字符串对象，然后再返回地址。所以在<code>String str2="abc"</code>的时候其实就是直接返回了字符串变量池中<code>abc</code>的地址，所以<code>str1==str2</code></p>
-<p>但是在执行<code>String str3 = new String("abc")</code>的时候，<code>JVM</code>会首先检查字符串变量池中是否已经有该字符串对象，如果没有先创建该字符串对象，然后再到堆内存里面创建一份字符串对象，再把字符串常量池中的<code>abc</code>字符串内容拷贝到堆内存中字符串对象中，最后返回堆内存中该字符串的内存地址，即栈内存中存储的地址是堆内存中对象的地址。</p>
-<p>而<code>String str4 = new String("abc")</code>是在堆内存中又创建了一个对象</p>
+<p>关于<code>String str1=&quot;abc&quot;</code>，这里创建了一个字符串常量，<code>JVM</code>首先会检查字符串常量池中是否存在该字符串对象，如果已经存在就不会再创建，直接返回字符串在字符串变量池中的内存地址，如果字符串变量池中还不存在则会在字符串变量池中创建该字符串对象，然后再返回地址。所以在<code>String str2=&quot;abc&quot;</code>的时候其实就是直接返回了字符串变量池中<code>abc</code>的地址，所以<code>str1==str2</code></p>
+<p>但是在执行<code>String str3 = new String(&quot;abc&quot;)</code>的时候，<code>JVM</code>会首先检查字符串变量池中是否已经有该字符串对象，如果没有先创建该字符串对象，然后再到堆内存里面创建一份字符串对象，再把字符串常量池中的<code>abc</code>字符串内容拷贝到堆内存中字符串对象中，最后返回堆内存中该字符串的内存地址，即栈内存中存储的地址是堆内存中对象的地址。</p>
+<p>而<code>String str4 = new String(&quot;abc&quot;)</code>是在堆内存中又创建了一个对象</p>
 <p>总体的内存分布情况如下：</p>
-<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230304234654.png" style="zoom: 67%;" /></p>
-<h3 id="string-stringbuilder-stringbuffer">String, StringBuilder, StringBuffer</h3>
+<img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230304234654.png" style="zoom: 67%;" />
+<h3 id="String-StringBuilder-StringBuffer">String, StringBuilder, StringBuffer</h3>
 <p>由于<code>String</code>对象的不可变，所以每一个操作都会产生新的对象，这样对内存非常不友好，而且会频繁的创建对象</p>
 <p>所以<code>StringBuilder</code>就是用来弥补<code>String</code>的不可变性，<code>StringBuilder</code>内部维护了一个非<code>Final</code>的<code>char[] value</code>，所以可以做到在不开辟新内存的前提先修改原字符串</p>
 <p><code>StringBuffer</code>其实功能与<code>StringBuilder</code>一致，只是对于字符串的修改增加了<code>synchronized</code>关键字，所以对于字符串的操作是线程安全的，但是也因此性能略次于<code>StringBuffer</code></p>
@@ -299,7 +303,7 @@
 <h4 id="包含所有字符的最短字符串">包含所有字符的最短字符串</h4>
 <blockquote>
 <p>LeetCode 76（类似）</p>
-<p>给你一个字符串 <code>s</code> 、一个字符串 <code>t</code> 。返回 <code>s</code> 中涵盖 <code>t</code> 所有字符的最小子串。如果 <code>s</code> 中不存在涵盖 <code>t</code> 所有字符的子串，则返回空字符串 <code>""</code> 。</p>
+<p>给你一个字符串 <code>s</code> 、一个字符串 <code>t</code> 。返回 <code>s</code> 中涵盖 <code>t</code> 所有字符的最小子串。如果 <code>s</code> 中不存在涵盖 <code>t</code> 所有字符的子串，则返回空字符串 <code>&quot;&quot;</code> 。</p>
 <p><strong>注意：</strong></p>
 <ul>
 <li>对于 <code>t</code> 中重复字符，我们寻找的子字符串中该字符数量必须不少于 <code>t</code> 中该字符数量。</li>
@@ -426,7 +430,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的基本知识"><span class="nav-number">1.1.</span> <span class="nav-text">字符串的基本知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#string的不可变性"><span class="nav-number">1.1.1.</span> <span class="nav-text">String的不可变性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#string-stringbuilder-stringbuffer"><span class="nav-number">1.1.2.</span> <span class="nav-text">String, StringBuilder, StringBuffer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的应用"><span class="nav-number">1.2.</span> <span class="nav-text">字符串的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#双指针"><span class="nav-number">1.2.1.</span> <span class="nav-text">双指针</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串中的变位词"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">字符串中的变位词</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串中的所有变位词"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">字符串中的所有变位词</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不含重复字符串的最长子字符串"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">不含重复字符串的最长子字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#包含所有字符的最短字符串"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">包含所有字符的最短字符串</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回文字符串"><span class="nav-number">1.2.2.</span> <span class="nav-text">回文字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#有效的回文"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">有效的回文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最多删除一个字符得到回文"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">最多删除一个字符得到回文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回文子字符串的个数"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">回文子字符串的个数</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的基本知识"><span class="nav-number">1.1.</span> <span class="nav-text">字符串的基本知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#String的不可变性"><span class="nav-number">1.1.1.</span> <span class="nav-text">String的不可变性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String-StringBuilder-StringBuffer"><span class="nav-number">1.1.2.</span> <span class="nav-text">String, StringBuilder, StringBuffer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的应用"><span class="nav-number">1.2.</span> <span class="nav-text">字符串的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#双指针"><span class="nav-number">1.2.1.</span> <span class="nav-text">双指针</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串中的变位词"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">字符串中的变位词</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串中的所有变位词"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">字符串中的所有变位词</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不含重复字符串的最长子字符串"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">不含重复字符串的最长子字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#包含所有字符的最短字符串"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">包含所有字符的最短字符串</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回文字符串"><span class="nav-number">1.2.2.</span> <span class="nav-text">回文字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#有效的回文"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">有效的回文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最多删除一个字符得到回文"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">最多删除一个字符得到回文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回文子字符串的个数"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">回文子字符串的个数</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -442,7 +446,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -455,7 +459,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

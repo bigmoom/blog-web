@@ -29,12 +29,24 @@
 <meta property="og:site_name" content="菜鸡肥肥的私人博客">
 <meta property="og:description" content="数据库 不管是后端还是数开，对数据库的要求都是非常高的，所以这次对数据库进行一些知识的整理（新学） 数据库基础知识 事务 事务的定义：事务（Transaction）指一个操作，由多个步骤组成，要么全部成功，要么全部失败。 例如我们常用的转账功能，假设A账户向B账号转账，那么涉及两个操作：  从A账户扣钱； 往B账户加入等量的钱  因为是独立的两个操作，所以可能一个失败一个成功，">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230328214829.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230328215804.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230329212159.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230329212457.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230329212927.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230330140401.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230330004553.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230330004939.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230330140251.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230330153251.png">
+<meta property="og:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230330154503.png">
 <meta property="article:published_time" content="2023-03-25T14:16:17.000Z">
-<meta property="article:modified_time" content="2023-03-27T12:08:54.088Z">
+<meta property="article:modified_time" content="2023-03-31T16:33:55.209Z">
 <meta property="article:author" content="Wanghui Cai">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="数据库">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230328214829.png">
 
 <link rel="canonical" href="http://www.caiwanghui.top/2023/03/25/%E6%95%B0%E6%8D%AE%E5%BA%93/">
 
@@ -197,7 +209,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-27 12:08:54" itemprop="dateModified" datetime="2023-03-27T12:08:54Z">2023-03-27</time>
+                <time title="修改时间：2023-03-31 16:33:55" itemprop="dateModified" datetime="2023-03-31T16:33:55Z">2023-03-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -215,14 +227,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.4k</span>
+              <span>11k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>10 分钟</span>
             </span>
 
         </div>
@@ -261,6 +273,9 @@
 <p><strong>一致性</strong>：转账之前<code>A,B</code>账户之和为1000元，转账之后<code>A,B</code>账户之和还是1000元，从一个状态转变为另一个状态，两个状态的数据总和不变</p>
 <p><strong>隔离性</strong>：在上面操作过程中，只要事务还没提交，那么查询<code>A,B</code>账户的钱应该就还是事务执行之前的金额，如果上面事务进行过程中，有另一个事务执行了C给B转账的操作，那么当两个事务都结束的时候，B账户里面应该是A转给B的钱加上C转给B的钱再加上自己的钱</p>
 <p><strong>持久性</strong>：一旦转账事务提交成功，那么账户的钱就会真的发生变化，即会把数据写入数据库做持久化保存</p>
+<blockquote>
+<p>Mysql 默认采用自动提交模式，即如果不显式使用<code>START TRANSACTION</code> 来开始一个事务，那么每个查询操作都会被当做一个事务并自动提交</p>
+</blockquote>
 <h4 id="并发问题">并发问题</h4>
 <p>其实我们通过上面的例子就可以发现，数据库可能会出现一些并发问题：</p>
 <ul>
@@ -319,10 +334,525 @@
 <h5 id="排他锁exclusive-lockx锁">排他锁（Exclusive Lock）/X锁</h5>
 <p>排他锁又称<strong>写锁</strong>，如果事务T对数据A加上排他锁后，则其他事务不能再对A加任何类型的封锁，获准排他锁的事务即可以读数据也可以写数据</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FOR</span> <span class="keyword">UPDATE</span></span><br></pre></td></tr></table></figure>
+<p>该语句<code>Mysql</code>会对查询用到的每一行添加排他锁，当前没有其他线程对查询行使用排他锁的时候可以申请成功，否则会被阻塞</p>
 <h5 id="共享锁shared-locks锁">共享锁（Shared Lock）/S锁</h5>
 <p>共享锁又称<strong>读锁</strong>，是读取操作创建的锁，其他用户可以并发读取数据，但任何事务都不能对数据进行修改，直到已释放所有共享锁</p>
-<h3 id="范式">范式</h3>
-<h3 id="表链接">表链接</h3>
+<p>如果事务T对数据A加上共享锁后，其他事务则只能对A再加共享锁，不能加排他锁，获取共享锁的事务只能读取数据不能修改数据。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ... <span class="keyword">LOCK</span> <span class="keyword">IN</span> <span class="keyword">SHARE</span> <span class="keyword">MODE</span></span><br></pre></td></tr></table></figure>
+<p>该语句<code>Mysql</code>会对查询到的每一行添加共享锁，当没有其他线程对查询结果中的任意行使用排他锁的时候可以申请共享锁成功，否则会被阻塞。</p>
+<p>其他线程也可以读取使用了共享锁的表，但是读取的数据都是统一版本</p>
+<h4 id="意向排他锁和意向共享锁">意向排他锁和意向共享锁</h4>
+<p>意向锁是表锁，目的是为了协调表锁和行锁之间的关系</p>
+<p>当有事务A有行锁的时候，<code>Mysql</code>会自动为该表添加意向锁，事务B如果想要申请整个表的锁就不用遍历每一行判断是否存在行锁，而是直接判断是否存在意向锁，增强性能</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">意向共享锁（IS）</th>
+<th style="text-align: center;">意向排他锁（IX）</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>共享锁（S）</strong></td>
+<td style="text-align: center;">兼容</td>
+<td style="text-align: center;">不兼容</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>排他锁（X）</strong></td>
+<td style="text-align: center;">不兼容</td>
+<td style="text-align: center;">不兼容</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>这里的共享锁和排他锁都是指的表锁</p>
+</blockquote>
+<h4 id="乐观锁和悲观锁">乐观锁和悲观锁</h4>
+<h5 id="悲观锁pessimistic-lock">悲观锁（Pessimistic Lock）</h5>
+<p>悲观锁就是字面意思，任务数据随时可能被修改，因此每次读数据之前都会上锁，防止其他事务读取或者修改数据，应用于<strong>数据更新比较频繁</strong>的场景</p>
+<h5 id="乐观锁optimistic-lock">乐观锁（Optimistic Lock）</h5>
+<p>乐观锁则和悲观锁不一样，操作数据的时候不会上锁，但是进行更新时会判断在此期间有没有别的事务更新过该数据，如果更新过则失败重试，适用于<strong>读多写少</strong>的场景</p>
+<p>对于乐观锁，常见的有下面两种实现方法：</p>
+<ul>
+<li>加一个版本号或者时间戳字段，每次数据更新时同时更新这个字段</li>
+<li>先读取想要更新的字段或者所有字段，进行更新的时候比较一下，只有字段没有变化才进行更新</li>
+</ul>
+<h3 id="封锁协议">封锁协议</h3>
+<h4 id="三级封锁协议">三级封锁协议</h4>
+<h5 id="一级封锁协议">一级封锁协议</h5>
+<p>事务T要修改数据A时必须加X锁，直到T结束才释放锁</p>
+<p>因为加了X锁，所以可以解决<strong>丢失修改</strong>问题，因为不能同时有两个事务同时对一个数据进行修改</p>
+<h5 id="二级封锁协议">二级封锁协议</h5>
+<p>在一级的基础上，要求读取数据A时必须加S锁，读取完马上释放S锁</p>
+<p>可以解决<strong>读脏数据问题</strong>，因为根据一级封锁协议，事务T修改数据A时必须要加X锁，这个时候如果事务S要读取数据，需要申请S锁，需要等到事务T释放锁，所以不会出现脏读问题</p>
+<h5 id="三级封锁协议-1">三级封锁协议</h5>
+<p>在二级的基础上，要求读取数据时必须加S锁，直到事务结束了才释放S锁</p>
+<p>可以解决不可重复读问题，因为事务T读取数据时添加S锁，这个时候其他事务无法申请T锁，从而避免了在事务T期间数据发生修改</p>
+<h4 id="两段锁协议">两段锁协议</h4>
+<p>所谓的两段锁协议就是指所有事务必须分<strong>两个阶段</strong>对数据进行<strong>加锁</strong>和<strong>解锁</strong></p>
+<ul>
+<li>在对任何数据进行读，写操作之前，首先要申请并获得对该数据的封锁</li>
+<li>再释放了一个封锁之后，事务不再申请和获得任何其他封锁</li>
+</ul>
+<p>所谓两段，其实就是事务分为两个阶段，第一阶段是获得封锁，也称为扩展阶段，在这个阶段事务可以申请获得任意数据项上的任何类型的锁但是不能释放任何锁，第二阶段是释放封锁，也称为收缩阶段，在该阶段，事务可以释放任何数据项上的任意类型的锁，但是不能再申请任何锁</p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230328214829.png" style="zoom:80%;" /></p>
+<p>上图中左侧T1,T2事务都是遵守两段锁协议的，但是右侧T1，T2不遵守两段锁协议</p>
+<p>可以证明，如果并发执行的所有事务都遵守两段锁协议，那么对这些事务的任何并发调度策略都是可串行化的</p>
+<p><strong>可串行化调度</strong>是指，通过并发控制，使得并发执行的事务结果与某个串行执行的事务结果相同。事务遵循两段锁协议是保证可串行化调度的<strong>充分条件</strong>。</p>
+<p>对于<strong>一次封锁法</strong>，一次封锁法要求事务必须将要使用的数据全部加锁，否则不能继续执行</p>
+<p>一次封锁可以<strong>避免死锁</strong>，但是并发度会严重下降，并且对于数据库，在事务开始阶段，数据库并不知道会用到哪些数据</p>
+<p>而两段锁协议会造成死锁问题</p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230328215804.png" style="zoom:80%;" /></p>
+<blockquote>
+<p>Mysql的InnoDB采用两段锁协议，会根据隔离级别在需要的时候自动加锁，并且所有的锁都是在同一时间被释放，这种叫做<strong>隐式锁定</strong>，之前我们使用的sql语句进行加锁称为<strong>显示锁定</strong></p>
+</blockquote>
+<h3 id="多版本并发控制mvcc">多版本并发控制（MVCC）</h3>
+<p>上面我们提到了可以用锁解决数据库的并发一致性问题，但是频繁的枷锁导致读数据时，没办法修改数据，修改数据时无法读取数据，大大降低了数据库的性能</p>
+<p>而<code>MVCC</code>就是通过一种新方法，通过多版本并发控制实现了读数据不用枷锁，可以让<strong>读取数据的同时可以修改，修改数据的同时可以读取</strong></p>
+<h4 id="mvcc实现的关键知识点">MVCC实现的关键知识点</h4>
+<h5 id="事务版本号">事务版本号</h5>
+<p>事务版本号指的是事务每次开启前，都会从数据库获得一个<strong>自增</strong>的事务ID，可以通过这个事务ID判断事务执行的先后顺序</p>
+<ul>
+<li>系统版本号<code>SYS_ID</code>：是一个递增的数字，每开启一个新的事务，系统版本号就会自动递增</li>
+<li>事务版本号<code>TRX_ID</code>：事务开始时的系统版本号</li>
+</ul>
+<h5 id="隐式字段">隐式字段</h5>
+<p>对于<code>InnoDB</code>存储引擎，每一行记录都有两个隐藏列<code>trx_id,roll_pointer</code>，如果表中没有主键和非<code>NULL</code>唯一键时，则还会有第三个隐藏的主键列<code>row_id</code></p>
+<h5 id="undo-log">Undo log</h5>
+<p><code>Undo log</code>如同字面意思，其实就是<strong>回滚日志</strong>，用来记录数据被修改前的信息，在表记录修改前，会先把数据拷贝到<code>undo log</code>中，也就是<strong>快照</strong>，如果事务回滚，则可以通过<code>undo log</code>来还原数据</p>
+<p>MVCC多版本控制中的多版本其实就是多个版本的快照，对于某一行数据的历史快照通过<code>roll_pointer</code>链接起来，MVCC的核心思想就是通过读取旧版本的数据快照（<strong>快照读</strong>）去实现读与写的并行</p>
+<p><code>undo log</code>主要有两种作用：</p>
+<ul>
+<li>事务回滚时，保证原子性和一致性</li>
+<li>用于<code>MVCC</code>快照读</li>
+</ul>
+<h5 id="版本链">版本链</h5>
+<p>多个事务并行操作某一行数据时，不同事务对该行数据的修改会产生多个版本，然后通过回滚指针<code>roll_pointer</code>连成一个链表，这个链表就称为版本链</p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230329212159.png" style="zoom:80%;" /></p>
+<p>通过版本链，我们可以看出事务版本号，数据库记录中隐藏列还有<code>undo log</code>之间的关系</p>
+<ol type="1">
+<li><p>现在我有一张<code>core_user</code>表，数据如下所示：</p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230329212457.png" style="zoom: 67%;" /></p></li>
+<li><p>现在新开启一个事务A：对<code>core_user</code>表执行以下语句：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> core_user <span class="keyword">set</span> <span class="keyword">name</span> = <span class="string">"曹操"</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>具体操作如下：</p>
+<ul>
+<li>首先获得一个事务ID=100</li>
+<li>把<code>core_user</code>表修改前的数据拷贝到<code>undo log</code></li>
+<li>修改<code>core_user</code>表，id=1的数据，名字改为曹操</li>
+<li>把修改后的数据事务id=101改成当前事务版本号，并把<code>roll_pointer</code>指向<code>undo log</code>中数据地址</li>
+</ul>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230329212927.png" style="zoom: 50%;" /></p></li>
+</ol>
+<h5 id="快照读和当前读">快照读和当前读</h5>
+<p><strong>快照读</strong>：读取的是记录数据的可见版本（有旧的版本），不加锁，普通的<code>select</code>语句就是快照读</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> core_user <span class="keyword">where</span> <span class="keyword">id</span>&gt;<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p><strong>当前读</strong>：读取的是记录数据的最新版本，显示加锁的都是当前读</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> core_user <span class="keyword">where</span> <span class="keyword">id</span>&gt;<span class="number">2</span> <span class="keyword">for</span> <span class="keyword">update</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> core_user <span class="keyword">where</span> <span class="keyword">id</span>&gt;<span class="number">2</span> <span class="keyword">lock</span> <span class="keyword">in</span> <span class="keyword">share</span> <span class="keyword">mode</span>;</span><br></pre></td></tr></table></figure>
+<h5 id="read-view">Read View</h5>
+<p><code>Read View</code>就是快照读操作的时候产的读视图，实际上在<code>InnoDB</code>中，每个<code>sql</code>语句执行前都会得到一个<code>Read View</code></p>
+<p>那么<code>Read View</code>有什么用呢，它就是主要用来做可见性判断的，即判断当前事务可见哪个版本的数据</p>
+<p><code>Read View</code> 是如何保证可见性判断的呢，我们先来看<code>Read View</code>的几个属性</p>
+<ul>
+<li><code>m_ids</code>:当前系统活跃（<strong>未提交</strong>）事务版本号集合</li>
+<li><code>max_trx_id</code>：创建当前<code>Read View</code>时当前系统<strong>最大事务版本号+1</strong></li>
+<li><code>min_trx_id</code>：创建当前<code>Read View</code>时系统正处于活跃事务的<strong>最小版本号</strong></li>
+<li><code>creator_trx_id</code>：创建当前<code>Read View</code>的事务版本号</li>
+</ul>
+<p>我们以下面例子来看具体的查看规则：</p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230330140401.png" style="zoom: 67%;" /></p>
+<p>当事务id为201的事务对该条记录进行查询时，会构造<code>Read View</code>同时赋值</p>
+<p>此时活跃事务集合<code>m_ids=[90,100,200]</code>,<code>min_trx_id=90,max_trx_id=201</code>,由于该<code>Read View</code>由当前事务创建，所以创建事务id为201，接下来找到版本链头，从链头开始遍历所有版本，根据四步判断法则：</p>
+<ol type="1">
+<li><p>判断该版本是否为当前事务创建，若<code>creator_trx_id</code>等于该版本的<code>trx_id</code>，意味着自己读自己修改的数据，当然可以直接访问，如果不等则到第二步</p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230330004553.png" style="zoom: 80%;" /></p></li>
+<li><p>判断当前事务id和<code>min_trx_id</code>，如果<code>trx_id&lt;min_trx_id</code>，说明该版本在<code>Read View</code>生成前已经提交，那么可以直接访问，如果不是则第三步</p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230330004939.png" style="zoom:80%;" /></p></li>
+<li><p>若该版本id大于<code>max_trx_id</code>意味着该版本在该<code>Read View</code>生成之后才生成，肯定不能被当前事务访问，如果不是，则第四步</p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230330140251.png" style="zoom: 67%;" /></p></li>
+<li><p>若该版本id不在<code>min_trx_id</code>和<code>max_trx_id</code>之间，且不在<code>m_id</code>中，说明该事务已被提交，可以被访问，如果不是则继续判断下一个版本号，即对下一个版本号进行上面的四步判断，直到事务id满足规则即可，这样就可以实现查询到的事务都是已经提交的事务，解决了脏读的问题</p></li>
+</ol>
+<h4 id="mvcc解决脏读和不可重复读问题">MVCC解决脏读和不可重复读问题</h4>
+<h5 id="脏读">脏读</h5>
+<p>通过上面四步判断规则，我们可以实现读取的数据都是已经提交的事务，从而避免了脏读的问题</p>
+<h5 id="不可重复读问题">不可重复读问题</h5>
+<p>MVCC主要通过设置不同的<code>Read View</code>的工作方式来实现不同的隔离级别</p>
+<p>RC隔离级别下，事务的每次查询都会产生一个新的<code>Read View</code>，这样就可能造成不可重复读问题</p>
+<p>所以RR隔离级别下，MVCC通过设置一个事务只能获取一个<code>Read View</code>,即第一次查询时创建一个<code>Read View</code>，然后后续该事务每次查询都是使用这个<code>Read View</code>进行判断，<code>Read View</code>保持不变所以解决了不可重复读问题</p>
+<h4 id="mvcc与幻读">MVCC与幻读</h4>
+<p>MVCC通过快照读实现了提交读和可重复读的隔离级别，但是并没有解决幻读的问题，看下面这个例子就可以理解了</p>
+<p><code>user</code>表，三个字段，<code>id,name,salary</code></p>
+<p>事务A：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">//没有这条数据</span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">user</span> <span class="keyword">WHERE</span> <span class="keyword">id</span>=<span class="number">20</span></span><br></pre></td></tr></table></figure>
+<p>因为没有这条数据必然返回的是空</p>
+<p>这个时候事务B：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">user</span> <span class="keyword">VALUES</span>(<span class="number">20</span>,<span class="string">"李四"</span>,<span class="number">2000</span>)</span><br><span class="line"><span class="keyword">COMMIT</span></span><br></pre></td></tr></table></figure>
+<p>事务B添加了<code>id=20</code>这条数据，并提交了</p>
+<p>这个时候我们事务A再次进行查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">user</span> <span class="keyword">WHERE</span> <span class="keyword">id</span>=<span class="number">20</span></span><br></pre></td></tr></table></figure>
+<p>会发现，返回的还是空，因为我们使用的是快照读，此次查询使用的<code>Read View</code>和第一次查询<code>Read View</code> 一致，这个时候没有发生幻读的情况</p>
+<p>但是，如果我事务A执行了更新等操作</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">user</span> <span class="keyword">SET</span> <span class="keyword">name</span>=<span class="string">'张三'</span> <span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">20</span></span><br></pre></td></tr></table></figure>
+<p>之后再执行查询：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">user</span> <span class="keyword">WHERE</span> <span class="keyword">id</span>=<span class="number">20</span></span><br></pre></td></tr></table></figure>
+<p>就会得到更新之后的这条数据，这就是典型的幻读问题</p>
+<p>那么是为什么会出现这种问题的呢：</p>
+<p>因为我们对该记录进行更新等操作之后，记录上的事务id就就变成了我当前事务A的id，那么事务A当然可以查看事务A的记录，所以造成了幻读的问题</p>
+<h3 id="next-key-locks">Next-Key Locks</h3>
+<p>上面可以知道MVCC并没有解决幻读的问题，而<code>Next-Key Lock</code>就是用来解决幻读问题的</p>
+<p>再看<code>Next-Key Locks</code>之前，我们先看一下<code>Record Lock</code>和<code>Gap Lock</code></p>
+<h4 id="record-lock">Record Lock</h4>
+<p><code>Record Lock</code> 其实就是<code>InnoDB</code>中的行锁，即锁定一个记录上的索引</p>
+<p><code>select * from user where age=10 for update</code></p>
+<p>上面语句就会锁住<code>user</code>表中所有<code>age=10</code>的记录</p>
+<h4 id="gap-lock">Gap Lock</h4>
+<p><code>Gap Lock</code>又称间隙锁，即用于锁住索引之间的间隙，但是不包括记录本身</p>
+<p><code>select * from user where age&gt;1 and age&lt;10 for update</code>，将会锁住<code>age</code>在<code>(1,10)</code>的范围区间，此时其他事务对该区间的操作都会被阻塞</p>
+<h4 id="next-key-lock">Next-Key Lock</h4>
+<p><code>Next-Key Lock</code>其实就是<code>Record Lock</code> 和<code>Gap Lock</code>的结合，即不仅锁住一个记录的索引，也会锁住索引之间的间隙</p>
+<p>我们以一张具体的表来看看具体怎么操作的</p>
+<p>我们首先设定一张<code>user</code>表，有四个字段，<code>id</code>是主键索引，<code>name</code>是唯一索引，<code>age</code>是普通索引，<code>city</code>没有索引</p>
+<p>并且插入三条数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">user</span>(<span class="keyword">id</span>,<span class="keyword">name</span>,age,city) <span class="keyword">values</span>(<span class="number">10</span>,<span class="string">'a'</span>,<span class="number">10</span>,<span class="string">'shanghai'</span>)</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">user</span>(<span class="keyword">id</span>,<span class="keyword">name</span>,age,city) <span class="keyword">values</span>(<span class="number">20</span>,<span class="string">'b'</span>,<span class="number">20</span>,<span class="string">'wuhan'</span>)</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">user</span>(<span class="keyword">id</span>,<span class="keyword">name</span>,age,city) <span class="keyword">values</span>(<span class="number">30</span>,<span class="string">'c'</span>,<span class="number">30</span>,<span class="string">'beijing'</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>没有索引的情况</p>
+<p><code>update user set city='nanjing' where city ='wuhan'</code></p>
+<p>因为<code>city</code>是没有索引的，所以存储引擎只能给表中所有记录上锁,那么整张表都锁住了，必然不会出现幻读的情况</p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230330153251.png" style="zoom:80%;" /></p></li>
+<li><p>普通索引</p>
+<p><code>select * from user where age=20 for update</code></p>
+<p>因为<code>age</code>是一个普通索引，存储引擎根据条件过滤查到所有匹配<code>age=20</code>的记录，加上写锁，<code>Next-Key Lock</code>加在<code>(10,20]</code>和<code>(20,30]</code>上，那么为什么要加间隙锁呢，因为如果不加间隙锁就可能出现新插入数据 <code>id=11,age=20</code>，出现幻读的情况</p>
+<p>实际上锁不仅会加在普通索引<code>age</code>上，还会加在主键索引上，因为所有的数据都是在主键索引下的</p>
+<p><img src="https://typora-cwh.oss-cn-hangzhou.aliyuncs.com/20230330154503.png" style="zoom:67%;" /></p></li>
+<li><p>唯一&amp;主键索引</p>
+<p><code>select * from user where name = 'b' for update</code></p>
+<p>如果是主键或者唯一索引查询且是等值查询的时候，就会出现锁降级的情况，因为是主键或者是唯一索引，所以不可能出现第二个相同的记录，也就不会出现幻读的情况</p>
+<p>如果是范围查询，例如<code>id&gt;10 and id&lt;20</code>，就和上面的加锁方式一样</p></li>
+</ul>
+<h3 id="关系数据库设计理论">关系数据库设计理论</h3>
+<h4 id="函数依赖">函数依赖</h4>
+<blockquote>
+<p>下面会用到几张表：</p>
+<p>学生表：学号，姓名，性别</p>
+<p>教师表：教师编号，姓名，性别</p>
+<p>课程表：课程号，课程名称，授课老师，学分</p>
+<p>成绩表：学号，课程号，成绩</p>
+</blockquote>
+<p><strong>定义</strong>：设X,Y是关系R的两个属性集合，当任意时刻R的任意两个元组中的X属性值相同时，则他们的Y属性值也相同，则称X函数决定Y，或者Y函数依赖于X</p>
+<p>我们以学生表为例，学号能唯一确定一个姓名，我们就可以说学号决定姓名或者姓名函数依赖于学号</p>
+<h5 id="键码">键码</h5>
+<p>如果集合<span class="math inline">\({A_1,A_2,...,A_n}\)</span>是关系R的一个或多个属性的集合，该集合函数决定了关系的其他所有属性并且是最小的，那么该集合就称为键码</p>
+<h5 id="平凡函数依赖和非平凡函数依赖">平凡函数依赖和非平凡函数依赖</h5>
+<p>设一个关系<span class="math inline">\(R(U)\)</span>，X和Y为属性集U上的子集，若<span class="math inline">\(X\rarr Y\)</span>且X不包含Y，则称<span class="math inline">\(X\rarr Y\)</span>为<strong>非平凡函数依赖</strong>，否则若X包含Y则必有<span class="math inline">\(X\rarr Y\)</span>,则称此<span class="math inline">\(X\rarr Y\)</span>为<strong>平凡函数依赖</strong></p>
+<p>例如学生表中，学号总能函数决定学号自己，记作<span class="math inline">\(学号\rarr 学号\)</span>，此为平凡函数依赖，<span class="math inline">\((学号，性别)\rarr 学号\)</span>也是平凡函数依赖</p>
+<p>通常我们讨论的都是非平凡函数依赖，例如之前提到的学号函数决定姓名</p>
+<h5 id="完全函数依赖和部分函数依赖">完全函数依赖和部分函数依赖</h5>
+<p>设X,Y是关系R的两个属性集合，存在<span class="math inline">\(X\rarr Y\)</span>，若X'是X的真子集，对于每一个X'都不能决定Y，则称Y<strong>完全函数依赖</strong>于X，否则如果有X'能函数决定Y则称Y<strong>部分函数依赖</strong>于X</p>
+<p>例如成绩表中，成绩完全依赖于<span class="math inline">\((学号，课程号)\)</span>，</p>
+<p>学生表中，<span class="math inline">\((学号，姓名)\rarr 性别\)</span>，因为存在<span class="math inline">\(学号\rarr 性别\)</span>，所以称性别部分依赖于<span class="math inline">\((学号，姓名)\)</span></p>
+<h5 id="传递函数依赖">传递函数依赖</h5>
+<p>设X,Y,Z是关系R中互不相同的属性集合，存在<span class="math inline">\(X\rarr Y(Y!\rarr X),Y\rarr Z\)</span>,，则称Z传递函数依赖于X</p>
+<p>例如<span class="math inline">\(学号\rarr 系名，系名\rarr 系主任\)</span>，并且<span class="math inline">\(系名!\rarr 学号\)</span>，所以<span class="math inline">\(学号\rarr系主任\)</span>为传递函数依赖</p>
+<h4 id="范式">范式</h4>
+<h5 id="第一范式1nf">第一范式（1NF）</h5>
+<p><strong>定义</strong>：符合1NF的关系中的每个属性都不可再分</p>
+<p>即一列中不能插入两个及以上不同属性的值</p>
+<p>例如：如果将教师表的姓名和性别放在同一列就不符合1NF</p>
+<h5 id="第二范式2nf">第二范式（2NF）</h5>
+<p><strong>定义</strong>：在1NF的基础上，每个非主属性完全函数依赖于键码</p>
+<p>有如下表：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Student Id</th>
+<th style="text-align: center;">Student Name</th>
+<th style="text-align: center;">Department</th>
+<th style="text-align: center;">Dep President</th>
+<th style="text-align: center;">Course Name</th>
+<th style="text-align: center;">Grade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">Student1</td>
+<td style="text-align: center;">AMA</td>
+<td style="text-align: center;">JIANG</td>
+<td style="text-align: center;">AMA565</td>
+<td style="text-align: center;">90</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">Student2</td>
+<td style="text-align: center;">COMP</td>
+<td style="text-align: center;">TAN</td>
+<td style="text-align: center;">COMP5434</td>
+<td style="text-align: center;">80</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">Student3</td>
+<td style="text-align: center;">COMP</td>
+<td style="text-align: center;">TAN</td>
+<td style="text-align: center;">COMP5434</td>
+<td style="text-align: center;">80</td>
+</tr>
+</tbody>
+</table>
+<p>很明显，上表的键码为<span class="math inline">\(\{Student \ Id,Course Name\}\)</span>，有如下函数依赖：</p>
+<ul>
+<li>$Student IdStudent Name,Department $</li>
+<li>$Department Dep President $</li>
+<li><span class="math inline">\(Student\ Id,Course\ Name \rarr Grade\)</span></li>
+</ul>
+<p>可以发现，<code>Grade</code>完全函数依赖于键码，没有任何冗余信息</p>
+<p>但是<code>Student Name, Department,Dep President</code>都是部分依赖于键码，当一个学生选修勒多门课的时候，这些数据就会出现很多次，造成大量冗余数据，所以我们要对表进行分解</p>
+<p>分解后：</p>
+<p>表1：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Student Id</th>
+<th style="text-align: center;">Student Name</th>
+<th style="text-align: center;">Department</th>
+<th style="text-align: center;">Dep President</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">Student1</td>
+<td style="text-align: center;">AMA</td>
+<td style="text-align: center;">JIANG</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">Student2</td>
+<td style="text-align: center;">COMP</td>
+<td style="text-align: center;">TAN</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">Student3</td>
+<td style="text-align: center;">COMP</td>
+<td style="text-align: center;">TAN</td>
+</tr>
+</tbody>
+</table>
+<p>键码为<span class="math inline">\(\{ Student\ Id\}\)</span> 有以下函数依赖：</p>
+<ul>
+<li>$Student IdStudent Name,Department $</li>
+<li>$Department Dep President $</li>
+</ul>
+<p>可以发现不存在非主属性部分函数依赖于键码</p>
+<p>表2：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Student Id</th>
+<th style="text-align: center;">Course Name</th>
+<th style="text-align: center;">Grade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">AMA565</td>
+<td style="text-align: center;">90</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">COMP5434</td>
+<td style="text-align: center;">80</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">COMP5434</td>
+<td style="text-align: center;">80</td>
+</tr>
+</tbody>
+</table>
+<p>键码为<span class="math inline">\(\{Student \ Id,Course Name\}\)</span>，有以下函数依赖：</p>
+<ul>
+<li><span class="math inline">\(Student\ Id,Course\ Name \rarr Grade\)</span></li>
+</ul>
+<p>不存在非主属性部分函数依赖于键码</p>
+<h5 id="第三范式3nf">第三范式（3NF）</h5>
+<p><strong>定义</strong>：在第二范式的基础上，满足非主属性不传递函数依赖于键码</p>
+<p>例如上面的表1，我们可以发现其实是存在很明显的传递函数依赖的</p>
+<ul>
+<li>$Student IdDepartment Dep President $</li>
+</ul>
+<p>所以可以进行如下分解</p>
+<p>表1.1</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Student Id</th>
+<th style="text-align: center;">Student Name</th>
+<th style="text-align: center;">Department</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">Student1</td>
+<td style="text-align: center;">AMA</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">Student2</td>
+<td style="text-align: center;">COMP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">Student3</td>
+<td style="text-align: center;">COMP</td>
+</tr>
+</tbody>
+</table>
+<p>表1.2</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Department</th>
+<th style="text-align: center;">Dep President</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">AMA</td>
+<td style="text-align: center;">JIANG</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">COMP</td>
+<td style="text-align: center;">TAN</td>
+</tr>
+</tbody>
+</table>
+<h5 id="bcnf范式">BCNF范式</h5>
+<p><strong>定义</strong>：在3NF的基础上消除了主属性对于码的部分与传递函数依赖</p>
+<p>例如我们看下面这个情景：</p>
+<ol type="1">
+<li>某个公司有若干个仓库</li>
+<li>每个仓库有一名管理员，一名管理员只能在一个仓库中工作</li>
+<li>一个仓库可以有多个物品，一个物品也可以存放在不同的仓库中，每种物品在每个仓库中都有对应的数量</li>
+</ol>
+<p>从这个情景中，我们得到一个关系模式<span class="math inline">\((仓库名，管理员，物品名，数量)\)</span></p>
+<p>对于该关系模式我们先检查符不符合上面三种范式</p>
+<p>首先根据情景条件，我们可以得到以下函数依赖集：</p>
+<ul>
+<li><span class="math inline">\(仓库名\rarr 管理员\)</span></li>
+<li><span class="math inline">\(管理员\rarr 仓库名\)</span></li>
+<li><span class="math inline">\((仓库名，物品名)\rarr 数量\)</span></li>
+</ul>
+<p>键码：<span class="math inline">\((管理员，物品名),(仓库名，物品名)\)</span></p>
+<p>主属性：仓库名，管理员，物品名</p>
+<p>非主属性：数量</p>
+<p>不存在任何非主属性对键码的部分函数依赖或者传递函数依赖，所以此关系模式属于3NF</p>
+<p>此关系模式的表可能如下所示：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">仓库名</th>
+<th style="text-align: center;">管理员</th>
+<th style="text-align: center;">物品名</th>
+<th style="text-align: center;">数量</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">上海仓</td>
+<td style="text-align: center;">张三</td>
+<td style="text-align: center;">物品1</td>
+<td style="text-align: center;">30</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">上海仓</td>
+<td style="text-align: center;">张三</td>
+<td style="text-align: center;">物品2</td>
+<td style="text-align: center;">40</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">北京仓</td>
+<td style="text-align: center;">李四</td>
+<td style="text-align: center;">物品1</td>
+<td style="text-align: center;">50</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">北京仓</td>
+<td style="text-align: center;">李四</td>
+<td style="text-align: center;">物品3</td>
+<td style="text-align: center;">60</td>
+</tr>
+</tbody>
+</table>
+<p>虽然此关系已经符合3NF了，但是该关系模式还是会存在一点问题</p>
+<p>例如我们想要新建一个仓库，并为该仓库添加管理员，但是该关系模式不能实现，因为物品名也是主属性，不能为空</p>
+<p>那么如果某个仓库被清空之后，需要删除与这个仓库相关的物品存放记录了，但是这样会把仓库本身和管理员信息都删除了</p>
+<p>此外，如果一个仓库更换了管理员，那么我需要对每一条数据都进行更改</p>
+<p>造成以上问题的主要原因是存在<strong>主属性对于键码的部分函数依赖于传递函数依赖</strong></p>
+<p>这个例子中就是存在<span class="math inline">\(仓库名\)</span>部分函数依赖于键码<span class="math inline">\((管理员，物品名)\)</span></p>
+<p>我们只需要在3NF基础上解决主属性对于键码的部分与传递函数依赖即可</p>
+<p>新的关系为</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">仓库名</th>
+<th style="text-align: center;">物品名</th>
+<th style="text-align: center;">数量</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">上海仓</td>
+<td style="text-align: center;">物品1</td>
+<td style="text-align: center;">30</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">上海仓</td>
+<td style="text-align: center;">物品2</td>
+<td style="text-align: center;">40</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">北京仓</td>
+<td style="text-align: center;">物品1</td>
+<td style="text-align: center;">50</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">北京仓</td>
+<td style="text-align: center;">物品3</td>
+<td style="text-align: center;">60</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">仓库名</th>
+<th style="text-align: center;">管理员</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">上海仓</td>
+<td style="text-align: center;">张三</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">北京仓</td>
+<td style="text-align: center;">李四</td>
+</tr>
+</tbody>
+</table>
+<h4 id="异常">异常</h4>
+<p>如果不符合范式的关系会出现非常多的异常，主要有以下四种异常：</p>
+<ul>
+<li>冗余数据：例如上面提到的如果不分解，可能学院名和和学生名字等属性会出现很多次</li>
+<li>修改异常：修改了一个记录中的信息，但是另外一个记录中相同的信息却没有修改，例如我修改表中<code>COMP</code>的院长，但是多条，只改了一条就可能导致出现错误</li>
+<li>删除异常：删除一个信息，那么也会丢失其他信息，例如如果我不分解，直接删除成绩表中的某一条记录，那么可能导致这个学生的信息就被删除了</li>
+<li>插入异常：例如不分解，单纯想插入一个学生信息，但是这个学生还没选课，所以必然没有成绩，就无法插入</li>
+</ul>
 <h2 id="mysql">MySQL</h2>
 <h2 id="nosqlredis">NoSQL/Redis</h2>
 
@@ -407,7 +937,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库"><span class="nav-number">1.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库基础知识"><span class="nav-number">1.1.</span> <span class="nav-text">数据库基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务"><span class="nav-number">1.1.1.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#acid"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">ACID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发问题"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">并发问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务隔离级别"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">事务隔离级别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#锁"><span class="nav-number">1.1.2.</span> <span class="nav-text">锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#锁的分类"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">锁的分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mysql中的行级锁表级锁页级锁全局锁"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">Mysql中的行级锁，表级锁，页级锁，全局锁</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#行级锁"><span class="nav-number">1.1.2.2.1.</span> <span class="nav-text">行级锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#表级锁"><span class="nav-number">1.1.2.2.2.</span> <span class="nav-text">表级锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#页级锁"><span class="nav-number">1.1.2.2.3.</span> <span class="nav-text">页级锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#全局锁"><span class="nav-number">1.1.2.2.4.</span> <span class="nav-text">全局锁</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#共享锁和排他锁"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">共享锁和排他锁</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#排他锁exclusive-lockx锁"><span class="nav-number">1.1.2.3.1.</span> <span class="nav-text">排他锁（Exclusive Lock）&#x2F;X锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#共享锁shared-locks锁"><span class="nav-number">1.1.2.3.2.</span> <span class="nav-text">共享锁（Shared Lock）&#x2F;S锁</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#范式"><span class="nav-number">1.1.3.</span> <span class="nav-text">范式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表链接"><span class="nav-number">1.1.4.</span> <span class="nav-text">表链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql"><span class="nav-number">1.2.</span> <span class="nav-text">MySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nosqlredis"><span class="nav-number">1.3.</span> <span class="nav-text">NoSQL&#x2F;Redis</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库"><span class="nav-number">1.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库基础知识"><span class="nav-number">1.1.</span> <span class="nav-text">数据库基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务"><span class="nav-number">1.1.1.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#acid"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">ACID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发问题"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">并发问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务隔离级别"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">事务隔离级别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#锁"><span class="nav-number">1.1.2.</span> <span class="nav-text">锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#锁的分类"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">锁的分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mysql中的行级锁表级锁页级锁全局锁"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">Mysql中的行级锁，表级锁，页级锁，全局锁</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#行级锁"><span class="nav-number">1.1.2.2.1.</span> <span class="nav-text">行级锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#表级锁"><span class="nav-number">1.1.2.2.2.</span> <span class="nav-text">表级锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#页级锁"><span class="nav-number">1.1.2.2.3.</span> <span class="nav-text">页级锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#全局锁"><span class="nav-number">1.1.2.2.4.</span> <span class="nav-text">全局锁</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#共享锁和排他锁"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">共享锁和排他锁</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#排他锁exclusive-lockx锁"><span class="nav-number">1.1.2.3.1.</span> <span class="nav-text">排他锁（Exclusive Lock）&#x2F;X锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#共享锁shared-locks锁"><span class="nav-number">1.1.2.3.2.</span> <span class="nav-text">共享锁（Shared Lock）&#x2F;S锁</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#意向排他锁和意向共享锁"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">意向排他锁和意向共享锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#乐观锁和悲观锁"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">乐观锁和悲观锁</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#悲观锁pessimistic-lock"><span class="nav-number">1.1.2.5.1.</span> <span class="nav-text">悲观锁（Pessimistic Lock）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#乐观锁optimistic-lock"><span class="nav-number">1.1.2.5.2.</span> <span class="nav-text">乐观锁（Optimistic Lock）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#封锁协议"><span class="nav-number">1.1.3.</span> <span class="nav-text">封锁协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#三级封锁协议"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">三级封锁协议</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#一级封锁协议"><span class="nav-number">1.1.3.1.1.</span> <span class="nav-text">一级封锁协议</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二级封锁协议"><span class="nav-number">1.1.3.1.2.</span> <span class="nav-text">二级封锁协议</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#三级封锁协议-1"><span class="nav-number">1.1.3.1.3.</span> <span class="nav-text">三级封锁协议</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两段锁协议"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">两段锁协议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多版本并发控制mvcc"><span class="nav-number">1.1.4.</span> <span class="nav-text">多版本并发控制（MVCC）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mvcc实现的关键知识点"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">MVCC实现的关键知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#事务版本号"><span class="nav-number">1.1.4.1.1.</span> <span class="nav-text">事务版本号</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#隐式字段"><span class="nav-number">1.1.4.1.2.</span> <span class="nav-text">隐式字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#undo-log"><span class="nav-number">1.1.4.1.3.</span> <span class="nav-text">Undo log</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#版本链"><span class="nav-number">1.1.4.1.4.</span> <span class="nav-text">版本链</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#快照读和当前读"><span class="nav-number">1.1.4.1.5.</span> <span class="nav-text">快照读和当前读</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#read-view"><span class="nav-number">1.1.4.1.6.</span> <span class="nav-text">Read View</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mvcc解决脏读和不可重复读问题"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">MVCC解决脏读和不可重复读问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#脏读"><span class="nav-number">1.1.4.2.1.</span> <span class="nav-text">脏读</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#不可重复读问题"><span class="nav-number">1.1.4.2.2.</span> <span class="nav-text">不可重复读问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mvcc与幻读"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">MVCC与幻读</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#next-key-locks"><span class="nav-number">1.1.5.</span> <span class="nav-text">Next-Key Locks</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#record-lock"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">Record Lock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gap-lock"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">Gap Lock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#next-key-lock"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">Next-Key Lock</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系数据库设计理论"><span class="nav-number">1.1.6.</span> <span class="nav-text">关系数据库设计理论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数依赖"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">函数依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#键码"><span class="nav-number">1.1.6.1.1.</span> <span class="nav-text">键码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#平凡函数依赖和非平凡函数依赖"><span class="nav-number">1.1.6.1.2.</span> <span class="nav-text">平凡函数依赖和非平凡函数依赖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#完全函数依赖和部分函数依赖"><span class="nav-number">1.1.6.1.3.</span> <span class="nav-text">完全函数依赖和部分函数依赖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#传递函数依赖"><span class="nav-number">1.1.6.1.4.</span> <span class="nav-text">传递函数依赖</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#范式"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">范式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一范式1nf"><span class="nav-number">1.1.6.2.1.</span> <span class="nav-text">第一范式（1NF）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二范式2nf"><span class="nav-number">1.1.6.2.2.</span> <span class="nav-text">第二范式（2NF）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三范式3nf"><span class="nav-number">1.1.6.2.3.</span> <span class="nav-text">第三范式（3NF）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#bcnf范式"><span class="nav-number">1.1.6.2.4.</span> <span class="nav-text">BCNF范式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异常"><span class="nav-number">1.1.6.3.</span> <span class="nav-text">异常</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql"><span class="nav-number">1.2.</span> <span class="nav-text">MySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nosqlredis"><span class="nav-number">1.3.</span> <span class="nav-text">NoSQL&#x2F;Redis</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
